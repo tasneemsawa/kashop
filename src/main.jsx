@@ -6,10 +6,16 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { CssBaseline } from '@mui/material';
+import { ThemeProvider } from "@mui/material/styles";
+import FontTheme from "./Themes/FontTheme";
+
 createRoot(document.getElementById('root')).render(
     <>
-        <CssBaseline />
-        <App />
+        <ThemeProvider theme={FontTheme}>
+            <CssBaseline />
+            <App />
+        </ThemeProvider>
+
     </>
 
 )
