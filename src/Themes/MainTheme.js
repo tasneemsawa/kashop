@@ -1,9 +1,15 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
- const Fonttheme = createTheme({
+ const MainTheme = createTheme({
+  palette: {
+    text: {
+      primary: "#2B3445",    
+     // secondary: "#777777",   
+    },
+  },
     typography: {
       fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',
     },
   });
 
 
-  export default Fonttheme
+  export default MainTheme
