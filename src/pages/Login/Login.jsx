@@ -1,36 +1,119 @@
 import React from 'react'
-import { Box, Button, TextField, Typography } from '@mui/material'
+import {
+  Box, Button, CircularProgress, Paper, TextField, Typography, Checkbox,
+  Divider, Link,
+  FormControlLabel,
+} from '@mui/material'
 import axios from 'axios'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup';
+import { LoginSchema } from "../../Vailidation/LoginSchema"
+import { useState } from 'react';
+import { Styles } from './Styles';
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GoogleIcon from "@mui/icons-material/Google";
+import { Link as RouterLink } from 'react-router-dom';
+import PasswordInput from "../../components/PasswordInput/PasswordInput"
 
 export default function Login() {
-  const {register, handleSubmit} = useForm({})
-  
-  const loginForm = async (values)=>{
 
-  console.log(values);
-  
-  try{
-  const response = await axios.post(`${import.meta.env.VITE_BURL_AUTH}/Login`, values);
-  if (response.status===200)
-  localStorage.setItem("token",response.data.accessToken)
-  console.log(response);
-  }catch(err){
-  console.log(err);}}
-  
+  const [serverErrors, setServerErrors] = useState([])
+  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
+    resolver: yupResolver(LoginSchema),
+    mode: 'onBlur',
+    defaultValues: {
+      password: "",
+    }
+
+
+  })
+  const loginForm = async (values) => {
+    console.log(values);
+
+    try {
+      const response = await axios.post(`${import.meta.env.VITE_BURL_AUTH}/Login`, values);
+      if (response.status === 200)
+        localStorage.setItem("token", response.data.accessToken)
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+      setServerErrors(err.response.data.errors)
+
+    }
+  }
 
   return (
-   
-<Box className ="register-form">
-<Typography variant='h1' >Login Page</Typography>
-<Box onSubmit={handleSubmit(loginForm)} component={"form"} sx={{ display: 'flex',
-flexDirection: 'column', gap: 3, mt: 5, alignItems: 'center'
-}}>
-<TextField label="user email" {...register('email')} fullWidth variant="outlined"/>
-<TextField label="password" {...register('password')} fullWidth variant="outlined"/>
- <Button variant="contained" type="submit">Login</Button>
- </Box>
-</Box>
+    <Box sx={Styles.mainContainer}>
+      <Paper elevation={0} sx={Styles.subContainer} >
+        <Box className="register-form" sx={{ padding: "3rem 3.75rem 0px" }}>
+          <Typography variant="h5" component={"h1"} sx={Styles.title}  >
+            Welcome To Ecommerce
+          </Typography>
+          <Typography textAlign="center" component={"h3"} sx={Styles.subTitle}>
+            Log in with email & password
+          </Typography>
+          {serverErrors.length > 0 ?
+            serverErrors.map((err, index) =>
+              <Typography key={index} sx={{ color: 'red' }}>
+                {err} </Typography>)
+            : null}
 
+          <Box onSubmit={handleSubmit(loginForm)} component={"form"} sx={{
+            display: 'flex',
+            flexDirection: 'column', gap: 3, mt: 5, alignItems: 'center'
+          }}>
+
+            <TextField label="user email" {...register('email')} fullWidth variant="outlined"
+              error={errors.email} helperText={errors.email?.message}
+            />
+
+            <PasswordInput errors={errors} control={control} />
+
+            <Button variant="contained" type="submit" sx={Styles.loginButton} disabled={isSubmitting} fullWidth>{
+              isSubmitting ? <CircularProgress /> : "Login"
+            }</Button>
+            <Divider sx={Styles.divider}>
+              Or
+            </Divider>
+            <Button variant="contained" sx={Styles.facebookButton} disabled={isSubmitting} fullWidth startIcon={<FacebookIcon />}>
+              Continue with Facebook
+            </Button>
+            <Button variant="contained" sx={Styles.googleButton} disabled={isSubmitting} fullWidth startIcon={<GoogleIcon />}>
+              Continue with Google
+            </Button>
+
+          </Box>
+
+        </Box>
+        <Typography
+          variant="body2"
+
+          sx={{ textAlign: "center", width: "100%", marginTop: "25px", paddingTop: "19px", color: "#7D879C", fontWeight: "600" }}
+        >
+          Don’t have account?{" "}
+          <RouterLink
+            to={"/auth/register"}
+            style={{
+              color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
+            }}
+          > Sign Up</RouterLink>
+        </Typography>
+
+        <Typography
+          variant="body2"
+
+          sx={{ textAlign: "center", backgroundColor: "#F3F5F9", width: "100%", marginTop: "25px", padding: "19px 0px", color: "#7D879C", fontWeight: "600" }}
+        >
+          Forgot your password?{" "}
+          <RouterLink
+            to={"/auth/login"}
+            style={{
+              color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
+            }}
+          > Reset It</RouterLink>
+        </Typography>
+
+      </Paper>
+    </Box>
   )
 }

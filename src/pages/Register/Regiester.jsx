@@ -12,13 +12,11 @@ import { useState } from 'react';
 import { Styles } from './Styles';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
-import { useNavigate } from "react-router-dom";
 import { Link as RouterLink } from 'react-router-dom';
 
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
 export default function Regiester() {
 
-  const navigate = useNavigate();
   const [serverErrors, setServerErrors] = useState([])
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(RegiesterSchema),
