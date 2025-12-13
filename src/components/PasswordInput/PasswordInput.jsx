@@ -1,0 +1,66 @@
+import React from "react";
+import {
+    FormControl,
+    InputLabel,
+    OutlinedInput,
+    InputAdornment,
+    IconButton,
+    FormHelperText,
+} from "@mui/material";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { Controller } from "react-hook-form";
+
+export default function PasswordInput({ errors, control, name = "password" }) {
+    const [showPassword, setShowPassword] = React.useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+    const handleMouseUpPassword = (event) => {
+        event.preventDefault();
+    };
+
+    return (
+
+        <Controller
+            name={name}
+            control={control}
+
+            render={({ field }) => (
+                <FormControl sx={{  }} fullWidth variant="outlined" error={!!errors.password}>
+                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={showPassword ? 'text' : 'password'}
+                        {...field}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label={
+                                        showPassword ? 'hide the password' : 'display the password'
+                                    }
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    onMouseUp={handleMouseUpPassword}
+                                    edge="end"
+                                >
+                                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password"
+                    />
+                    {errors.password && (
+                        <FormHelperText>
+                            {errors.password.message}
+                        </FormHelperText>
+                    )}
+
+                </FormControl>
+            )}
+        />
+
+
+    )
+}

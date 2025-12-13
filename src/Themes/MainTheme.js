@@ -3,7 +3,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
   palette: {
     text: {
       primary: "#2B3445",    
-     // secondary: "#777777",   
+     // secondary: "#777777", 
+     mainColor:"#E94560"  
     },
   },
     typography: {
