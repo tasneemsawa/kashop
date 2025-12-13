@@ -5,37 +5,49 @@ import Cart from "./pages/Cart/Cart";
 import AuthLayout from "./layout/AuthLayout";
 import Regiester from "./pages/Register/Regiester";
 import Login from "./pages/Login/Login";
+import ResetPassword from "./pages/ResetPassword/ResetPassword";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout/>,
-    children:[{
-        path: "/home",
-        element: <Home/>,
-    },{
-        path: "/cart",
-        element: <Cart/>,
+    element: <MainLayout />,
+    children: [{
+      path: "/home",
+      element: <Home />,
+    }, {
+      path: "/cart",
+      element: <Cart />,
 
     }
 
-]
+    ]
   },
   {
     path: "/auth",
-    element: <AuthLayout/>,
-    children:[{
-        path: "register",
-        element: <Regiester/>,
+    element: <AuthLayout />,
+    children: [{
+      path: "register",
+      element: <Regiester />,
     },
     {
-        path: "login",
-        element: <Login/>,
+      path: "login",
+      element: <Login />,
 
-    }
+    },
+    {
+      path: "resetPassword",
+      element: <ResetPassword />,
 
-]
+    },
+    {
+      path: "forgotPassword",
+      element: <ForgotPassword />,
+
+    },
+
+    ]
   },
 ]);
 

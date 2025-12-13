@@ -106,7 +106,7 @@ export default function Login() {
         >
           Forgot your password?{" "}
           <RouterLink
-            to={"/auth/login"}
+            to={"/auth/forgotPassword"}
             style={{
               color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
             }}

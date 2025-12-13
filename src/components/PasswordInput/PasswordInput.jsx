@@ -11,7 +11,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Controller } from "react-hook-form";
 
-export default function PasswordInput({ errors, control, name = "password" }) {
+export default function PasswordInput({ errors, control, name = "password" ,label="Password" }) {
     const [showPassword, setShowPassword] = React.useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event) => {
@@ -26,11 +26,12 @@ export default function PasswordInput({ errors, control, name = "password" }) {
         <Controller
             name={name}
             control={control}
-
+            defaultValue=""
             render={({ field }) => (
-                <FormControl sx={{  }} fullWidth variant="outlined" error={!!errors.password}>
-                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                <FormControl sx={{  }} fullWidth variant="outlined" error={!!errors[name]}>
+                    <InputLabel htmlFor="outlined-adornment-password">{label}</InputLabel>
                     <OutlinedInput
+                        value={field.value ?? ""} 
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
                         {...field}
@@ -49,11 +50,11 @@ export default function PasswordInput({ errors, control, name = "password" }) {
                                 </IconButton>
                             </InputAdornment>
                         }
-                        label="Password"
+                        label={label}
                     />
-                    {errors.password && (
+                    {errors[name] && (
                         <FormHelperText>
-                            {errors.password.message}
+                            {errors[name].message}
                         </FormHelperText>
                     )}
 
