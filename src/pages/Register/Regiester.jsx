@@ -13,7 +13,7 @@ import { Styles } from './Styles';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Link as RouterLink } from 'react-router-dom';
-
+import axiosInstance from "./../../API/AxiosInstance"
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
 export default function Regiester() {
 
@@ -31,7 +31,7 @@ export default function Regiester() {
     console.log(values);
 
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BURL_AUTH}/Register`, values);
+      const response = await axiosInstance.post("/Auth/Account/Register", values);
       console.log(response);
     } catch (err) {
       console.log(err);
