@@ -7,18 +7,22 @@ import Regiester from "./pages/Register/Regiester";
 import Login from "./pages/Login/Login";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import UserContextProvider, { UserContext } from "./Context/UserContext";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element:
+      <UserContextProvider><MainLayout /> </UserContextProvider>,
     children: [{
       path: "/",
       element: <Home />,
     }, {
       path: "/cart",
-      element: <Cart />,
+      element:
+        <Cart />
+      ,
 
     }
 
