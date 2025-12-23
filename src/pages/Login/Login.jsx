@@ -8,19 +8,14 @@ import axios from 'axios'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginSchema } from "../../Vailidation/LoginSchema"
-import { useState } from 'react';
 import { Styles } from './Styles';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
-import { useContext } from 'react';
-import { AuthContext } from '../../Context/AuthContext';
+import useLogin from '../../Hooks/useLogin';
 
 export default function Login() {
- const navigate = useNavigate()
- const {setToken,setAccesToken}=useContext(AuthContext)
-  const [serverErrors, setServerErrors] = useState([])
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(LoginSchema),
     mode: 'onBlur',
@@ -30,22 +25,11 @@ export default function Login() {
 
 
   })
+  let {serverErrors,loginMutation} =useLogin()
   const loginForm = async (values) => {
-    console.log(values);
+    console.log(values)
 
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_BURL_AUTH}/Login`, values);
-      if (response.status === 200){
-        setAccesToken(response.data.accessToken)
-        navigate("/")
-
-      }
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-      setServerErrors(err.response.data.errors)
-
-    }
+    await loginMutation.mutateAsync(values)
   }
 
   return (
