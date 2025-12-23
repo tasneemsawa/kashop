@@ -6,11 +6,13 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthContext';
+import { useCounterStore } from '../../Store/useCounterStore';
 
 export default function Navbar() {
   const { token, logout } = useContext(AuthContext)
   const navigate = useNavigate()
 
+  const {counter, userName, increase,descrease} = useCounterStore();
 
   const handelLogout=()=>{
     logout()
@@ -24,7 +26,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            KAshop
+            KAshop - {counter} -{userName}
           </Typography>
 
           {/* Navigation Links */}
@@ -38,7 +40,14 @@ export default function Navbar() {
               Home
             </Link>
 
-
+            <Button
+                  color="inherit"
+                  onClick={()=>increase(5)}>Increase
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={()=>descrease(2)}>Descrease
+                </Button>
             {token ?
               <>
                 <Link
