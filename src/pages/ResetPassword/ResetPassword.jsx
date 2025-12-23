@@ -11,10 +11,9 @@ import { useState } from 'react';
 import { Styles } from './Styles';
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
 import { useNavigate } from 'react-router-dom';
+import useResetPassword from '../../Hooks/useResetPassword';
 
 export default function ResetPassword() {
-  const navigate = useNavigate()
-  const [serverErrors, setServerError] = useState("")
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(ResetPasswordSchema),
     mode: 'onBlur',
@@ -24,18 +23,10 @@ export default function ResetPassword() {
 
 
   })
+  let { serverErrors, resetPasswordMutation } = useResetPassword()
+
   const resetForm = async (values) => {
-    console.log(values);
-
-    try {
-      const response = await axios.patch(`${import.meta.env.VITE_BURL_AUTH}/ResetPassword`, values);
-      if (response.status === 200)
-        navigate('/auth/login')
-      console.log(response);
-    } catch (err) {
-      setServerError(err.response.data.message)
-
-    }
+    await resetPasswordMutation.mutateAsync(values)
   }
 
   return (

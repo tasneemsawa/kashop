@@ -10,29 +10,20 @@ import { ForgotPasswordSchema } from "../../Vailidation/ForgotPasswordSchema"
 import { useState } from 'react';
 import { Styles } from './Styles';
 import { useNavigate } from 'react-router-dom';
+import useForgotPassword from '../../Hooks/useForgotPassword';
 
 export default function ForgotPassword() {
     const navigate = useNavigate()
-    const [serverErrors, setServerError] = useState("")
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
         resolver: yupResolver(ForgotPasswordSchema),
         mode: 'onBlur',
 
     })
+
+    let { serverErrors, forgotPasswordMutation } = useForgotPassword()
     const forgotPasswordForm = async (values) => {
-        console.log(values);
+        await forgotPasswordMutation.mutateAsync(values)
 
-        try {
-            const response = await axios.post(`${import.meta.env.VITE_BURL_AUTH}/SendCode`, values);
-            if (response.status === 200)
-                navigate('/auth/resetPassword')
-
-            console.log(response);
-        } catch (err) {
-            console.log(err);
-            setServerError(err.response.data.message)
-
-        }
     }
 
     return (

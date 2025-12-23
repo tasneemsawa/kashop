@@ -4,20 +4,17 @@ import {
   Divider, Link,
   FormControlLabel,
 } from '@mui/material'
-import axios from 'axios'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { RegiesterSchema } from "../../Vailidation/RegiesterSchema"
-import { useState } from 'react';
 import { Styles } from './Styles';
 import FacebookIcon from "@mui/icons-material/Facebook";
 import GoogleIcon from "@mui/icons-material/Google";
-import { Link as RouterLink } from 'react-router-dom';
-import axiosInstance from "./../../API/AxiosInstance"
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
+import useRegiester from '../../Hooks/useRegiester';
 export default function Regiester() {
 
-  const [serverErrors, setServerErrors] = useState([])
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(RegiesterSchema),
     mode: 'onBlur',
@@ -27,16 +24,12 @@ export default function Regiester() {
 
 
   })
+  let { registerMutation, serverErrors } = useRegiester()
   const registerForm = async (values) => {
-    console.log(values);
 
-    try {
-      const response = await axiosInstance.post("/Auth/Account/Register", values);
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-      setServerErrors(err.response.data.errors)
-    }
+    await registerMutation.mutateAsync(values)
+
+
   }
 
 
