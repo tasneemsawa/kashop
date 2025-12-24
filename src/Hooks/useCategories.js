@@ -10,7 +10,7 @@ export function useCategories() {
 
     const getCategories = async () => {
         let response = await axiosInstance.get("/Categories")
-        return response.data
+        return response.data.response
 
     }
     const query = useQuery({
