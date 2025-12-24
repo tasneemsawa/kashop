@@ -8,6 +8,7 @@ import Login from "./pages/Login/Login";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import UserContextProvider, { UserContext } from "./Context/UserContext";
+import Shop from "./pages/Shop/Shop";
 
 
 const router = createBrowserRouter([
@@ -15,17 +16,9 @@ const router = createBrowserRouter([
     path: "/",
     element:
       <UserContextProvider><MainLayout /> </UserContextProvider>,
-    children: [{
-      path: "/",
-      element: <Home />,
-    }, {
-      path: "/cart",
-      element:
-        <Cart />
-      ,
-
-    }
-
+    children: [{ path: "/", element: <Home /> },
+    { path: "/cart", element: <Cart /> },
+    { path: "/shop", element: <Shop /> },
     ]
   },
   {
