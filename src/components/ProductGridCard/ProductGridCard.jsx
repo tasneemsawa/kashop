@@ -1,0 +1,49 @@
+import * as React from 'react';
+import {
+  Box, Grid, Typography,
+  CardMedia, Rating,  Card, CardContent, IconButton,
+} from '@mui/material';
+import {  Add } from '@mui/icons-material';
+import { Styles } from './Styles';
+
+export default function ProductGridCard({product}) {
+ 
+
+
+
+  return (
+    <Card elevation={0} sx={Styles.card}>
+      <CardMedia
+        component="img"
+        height="300px"
+        sx={Styles.cardMedia}
+        image={product.image}
+        title={product.name}
+        alt={product.name}
+      />
+      <CardContent sx={{ p: "16px" }}>
+        <Typography variant="subtitle1" noWrap sx={Styles.productName} >{product.name}</Typography>
+        <Rating
+          name="product-rating"
+          value={product.rating || 0}
+          precision={0.5}
+          readOnly
+          size="small"
+          sx={{ color: '#faaf00', mt: 1 }}
+        />
+        <Typography color="primary" sx={Styles.price}>
+          ${product.price.toFixed(2)}
+        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: -3 }}>
+          <IconButton size="small" sx={Styles.addButoon}>
+            <Add fontSize="small" sx={Styles.addIcon} />
+          </IconButton>
+        </Box>
+      </CardContent>
+    </Card>
+
+
+
+
+  );
+}
