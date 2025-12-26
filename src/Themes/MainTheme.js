@@ -23,6 +23,9 @@ const MainTheme = createTheme({
       default: '#f8f9fa',
       paper: '#ffffff',
     },
+    customYellow:{
+      main:"#ffcd4e"
+    }
   },
   typography: {
     fontFamily: '"Public Sans", "Public Sans Fallback", sans-serif',

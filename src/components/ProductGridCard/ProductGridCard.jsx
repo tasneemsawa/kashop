@@ -30,7 +30,7 @@ const navigate=useNavigate()
           precision={0.5}
           readOnly
           size="small"
-          sx={{ color: '#faaf00', mt: 1 }}
+          sx={{ color: 'customYellow.main', mt: 1 }}
         />
         <Typography color="primary" sx={Styles.price}>
           ${product.price.toFixed(2)}
