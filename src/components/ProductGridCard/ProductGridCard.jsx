@@ -5,14 +5,15 @@ import {
 } from '@mui/material';
 import {  Add } from '@mui/icons-material';
 import { Styles } from './Styles';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductGridCard({product}) {
  
 
-
+const navigate=useNavigate()
 
   return (
-    <Card elevation={0} sx={Styles.card}>
+    <Card elevation={0} sx={Styles.card} onClick={() => navigate("/productDetails")}>
       <CardMedia
         component="img"
         height="300px"
