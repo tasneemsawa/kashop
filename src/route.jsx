@@ -9,6 +9,7 @@ import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import UserContextProvider, { UserContext } from "./Context/UserContext";
 import Shop from "./pages/Shop/Shop";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
     children: [{ path: "/", element: <Home /> },
     { path: "/cart", element: <Cart /> },
     { path: "/shop", element: <Shop /> },
+    { path: "/productDetails", element: <ProductDetails /> },
     ]
   },
   {
