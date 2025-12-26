@@ -12,6 +12,7 @@ import {
     Remove as RemoveIcon,
 } from '@mui/icons-material';
 import { Styles } from './Styles';
+import ProductGridCard from '../../components/ProductGridCard/ProductGridCard';
 
 const detailes =
     { id: 1, quantity: 100, name: "Waterproof Mascara", description: "product one description", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" }
@@ -31,9 +32,17 @@ const reviews = [
         avatar: 'https://mui.com/static/images/avatar/2.jpg'
     }
 ];
+const relatedProducts = [
+    { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
+    { id: 2, name: "Dead Sea Bath Salts", price: 217, rating: 3, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/15/07/b5/1507b519f1976dd3090ae886fe67f0f7.jpg" },
+    { id: 3, name: "Xiaomi", price: 171, rating: 5, category: "Watches", image: "https://i.pinimg.com/736x/86/6d/cf/866dcff7520d465f3dcd6635c82380ea.jpg" },
+    { id: 4, name: "Kossil Watch Brown", price: 117, rating: 4, category: "Watches", image: "https://i.pinimg.com/736x/a8/e4/76/a8e4762d2a85f820df68722b1376a02c.jpg" },
+];
 export default function ProductDetails() {
     const [quantity, setQuantity] = useState(0);
     const [tabValue, setTabValue] = useState("1");
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState('');
 
     const handleIncrease = () => setQuantity(quantity + 1);
     const handleDecrease = () => {
@@ -41,6 +50,11 @@ export default function ProductDetails() {
     };
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({ rating, comment });
+
     };
     return (
         <Box elevation={0} sx={{ minHeight: '100vh', py: 15 }}>
@@ -192,6 +206,23 @@ export default function ProductDetails() {
                     </TabContext>
                 </Box>
 
+                <Box sx={{ width: '100%', typography: 'body1', pb: 15 }}>
+                    <Typography component={"h2"} sx={{ fontSize: "20px", marginBottom: "30px", fontWeight: 700 }}>
+                        Related Products
+                        </Typography>
+                        <Grid container spacing={3}>
+
+                            {relatedProducts.map(product =>
+                                <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={product.id}>
+                                    <ProductGridCard product={product} />
+                                </Grid>
+                            )}
+
+
+                        </Grid>
+
+                   
+                </Box>
 
             </Container>
         </Box>
