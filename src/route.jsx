@@ -10,6 +10,8 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import UserContextProvider, { UserContext } from "./Context/UserContext";
 import Shop from "./pages/Shop/Shop";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Payment from "./pages/Payment/Payment";
+import Checkout from "./pages/Checkout/Checkout";
 
 
 const router = createBrowserRouter([
@@ -21,6 +23,8 @@ const router = createBrowserRouter([
     { path: "/cart", element: <Cart /> },
     { path: "/shop", element: <Shop /> },
     { path: "/productDetails", element: <ProductDetails /> },
+    { path: "/checkout", element: <Checkout /> },
+    { path: "/payment", element: <Payment /> },    
     ]
   },
   {
