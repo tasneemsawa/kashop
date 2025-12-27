@@ -13,6 +13,7 @@ import {
 } from '@mui/icons-material';
 import { Styles } from './Styles';
 import ProductGridCard from '../../components/ProductGridCard/ProductGridCard';
+import WriteReviewForm from '../../components/WriteReviewForm/WriteReviewForm';
 
 const detailes =
     { id: 1, quantity: 100, name: "Waterproof Mascara", description: "product one description", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" }
@@ -200,7 +201,7 @@ export default function ProductDetails() {
                                 ))}
                             </List>
 
-
+                            <WriteReviewForm />
 
                         </TabPanel>
                     </TabContext>
@@ -209,19 +210,19 @@ export default function ProductDetails() {
                 <Box sx={{ width: '100%', typography: 'body1', pb: 15 }}>
                     <Typography component={"h2"} sx={{ fontSize: "20px", marginBottom: "30px", fontWeight: 700 }}>
                         Related Products
-                        </Typography>
-                        <Grid container spacing={3}>
+                    </Typography>
+                    <Grid container spacing={3}>
 
-                            {relatedProducts.map(product =>
-                                <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={product.id}>
-                                    <ProductGridCard product={product} />
-                                </Grid>
-                            )}
+                        {relatedProducts.map(product =>
+                            <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={product.id}>
+                                <ProductGridCard product={product} />
+                            </Grid>
+                        )}
 
 
-                        </Grid>
+                    </Grid>
 
-                   
+
                 </Box>
 
             </Container>
