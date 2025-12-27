@@ -89,11 +89,11 @@ export const Styles = {
     color: 'secondary.main',
     textTransform: 'none',
     fontSize: '14px',
-    fontWeight: 400,
+    fontWeight: 600,
     px: 2,
     '&:hover': {
       backgroundColor: 'transparent',
-      color: '#e91e63',
+      color: 'primary.main',
     },
   }
 };
