@@ -31,7 +31,7 @@ const pages = ['Products', 'Pricing', 'Blog'];
 
 
 export default function Navbar() {
-  const {token,logout} =useAuthStore()
+  const {token,logout,user} =useAuthStore()
   const navigate = useNavigate()
 
   const { counter, userName, increase, descrease } = useCounterStore();
