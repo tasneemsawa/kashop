@@ -7,20 +7,20 @@ import Regiester from "./pages/Register/Regiester";
 import Login from "./pages/Login/Login";
 import ResetPassword from "./pages/ResetPassword/ResetPassword";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
-import UserContextProvider, { UserContext } from "./Context/UserContext";
 import Shop from "./pages/Shop/Shop";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Payment from "./pages/Payment/Payment";
 import Checkout from "./pages/Checkout/Checkout";
+import ProtectedRouter from "./ProtectedRouter";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element:
-      <UserContextProvider><MainLayout /> </UserContextProvider>,
+     <MainLayout />,
     children: [{ path: "/", element: <Home /> },
-    { path: "/cart", element: <Cart /> },
+    { path: "/cart", element:<ProtectedRouter> <Cart /></ProtectedRouter>  },
     { path: "/shop", element: <Shop /> },
     { path: "/productDetails", element: <ProductDetails /> },
     { path: "/checkout", element: <Checkout /> },

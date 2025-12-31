@@ -2,6 +2,7 @@ export const Styles = {
   navbar: {
     backgroundColor: "white",
     boxShadow: '0px 4px 12px rgba(3, 0, 71, 0.09)',
+    paddingTop:"10px"
   },
   logo: {
     display: { xs: 'flex', md: 'flex' },

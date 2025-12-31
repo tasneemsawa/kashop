@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import {
   Box, Grid, Typography, Card, IconButton, Select,
   Button, StepButton, Stack, CardMedia, Step, Container

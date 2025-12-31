@@ -19,12 +19,11 @@ import {
   MeetingRoomOutlined as MeetingRoomOutlinedIcon,
 } from '@mui/icons-material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../Context/AuthContext';
 import { useCounterStore } from '../../Store/useCounterStore';
 
 import { Styles } from "./Styles"
 import { useState } from 'react';
+import { useAuthStore } from '../../Store/useAuthStore';
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -32,7 +31,7 @@ const pages = ['Products', 'Pricing', 'Blog'];
 
 
 export default function Navbar() {
-  const { token, logout } = useContext(AuthContext)
+  const {token,logout} =useAuthStore()
   const navigate = useNavigate()
 
   const { counter, userName, increase, descrease } = useCounterStore();
@@ -83,15 +82,14 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+
+      {/* <AppBar position="static">
         <Toolbar>
 
-          {/* Logo */}
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             KAshop - {counter} -{userName}
           </Typography>
 
-          {/* Navigation Links */}
           <Box sx={{ display: 'flex', gap: 2, alignItems: "center" }}>
 
             <Button
@@ -108,7 +106,7 @@ export default function Navbar() {
           </Box>
 
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
 
       <AppBar position="static" sx={Styles.navbar} elevation={0}>
         <Container maxWidth="lg">
