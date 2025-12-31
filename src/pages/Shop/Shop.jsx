@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import {
   Box, Grid, Typography, TextField, MenuItem, Select,
-  Slider, IconButton, Stack, Divider, Paper, Container
+  Slider, IconButton, Stack, Divider, Paper, Container, CircularProgress
 } from '@mui/material';
 import { Search, Add, GridView, List } from '@mui/icons-material';
 import ProductGridCard from '../../components/ProductGridCard/ProductGridCard';
@@ -23,13 +23,14 @@ const Shop = () => {
   console.log("fwefwefwefثثثثث")
   console.log(data)
 
+
   const [searchProduct, setSearchProduct] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [view, setView] = useState("grid");
 
   let filteredProducts = useMemo(() => {
-    let result = initialProducts.filter(p =>
+    let result = data.filter(p =>
       p.name.toLowerCase().includes(searchProduct.toLowerCase()) &&
       p.price >= priceRange[0] && p.price <= priceRange[1]
     );
@@ -42,6 +43,9 @@ const Shop = () => {
     return result;
   }, [searchProduct, sortBy, priceRange]);
 
+  if(isLoading) return <CircularProgress></CircularProgress>
+
+  if(isError) return <Typography>error</Typography>
 
   return (
     <Box elevation={0} sx={{ minHeight: '100vh', py: 7 }}>
