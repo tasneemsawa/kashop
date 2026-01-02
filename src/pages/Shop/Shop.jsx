@@ -29,19 +29,19 @@ const Shop = () => {
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [view, setView] = useState("grid");
 
-  let filteredProducts = useMemo(() => {
-    let result = data.filter(p =>
-      p.name.toLowerCase().includes(searchProduct.toLowerCase()) &&
-      p.price >= priceRange[0] && p.price <= priceRange[1]
-    );
-    if (sortBy === ' ') result.sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-low') result.sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-high') result.sort((a, b) => b.price - a.price);
-    if (sortBy === 'alpha') result.sort((a, b) => a.name.localeCompare(b.name));
-    if (sortBy === 'alphaZ') result.sort((a, b) => b.name.localeCompare(a.name));
+  // let filteredProducts = useMemo(() => {
+  //   let result = data.filter(p =>
+  //     p.name.toLowerCase().includes(searchProduct.toLowerCase()) &&
+  //     p.price >= priceRange[0] && p.price <= priceRange[1]
+  //   );
+  //   if (sortBy === ' ') result.sort((a, b) => a.price - b.price);
+  //   if (sortBy === 'price-low') result.sort((a, b) => a.price - b.price);
+  //   if (sortBy === 'price-high') result.sort((a, b) => b.price - a.price);
+  //   if (sortBy === 'alpha') result.sort((a, b) => a.name.localeCompare(b.name));
+  //   if (sortBy === 'alphaZ') result.sort((a, b) => b.name.localeCompare(a.name));
 
-    return result;
-  }, [searchProduct, sortBy, priceRange]);
+  //   return result;
+  // }, [searchProduct, sortBy, priceRange]);
 
   if(isLoading) return <CircularProgress></CircularProgress>
 
@@ -58,7 +58,7 @@ const Shop = () => {
               Searching for “ {searchProduct || 'all'} ”
             </Typography>
             <Typography variant="body1" sx={Styles.searchNumber}>
-              {filteredProducts.length} results found
+              {data.length} results found
             </Typography>
           </Box>
 
@@ -130,7 +130,7 @@ const Shop = () => {
           {/* Product Grid */}
           <Grid size={{ xs: 12, sm: 8, md: 9, lg: 9 }}>
             <Grid container spacing={2} sx={{ flexWrap: "wrap" }}>
-              {filteredProducts.map((product) => (
+              {data.map((product) => (
                 view == "grid" ?
                   <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={product.id}>
                     <ProductGridCard product={product} />

@@ -1,8 +1,9 @@
 export const Styles = {
   navbar: {
     backgroundColor: "white",
-    boxShadow: '0px 4px 12px rgba(3, 0, 71, 0.09)',
-    paddingTop:"10px"
+    boxShadow: '0px 2px 1px rgba(3, 0, 51, 0.03)',
+    paddingTop:"10px",
+    margin:"3px"
   },
   logo: {
     display: { xs: 'flex', md: 'flex' },
