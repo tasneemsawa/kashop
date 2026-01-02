@@ -13,6 +13,7 @@ import watch from "../../../assets/Images/Main/apple-watch-0.webp"
 
 //style
 import Styles from "./Styles"
+import { useNavigate } from 'react-router-dom';
 
 
 const Hero = () => {
@@ -29,6 +30,7 @@ const Hero = () => {
     }
   ];
 
+  const navigate=useNavigate()
   return (
     <Box sx={Styles.hero}>
       <Container maxWidth="lg">
@@ -56,7 +58,9 @@ const Hero = () => {
                     >
                       {slide.description}
                     </Typography>
-                    <Button sx={Styles.shopButton}>Shop Now</Button>
+                    <Button sx={Styles.shopButton}
+                    onClick={()=>navigate("/shop")}
+                    >Shop Now</Button>
                   </Box>
                 </Grid>
 
