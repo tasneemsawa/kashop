@@ -3,8 +3,8 @@
 import React, { useRef } from 'react';
 import { Box, Container, Card, CardMedia, Stack } from '@mui/material';
 //images
-import Offer1 from "../../../assets/Images/Offers/Offer1.webp"
-import Offer2 from "../../../assets/Images/Offers/Offer2.webp"
+import offer1 from "../../../assets/Images/offers/offer1.webp"
+import offer2 from "../../../assets/Images/offers/offer2.webp"
 
 //  Swiper
 import 'swiper/css';
@@ -15,8 +15,8 @@ import { Style } from '@mui/icons-material';
 
 const Offers = () => {
     const offer = [
-        { id: 1,  image: Offer1 },
-        { id: 2, image: Offer2 },
+        { id: 1,  image: offer1 },
+        { id: 2, image: offer2 },
     ];
     return (
         <Container maxWidth="lg" sx={{ py: 6 }}>
