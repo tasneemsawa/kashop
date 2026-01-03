@@ -4,6 +4,7 @@ import FeaturesCards from './FeaturesCards/FeaturesCards'
 import FlashDeals from './FlashDeals/FlashDeals'
 import HeroSlider from './Hero/Hero'
 import NewArrivals from './NewArrivals/NewArrivals'
+import Offers from './Offers/Offers'
 import TopCategories from './TopCategories/TopCategories'
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
     <FlashDeals />
     <TopCategories/>
     <NewArrivals/>
+    <Offers/>
     <FeaturesCards />
     <Categories />
   </>
