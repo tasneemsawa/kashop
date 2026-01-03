@@ -3,6 +3,7 @@ import Categories from '../../components/Categories/Categories'
 import FeaturesCards from './FeaturesCards/FeaturesCards'
 import FlashDeals from './FlashDeals/FlashDeals'
 import HeroSlider from './Hero/Hero'
+import NewArrivals from './NewArrivals/NewArrivals'
 import TopCategories from './TopCategories/TopCategories'
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
     <HeroSlider />
     <FlashDeals />
     <TopCategories/>
+    <NewArrivals/>
     <FeaturesCards />
     <Categories />
   </>

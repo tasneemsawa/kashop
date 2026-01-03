@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import { Box, Container, Typography, Card, IconButton, Stack, Paper } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
-import WidgetsOutlinedIcon from '@mui/icons-material/WidgetsOutlined';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 //images
@@ -35,7 +35,7 @@ const TopCategories = () => {
         <Container maxWidth="lg" sx={{ py: 6 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
-                    <WidgetsOutlinedIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
+                    <WidgetsIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
                     <Typography fontWeight="bold" fontSize={"25px"} color="secondary.main">Top Categories</Typography>
                 </Stack>
                 <Typography onClick={() => navigate("/shop")} sx={Styles.viewAll}>
