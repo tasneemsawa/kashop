@@ -14,7 +14,7 @@ export default function ProductListCard({product}) {
 
 
   return (
-    <Card elevation={0} sx={Styles.card} onClick={() => navigate("/productDetails")}>
+    <Card elevation={0} sx={Styles.card} onClick={() => navigate(`/productDetails/${product.id}`)}>
       <CardMedia
         component="img"
         height="100%"

@@ -24,7 +24,7 @@ const TopCategories = () => {
         { id: 1, name: "HeadPhone", ordersNumber: "3k", image: headPhone },
         { id: 2, name: "Watch", ordersNumber: "3k", image: watch },
         { id: 3, name: "Sunglass", ordersNumber: "3k", image: sunglass },
-        { id: 2, name: "Watch", ordersNumber: "3k", image: watch },
+        { id: 4, name: "Watch", ordersNumber: "3k", image: watch },
 
     ];
     const prevRef = useRef(null);

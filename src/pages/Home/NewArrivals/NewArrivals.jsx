@@ -47,7 +47,7 @@ const NewArrivals = () => {
                 <Stack direction={"row"} spacing={3} sx={Style.mainContainer}>
                     {products.map((item) => (
 
-                        <Card elevation={0} sx={{ boxShadow: "0", backgroundColor: "transparent" }}>
+                        <Card elevation={0} sx={{ boxShadow: "0", backgroundColor: "transparent" }} key={item.id}>
                             <CardMedia
                                 component="img"
                                 height="170px"

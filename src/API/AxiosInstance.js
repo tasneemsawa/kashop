@@ -2,7 +2,14 @@ import axios from "axios"
 
 
 const axiosInstance = axios.create({
-    baseURL: 'https://knowledgeshop.runasp.net/api',
-  });
+  baseURL: 'https://knowledgeshop.runasp.net/api',
+});
 
-  export default axiosInstance
+axiosInstance.interceptors.request.use((config) => {
+
+  config.headers["Accept-Language"]="en" //ar
+  return config
+
+
+})
+export default axiosInstance

@@ -25,7 +25,7 @@ const Offers = () => {
                 <Stack direction={"row"} spacing={3} sx={Style.mainContainer}>
                     {offer.map((item) => (
 
-                        <Card elevation={0} sx={{ boxShadow: "0", backgroundColor: "transparent" }}>
+                        <Card key={item.id} elevation={0} sx={{ boxShadow: "0", backgroundColor: "transparent" }}>
                             <CardMedia
                                 component="img"
                                 height="350px"

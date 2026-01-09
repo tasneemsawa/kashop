@@ -19,8 +19,7 @@ const initialProducts = [
 
 const Shop = () => {
 
-  const { isError, isLoading, data } = useProducts()
-  console.log("fwefwefwefثثثثث")
+  let { isError, isLoading, data } = useProducts()
   console.log(data)
 
 
@@ -58,7 +57,7 @@ const Shop = () => {
               Searching for “ {searchProduct || 'all'} ”
             </Typography>
             <Typography variant="body1" sx={Styles.searchNumber}>
-              {data.length} results found
+              {data.response.data.length} results found
             </Typography>
           </Box>
 
@@ -130,7 +129,7 @@ const Shop = () => {
           {/* Product Grid */}
           <Grid size={{ xs: 12, sm: 8, md: 9, lg: 9 }}>
             <Grid container spacing={2} sx={{ flexWrap: "wrap" }}>
-              {data.map((product) => (
+              {data.response.data.map((product) => (
                 view == "grid" ?
                   <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={product.id}>
                     <ProductGridCard product={product} />

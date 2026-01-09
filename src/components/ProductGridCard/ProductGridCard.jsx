@@ -32,9 +32,9 @@ export default function ProductGridCard({ product }) {
         image={product.image}
         title={product.name}
         alt={product.name}
-        onClick={() => navigate("/productDetails")}
+        onClick={() => navigate(`/productDetails/${product.id}`)}
       />
-      <CardContent sx={{ p: "16px" }} onClick={() => navigate("/productDetails")}>
+      <CardContent sx={{ p: "16px" }} onClick={() => navigate(`/productDetails/${product.id}`)}>
         <Typography variant="subtitle1" noWrap sx={Styles.productName} >{product.name}</Typography>
         <Rating
           name="product-rating"
