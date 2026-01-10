@@ -1,4 +1,5 @@
 import axios from "axios"
+import i18n from "../i18n";
 
 
 const AxiosAuthInstance = axios.create({
@@ -6,7 +7,7 @@ const AxiosAuthInstance = axios.create({
 });
 
 AxiosAuthInstance.interceptors.request.use((config) => {
-  config.headers["Accept-Language"]="en" //ar
+  config.headers["Accept-Language"]=i18n.language
   config.headers["Authorization"]=`Bearer ${localStorage.getItem("token")}`
   
   return config

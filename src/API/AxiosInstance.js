@@ -1,4 +1,5 @@
 import axios from "axios"
+import i18n from "../i18n";
 
 
 const axiosInstance = axios.create({
@@ -7,7 +8,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
 
-  config.headers["Accept-Language"]="en" //ar
+  config.headers["Accept-Language"]=i18n.language //ar
   return config
 
 

@@ -24,6 +24,8 @@ import { useCounterStore } from '../../Store/useCounterStore';
 import { Styles } from "./Styles"
 import { useState } from 'react';
 import { useAuthStore } from '../../Store/useAuthStore';
+import { useTranslation } from 'react-i18next';
+import { useQueryClient } from '@tanstack/react-query';
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -33,6 +35,17 @@ const pages = ['Products', 'Pricing', 'Blog'];
 export default function Navbar() {
   const {token,logout,user} =useAuthStore()
   const navigate = useNavigate()
+  const { t,i18n } = useTranslation();
+  const queryClient = useQueryClient();
+
+  const changeLanguage = () => {
+    let language=i18n.language
+    i18n.changeLanguage(language=="en"?"ar":"en");
+    queryClient.invalidateQueries();
+  }
+
+
+
 
   const { counter, userName, increase, descrease } = useCounterStore();
 
@@ -83,9 +96,12 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
 
-      {/* <AppBar position="static">
+      <AppBar position="static">
         <Toolbar>
-
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {t("Welcome")}
+          </Typography>
+        
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             KAshop - {counter} -{userName}
           </Typography>
@@ -100,13 +116,16 @@ export default function Navbar() {
               color="inherit"
               onClick={() => descrease(2)}>Descrease
             </Button>
-
+            <Button
+              color="inherit"
+              onClick={() => changeLanguage()}>{i18n.language=="ar"?"ع":"En"}
+            </Button>
 
 
           </Box>
 
         </Toolbar>
-      </AppBar> */}
+      </AppBar>
 
       <AppBar position="static" sx={Styles.navbar} elevation={0}>
         <Container maxWidth="lg">
