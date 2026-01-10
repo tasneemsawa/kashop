@@ -1,13 +1,13 @@
 import {  useState } from 'react';
 import AxiosAuthInstance from "../API/AxiosAuthInstance"
 import { useNavigate } from 'react-router-dom';
-import {  useMutation } from '@tanstack/react-query';
+import {  QueryClient, useMutation, useQueryClient } from '@tanstack/react-query';
 
 
 export default function useAddToCart(){
   const navigate=useNavigate()
-
-  const [serverErrors, setServerErrors] = useState([])
+  const queryClient = useQueryClient();
+    const [serverErrors, setServerErrors] = useState([])
     const cartMutation = useMutation({
         mutationFn: async(values) => {
           return await AxiosAuthInstance.post(`/Carts`, {
@@ -16,7 +16,8 @@ export default function useAddToCart(){
           });
         },
         onSuccess :(response)=>{
-
+          queryClient.invalidateQueries({ queryKey: ['carts'] })
+console.log("wefefwf"+JSON.stringify(response))
          // navigate("/")
         },
         onError:(err)=>{

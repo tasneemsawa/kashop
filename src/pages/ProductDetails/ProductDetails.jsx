@@ -1,9 +1,9 @@
 import {
     Container, Box, Grid, Stack, Typography, Rating, IconButton, Button,
-    Tabs, Tab, Divider, List, ListItem, Avatar
+    Tabs, Tab, CircularProgress, List, ListItem, Avatar
 } from '@mui/material'
 import { TabContext, TabList, TabPanel } from '@mui/lab';
-
+import { useParams } from 'react-router-dom';
 
 import React from 'react'
 import { useState } from 'react';
@@ -14,9 +14,9 @@ import {
 import { Styles } from './Styles';
 import ProductGridCard from '../../components/ProductGridCard/ProductGridCard';
 import WriteReviewForm from '../../components/WriteReviewForm/WriteReviewForm';
+import { useProductsDetails } from '../../Hooks/useProductsDetails';
+import useAddToCart from '../../Hooks/useAddToCart'
 
-const detailes =
-    { id: 1, quantity: 100, name: "Waterproof Mascara", description: "product one description", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" }
 const reviews = [
     {
         id: 1,
@@ -37,9 +37,13 @@ const relatedProducts = [
     { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
     { id: 2, name: "Dead Sea Bath Salts", price: 217, rating: 3, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/15/07/b5/1507b519f1976dd3090ae886fe67f0f7.jpg" },
     { id: 3, name: "Xiaomi", price: 171, rating: 5, category: "Watches", image: "https://i.pinimg.com/736x/86/6d/cf/866dcff7520d465f3dcd6635c82380ea.jpg" },
-    { id: 4, name: "Kossil Watch Brown", price: 117, rating: 4, category: "Watches", image: "https://i.pinimg.com/736x/a8/e4/76/a8e4762d2a85f820df68722b1376a02c.jpg" },
+    { id: 5, name: "Kossil Watch Brown", price: 117, rating: 4, category: "Watches", image: "https://i.pinimg.com/736x/a8/e4/76/a8e4762d2a85f820df68722b1376a02c.jpg" },
 ];
 export default function ProductDetails() {
+    const { id } = useParams(); //product id 
+
+    let {  serverErrors, cartMutation } =useAddToCart()
+    let {isPending,mutate:addToCart}=cartMutation
     const [quantity, setQuantity] = useState(0);
     const [tabValue, setTabValue] = useState("1");
     const [rating, setRating] = useState(0);
@@ -57,6 +61,15 @@ export default function ProductDetails() {
         console.log({ rating, comment });
 
     };
+    const { isLoading, isError, data } = useProductsDetails(id);
+    if (isLoading) return <CircularProgress></CircularProgress>
+
+    if (isError) return <Typography>error</Typography>
+
+    console.log("wefwe")
+    console.log(data)
+
+    let details = data.response
     return (
         <Box elevation={0} sx={{ minHeight: '100vh', py: 15 }}>
             <Container maxWidth="lg">
@@ -67,7 +80,7 @@ export default function ProductDetails() {
                     <Grid size={{ xs: 12, sm: 12, md: 6, lg: 6 }} sx={Styles.photoGrid}>
                         <Box
                             component="img"
-                            src='https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg'
+                            src={details.image}//'https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg'
                             sx={Styles.photo}
                         />
 
@@ -78,7 +91,7 @@ export default function ProductDetails() {
                         <Box sx={{ alignItems: "center" }}>
                             <Stack spacing={2} justifyContent="center" sx={{ py: 10 }}>
                                 <Typography component={"h1"} sx={Styles.productName}>
-                                    {detailes.name}
+                                    {details.name}
                                 </Typography>
                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography component={"span"} sx={Styles.prodctuBrandTitle}>
@@ -94,7 +107,7 @@ export default function ProductDetails() {
                                     </Typography>
                                     <Rating
                                         name="product-rating"
-                                        value={detailes.rating || 0}
+                                        value={details.rate || 0}
                                         precision={0.5}
                                         readOnly
                                         size="small"
@@ -103,10 +116,10 @@ export default function ProductDetails() {
 
                                 </Box>
                                 <Typography component={"span"} sx={Styles.productPrice}>
-                                    ${detailes.price}
+                                    ${details.price}
                                 </Typography>
-                                <Typography component={"span"} sx={[Styles.productQuantity, { color: detailes.quantity > 0 ? 'secondary.main' : 'primary.main' }]}>
-                                    {detailes.quantity > 0 ? "Stock Available" : "Out Of Stock"}
+                                <Typography component={"span"} sx={[Styles.productQuantity, { color: details.quantity > 0 ? 'secondary.main' : 'primary.main' }]}>
+                                    {details.quantity > 0 ? "Stock Available" : "Out Of Stock"}
                                 </Typography>
 
                                 <Stack spacing={2} direction="row"  >
@@ -131,8 +144,9 @@ export default function ProductDetails() {
 
                                 <Button variant="contained"
                                     sx={Styles.addButton}
-
-                                >Add To Cart</Button>
+                                    onClick={() => addToCart({ ProductId: id, quantity })}
+                                    disabled={isPending}
+                                >{isPending? <CircularProgress /> :"Add To Cart"}  </Button>
                             </Stack>
                         </Box>
 
@@ -157,7 +171,7 @@ export default function ProductDetails() {
                                 Specification:
                             </Typography>
                             <Box sx={{ color: 'muted', fontSize: '14px' }}>
-                                <Typography >{detailes.description}</Typography>
+                                <Typography >{details.description}</Typography>
                             </Box>
 
 

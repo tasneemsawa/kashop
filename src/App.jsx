@@ -6,6 +6,8 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 // import AuthContextProvider, { AuthContext } from './Context/AuthContext.jsx';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
 
 const queryClient = new QueryClient()
 
@@ -14,6 +16,7 @@ export default function App() {
     // Provide the client to your App
     <QueryClientProvider client={queryClient}>
       {/* <AuthContextProvider> */}
+      <ReactQueryDevtools initialIsOpen={false} />
       <RouterProvider router={router} />
       {/* </AuthContextProvider> */}
     </QueryClientProvider>
