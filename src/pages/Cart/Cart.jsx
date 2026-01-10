@@ -11,11 +11,19 @@ import CustomStepper from '../../components/CustomStepper/CustomStepper';
 import { useState } from 'react';
 import { Styles } from './Styles';
 import useCart from '../../Hooks/useCart';
+import useRemoveFromCart from '../../Hooks/useRemoveFromCart';
+import useUpdateCartItem from '../../Hooks/useUpdateCartItem';
 
 export default function Cart() {
   const navigate = useNavigate()
 
   let { data, isLoading, isError } = useCart()
+let {removeCartMutation } = useRemoveFromCart()
+let {mutate:removeItem , isPending } = removeCartMutation
+
+let {updateCartMutation } = useUpdateCartItem()
+let {mutate:updateItem , isPending:updatePending } = updateCartMutation
+
 
   console.log(data)
   const [products, setProducts] = useState([
@@ -35,6 +43,12 @@ export default function Cart() {
     setProducts(products.filter(item => item.id !== id));
   };
 
+  const handleCount=(id, type ,currentCount)=>{
+    let newCount=type === 'add' ? currentCount+1 :currentCount-1
+    console.log(newCount)
+
+    updateItem({id,count:newCount})
+  }
   const totalAmount = products.reduce((acc, item) => acc + (item.price * item.qty), 0);
   if (isLoading) return <CircularProgress></CircularProgress>
 
@@ -57,10 +71,21 @@ export default function Cart() {
           {data.items.map(item => <TableRow key={item.productId}>
             <TableCell> {item.productName}</TableCell>
             <TableCell>  {item.price}</TableCell>
-            <TableCell> {item.count} </TableCell>
+            <TableCell>
+              <Button  onClick={()=>handleCount(item.productId,"remove" ,item.count)} variant='contained' disabled={updatePending}>-</Button>
+               {item.count}
+               <Button onClick={()=>handleCount(item.productId,"add",item.count)} variant='contained' disabled={updatePending} >+</Button>
+               
+                </TableCell>
             <TableCell>  {item.totalPrice}</TableCell>
 
-            <TableCell> <Button color='error' variant='contained'> remove</Button></TableCell>
+            <TableCell> <Button 
+            disabled={isPending}
+
+            onClick={()=>removeItem(item.productId)} 
+            color='error' variant='contained'>
+              "remove"
+               </Button></TableCell>
 
 
 
