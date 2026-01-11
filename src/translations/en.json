@@ -32,6 +32,17 @@
 "Rating is required":"Rating is required",
 "Rating must be an integer":"Rating must be an integer",
 "Minimum rating is 1":"Minimum rating is 1",
-"Maximum rating is 5":"Maximum rating is 5"
+"Maximum rating is 5":"Maximum rating is 5",
+
+"Create Your Account":"Create Your Account",
+"Please fill all forms to continued":"Please fill all forms to continued",
+"user name":"user name",
+"Full Name":"Full Name",
+"phone number":"phone number",
+"By signing up, you agree to   ":"By signing up, you agree to   ",
+"Terms & Condition":"Terms & Condition",
+"Create Account":"Create Account",
+"Already have account?":"Already have account?"
+
 
 }

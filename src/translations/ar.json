@@ -32,5 +32,14 @@
   "Rating is required": "التقييم مطلوب",
   "Rating must be an integer": "يجب أن يكون التقييم عدداً صحيحاً",
   "Minimum rating is 1": "أقل تقييم مسموح به هو 1",
-  "Maximum rating is 5": "أعلى تقييم مسموح به هو 5"
+  "Maximum rating is 5": "أعلى تقييم مسموح به هو 5",
+  "Create Your Account": "إنشاء حسابك",
+  "Please fill all forms to continued": "يرجى ملء جميع الحقول للاستمرار",
+  "user name": "اسم المستخدم",
+  "Full Name": "الاسم الكامل",
+  "phone number": "رقم الهاتف",
+  "By signing up, you agree to   ": "بتسجيلك، أنت توافق على ",
+  "Terms & Condition": "الشروط والأحكام",
+  "Create Account": "إنشاء الحساب",
+  "Already have account?": "لديك حساب بالفعل؟"
 }

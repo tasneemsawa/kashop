@@ -13,7 +13,11 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
 import useRegiester from '../../Hooks/useRegiester';
+import { useTranslation } from 'react-i18next';
+import { isRtl } from '../../Translat';
 export default function Regiester() {
+  const { t } = useTranslation();
+  const isRtlV = isRtl()
 
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(RegiesterSchema),
@@ -38,12 +42,11 @@ export default function Regiester() {
       <Paper elevation={0} sx={Styles.subContainer} >
         <Box className="register-form" sx={{ padding: "3rem 3.75rem 0px" }}>
           <Typography variant="h5" component={"h1"} sx={Styles.title}  >
-            Create Your Account
+            {t("Create Your Account")}
           </Typography>
           <Typography textAlign="center" component={"h3"} sx={Styles.subTitle}>
-            Please fill all forms to continued
+            {t("Please fill all forms to continued")}
           </Typography>
-
           {serverErrors.length > 0 ?
             serverErrors.map((err, index) =>
               <Typography key={index} sx={{ color: 'red' }}>
@@ -54,19 +57,19 @@ export default function Regiester() {
             display: 'flex',
             flexDirection: 'column', gap: 3, mt: 5, alignItems: 'center'
           }}>
-            <TextField label="user name" {...register('userName')} fullWidth variant="outlined"
-              error={errors.userName} helperText={errors.userName?.message} sx={{ borderRadius: "8px" }}
+            <TextField label={t("user name")} {...register('userName')} fullWidth variant="outlined"
+              error={errors.userName} helperText={errors.userName ? t(errors.userName.message) : ""} sx={{ borderRadius: "8px" }}
             />
 
-            <TextField label="Full Name" {...register('fullName')} fullWidth variant="outlined"
-              error={errors.fullName} helperText={errors.fullName?.message}
+            <TextField label={t("Full Name")} {...register('fullName')} fullWidth variant="outlined"
+              error={errors.fullName} helperText={errors.fullName ? t(errors.fullName.message) : ""}
             />
-            <TextField label="user email" {...register('email')} fullWidth variant="outlined"
-              error={errors.email} helperText={errors.email?.message}
+            <TextField label={t("user email")} {...register('email')} fullWidth variant="outlined"
+              error={errors.email} helperText={errors.email ? t(errors.email.message) : ""}
             />
 
-            <TextField label="phone number" {...register('phoneNumber')} fullWidth variant="outlined"
-              error={errors.phoneNumber} helperText={errors.phoneNumber?.message}
+            <TextField label={t("phone number")} {...register('phoneNumber')} fullWidth variant="outlined"
+              error={errors.phoneNumber} helperText={errors.phoneNumber ? t(errors.phoneNumber.message) : ""}
             />
 
             <PasswordInput errors={errors} control={control} />
@@ -82,33 +85,32 @@ export default function Regiester() {
                   }
                   label={
                     <Typography variant="body2" sx={Styles.terms}
-                    >
-                      By signing up, you agree to   {" "}
+                    >{t("By signing up, you agree to   ")}{" "}
 
                       <Link
                         to={"/auth/login"}
                         underline="always"
                         sx={Styles.termsSpan}
-                      >
-                        Terms & Condition</Link>
+                      >{t("Terms & Condition")}
+                      </Link>
                     </Typography>
                   }
                 />
 
               )}
             />
-            {errors.terms && <Typography variant="caption" color="error">{errors.terms?.message}</Typography>}
+            {errors.terms && <Typography variant="caption" color="error">{errors.terms ? t(errors.terms.message) : ""}</Typography>}
             <Button variant="contained" type="submit" sx={Styles.regiesterButton} disabled={isSubmitting} fullWidth>{
-              isSubmitting ? <CircularProgress /> : "Create Account"
+              isSubmitting ? <CircularProgress /> : `${t("Create Account")}`
             }</Button>
             <Divider sx={Styles.divider}>
-              Or
+              {t("Or")}
             </Divider>
-            <Button variant="contained" sx={Styles.facebookButton} disabled={isSubmitting} fullWidth startIcon={<FacebookIcon />}>
-              Continue with Facebook
+            <Button variant="contained" sx={Styles.facebookButton} disabled={isSubmitting} fullWidth dir={isRtlV ? "rtl" : "ltr"} startIcon={<FacebookIcon />}>
+              {t("Continue with Facebook")}
             </Button>
-            <Button variant="contained" sx={Styles.googleButton} disabled={isSubmitting} fullWidth startIcon={<GoogleIcon />}>
-              Continue with Google
+            <Button variant="contained" sx={Styles.googleButton} disabled={isSubmitting} fullWidth dir={isRtlV ? "rtl" : "ltr"} startIcon={<GoogleIcon />}>
+              {t("Continue with Google")}
             </Button>
 
           </Box>
@@ -118,14 +120,13 @@ export default function Regiester() {
           variant="body2"
 
           sx={{ textAlign: "center", backgroundColor: "#F3F5F9", width: "100%", marginTop: "25px", padding: "19px 0px", color: "#7D879C", fontWeight: "600" }}
-        >
-          Already have account?{" "}
+        >            {t("Already have account?")}{" "}
           <RouterLink
             to={"/auth/login"}
             style={{
               color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
             }}
-          > Log in</RouterLink>
+          >  {t("Login")}</RouterLink>
         </Typography>
 
       </Paper>
