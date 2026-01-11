@@ -49,5 +49,16 @@
   "New Password": "كلمة المرور الجديدة",
   "Reset Your Password": "إعادة تعيين كلمة المرور",
   " We’ll send a verification code to your email to reset your password.": "سنرسل لك رمز تحقق إلى بريدك الإلكتروني لإعادة تعيين كلمة المرور الخاصة بك.",
-  "Continue": "متابعة"
+  "Continue": "متابعة",
+  "Searching for": "البحث عن",
+  "results found": "نتائج تم العثور عليها",
+  "Sort by": "ترتيب حسب",
+  "Price: Low to High": "السعر: من الأقل إلى الأعلى",
+  "Price: High to Low": "السعر: من الأعلى إلى الأقل",
+  "Alphabetical (A-Z)": "أبجدياً (A-Z)",
+  "Alphabetical (Z-A)": "أبجدياً (Z-A)",
+  "Search by Name": "البحث بالاسم",
+  "Search product...": "ابحث عن منتج...",
+  "Categories": "الفئات",
+  "Price Range": "نطاق السعر"
 }

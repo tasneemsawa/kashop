@@ -9,6 +9,7 @@ import ProductListCard from '../../components/ProductListCard/ProductListCard';
 import CustomPagination from '../../components/Pagination/Pagination';
 import { Styles } from './Styles';
 import { useProducts } from '../../Hooks/useProducts';
+import { useTranslation } from 'react-i18next';
 
 const initialProducts = [
   { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
@@ -18,6 +19,7 @@ const initialProducts = [
 ];
 
 const Shop = () => {
+  const { t } = useTranslation();
 
   let { isError, isLoading, data } = useProducts()
   console.log(data)
@@ -54,15 +56,15 @@ const Shop = () => {
 
           <Box>
             <Typography variant="body1" sx={Styles.searchText1}>
-              Searching for “ {searchProduct || 'all'} ”
+              {t("Searching for")} “ {searchProduct || 'all'} ”
             </Typography>
             <Typography variant="body1" sx={Styles.searchNumber}>
-              {data.response.data.length} results found
+              {data.response.data.length}{t("results found")} 
             </Typography>
           </Box>
 
           <Stack direction="row" spacing={2} alignItems="center">
-            <Typography color="muted.main" sx={{ fontSize: "14px", fontWeight: 500 }}>Sort by:</Typography>
+            <Typography color="muted.main" sx={{ fontSize: "14px", fontWeight: 500,marginLeft:"1px" }}>{t("Sort by")} :</Typography>
             <Select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
@@ -70,10 +72,10 @@ const Shop = () => {
               sx={{ minWidth: 150, bgcolor: 'white' }}
             >
               <MenuItem value=" " ></MenuItem>
-              <MenuItem value="price-low">Price: Low to High</MenuItem>
-              <MenuItem value="price-high">Price: High to Low</MenuItem>
-              <MenuItem value="alpha">Alphabetical (A-Z)</MenuItem>
-              <MenuItem value="alphaZ">Alphabetical (Z-A)</MenuItem>
+              <MenuItem value="price-low">{t("Price: Low to High")}</MenuItem>
+              <MenuItem value="price-high">{t("Price: High to Low")}</MenuItem>
+              <MenuItem value="alpha">{t("Alphabetical (A-Z)")}</MenuItem>
+              <MenuItem value="alphaZ">{t("Alphabetical (Z-A)")}</MenuItem>
 
             </Select>
             <IconButton size="small" onClick={() => setView("grid")}><GridView color={view == "grid" ? "primary" : "secondary"} /></IconButton>
@@ -86,10 +88,10 @@ const Shop = () => {
           <Grid size={{ xs: 12, sm: 4, md: 3, lg: 3 }}>
             <Paper elevation={0} sx={{ p: 3, borderRadius: '8px' }}>
 
-              <Typography gutterBottom sx={Styles.searchText}>Search by Name</Typography>
+              <Typography gutterBottom sx={Styles.searchText}>{t("Search by Name")}</Typography>
               <TextField
                 fullWidth
-                placeholder="Search product..."
+                placeholder={t("Search product...")}
                 value={searchProduct}
                 onChange={(e) => setSearchProduct(e.target.value)}
                 InputProps={{
@@ -99,14 +101,14 @@ const Shop = () => {
               />
               <Divider sx={{ my: 3 }} />
 
-              <Typography gutterBottom sx={Styles.categoriesTitle}>Categories</Typography>
+              <Typography gutterBottom sx={Styles.categoriesTitle}>{t("Categories")}</Typography>
               {['Bath Preparations', 'Eye Makeup', 'Fragrance'].map(cat => (
                 <Typography key={cat} sx={Styles.categoriesName}>{cat}</Typography>
               ))}
 
               <Divider sx={{ my: 3 }} />
 
-              <Typography gutterBottom sx={Styles.priceRangeTitle}>Price Range</Typography>
+              <Typography gutterBottom sx={Styles.priceRangeTitle}>{t("Price Range")}</Typography>
               <Box sx={{ px: 1 }}>
                 <Slider
                   value={priceRange}

@@ -42,16 +42,26 @@
 "Terms & Condition":"Terms & Condition",
 "Create Account":"Create Account",
 "Already have account?":"Already have account?",
-
 "Enter the code and set a new password":"Enter the code and set a new password",
 "Create New Password":"Create New Password",
 "code":"code",
 "Reset":"Reset",
 "New Password":"New Password",
-
 "Reset Your Password":"Reset Your Password",
 " We’ll send a verification code to your email to reset your password.":" We’ll send a verification code to your email to reset your password.",
-"Continue":"Continue"
+"Continue":"Continue",
+
+"Searching for":"Searching for",
+"results found":"results found",
+"Sort by":"Sort by",
+"Price: Low to High":"Price: Low to High",
+"Price: High to Low":"Price: High to Low",
+"Alphabetical (A-Z)":"Alphabetical (A-Z)",
+"Alphabetical (Z-A)":"Alphabetical (Z-A)",
+"Search by Name":"Search by Name",
+"Search product...":"Search product...",
+"Categories":"Categories",
+"Price Range":"Price Range"
 
 
 
