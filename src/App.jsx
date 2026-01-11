@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-query'
 // import AuthContextProvider, { AuthContext } from './Context/AuthContext.jsx';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import LanguageManger from './pages/utils/LanguageManger.js';
+import LanguageManger from './utils/LanguageManger.js';
 
 
 const queryClient = new QueryClient()

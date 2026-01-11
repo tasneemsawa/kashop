@@ -14,8 +14,12 @@ import GoogleIcon from "@mui/icons-material/Google";
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
 import useLogin from '../../Hooks/useLogin';
+import Translate, { isRtl } from '../../Translat';
+import { useTranslation } from 'react-i18next';
 
 export default function Login() {
+  const { t } = useTranslation();
+
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(LoginSchema),
     mode: 'onBlur',
@@ -25,22 +29,22 @@ export default function Login() {
 
 
   })
-  let {serverErrors,loginMutation} =useLogin()
+  let { serverErrors, loginMutation } = useLogin()
   const loginForm = async (values) => {
     console.log(values)
 
     await loginMutation.mutateAsync(values)
   }
-
+  const isRtlV = isRtl()
   return (
     <Box sx={Styles.mainContainer}>
       <Paper elevation={0} sx={Styles.subContainer} >
         <Box className="register-form" sx={{ padding: "3rem 3.75rem 0px" }}>
           <Typography variant="h5" component={"h1"} sx={Styles.title}  >
-            Welcome To Ecommerce
+            {Translate("Welcome To Ecommerce")}
           </Typography>
           <Typography textAlign="center" component={"h3"} sx={Styles.subTitle}>
-            Log in with email & password
+            {Translate("Log in with email & password")}
           </Typography>
           {serverErrors.length > 0 ?
             serverErrors.map((err, index) =>
@@ -53,23 +57,29 @@ export default function Login() {
             flexDirection: 'column', gap: 3, mt: 5, alignItems: 'center'
           }}>
 
-            <TextField label="user email" {...register('email')} fullWidth variant="outlined"
-              error={errors.email} helperText={errors.email?.message}
+            <TextField label={Translate("user email")} {...register('email')} fullWidth variant="outlined"
+              error={errors.email} helperText={errors.email?t(errors.email.message):""}
+              dir={isRtlV ? "rtl" : "ltr"}
             />
 
             <PasswordInput errors={errors} control={control} />
 
             <Button variant="contained" type="submit" sx={Styles.loginButton} disabled={isSubmitting} fullWidth>{
-              isSubmitting ? <CircularProgress /> : "Login"
+              isSubmitting ? <CircularProgress /> : `${Translate("Login")}`
             }</Button>
             <Divider sx={Styles.divider}>
-              Or
+              {Translate("Or")}
             </Divider>
-            <Button variant="contained" sx={Styles.facebookButton} disabled={isSubmitting} fullWidth startIcon={<FacebookIcon />}>
-              Continue with Facebook
+            <Button variant="contained" sx={Styles.facebookButton} disabled={isSubmitting} fullWidth
+              dir={isRtlV ? "rtl" : "ltr"}
+              startIcon={<FacebookIcon />}>
+              {Translate("Continue with Facebook")}
+
             </Button>
-            <Button variant="contained" sx={Styles.googleButton} disabled={isSubmitting} fullWidth startIcon={<GoogleIcon />}>
-              Continue with Google
+            <Button variant="contained" sx={Styles.googleButton} disabled={isSubmitting} fullWidth
+              dir={isRtlV ? "rtl" : "ltr"}
+              startIcon={<GoogleIcon />}>
+              {Translate("Continue with Google")}
             </Button>
 
           </Box>
@@ -80,27 +90,27 @@ export default function Login() {
 
           sx={{ textAlign: "center", width: "100%", marginTop: "25px", paddingTop: "19px", color: "#7D879C", fontWeight: "600" }}
         >
-          Don’t have account?{" "}
+          {Translate("Don’t have account? ")}
+
           <RouterLink
             to={"/auth/register"}
             style={{
               color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
             }}
-          > Sign Up</RouterLink>
+          > {Translate("Sign Up")}</RouterLink>
         </Typography>
 
         <Typography
           variant="body2"
 
           sx={{ textAlign: "center", backgroundColor: "#F3F5F9", width: "100%", marginTop: "25px", padding: "19px 0px", color: "#7D879C", fontWeight: "600" }}
-        >
-          Forgot your password?{" "}
+        >{Translate("Forgot your password? ")}
           <RouterLink
             to={"/auth/forgotPassword"}
             style={{
               color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
             }}
-          > Reset It</RouterLink>
+          >{Translate("Reset It")} </RouterLink>
         </Typography>
 
       </Paper>

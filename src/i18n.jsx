@@ -1,27 +1,22 @@
-import React from "react";
-import { createRoot } from 'react-dom/client';
 import i18n from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
+import en from './translations/en.json';
+import ar from './translations/ar.json';
 
 i18n
-  .use(initReactI18next) 
+  .use(initReactI18next)
   .init({
     resources: {
       en: {
-        translation: {
-          "Welcome": "Welcome"
-        }
+        translation: en
       },
       ar: {
-        translation: {
-          "Welcome": "مرحبا"
-        }
+        translation: ar
       }
-
     },
-    lng: "en", 
+    lng: "en",
     fallbackLng: "en",
 
   });
 
-  export default i18n
+export default i18n
