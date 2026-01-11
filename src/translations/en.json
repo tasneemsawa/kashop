@@ -67,7 +67,6 @@
 "Specification":"Specification",
 "Customer Reviews":"Customer Reviews",
 "Related Products":"Related Products",
-
 "Brand":"Brand",
 "Description":"Description",
 "Review":"Review",
@@ -76,8 +75,28 @@
 "Your Review":"Your Review",
 "Write a review here...":"Write a review here...",
 "comment":"comment",
-"Submit":"Submit"
+"Submit":"Submit",
 
+"Search...":"Search...",
+"Cart":"Cart",
+"Logout":"Logout",
+"Home":"Home",
+"Shop":"Shop",
+"Careers":"Careers",
+"Our Stores":"Our Stores",
+"Our Cares":"Our Cares",
+"Terms & Conditions":"Terms & Conditions",
+"Privacy Policy":"Privacy Policy",
+"Help Center":"Help Center",
+"How to Buy":"How to Buy",
+"Track Your Order":"Track Your Order",
+"Corporate & Bulk Purchasing":"Corporate & Bulk Purchasing",
+"Returns & Refunds":"Returns & Refunds",
+"Contact Us":"Contact Us",
+"Email":"Email",
+"Phone":"Phone",
+"About Us":"About Us",
+"Customer Care":"Customer Care"
 
 
 }

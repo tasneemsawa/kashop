@@ -26,7 +26,7 @@ import { useState } from 'react';
 import { useAuthStore } from '../../Store/useAuthStore';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
-
+import Translate from '../../Translat';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
@@ -99,7 +99,7 @@ export default function Navbar() {
       <AppBar position="static">
         <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {t("Welcome")}
+            {Translate("Welcome")}
           </Typography>
         
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -186,7 +186,7 @@ export default function Navbar() {
             <Box sx={[Styles.searchContainer, { border: focused ? "1px solid #E94560" : '1px solid #e0e0e0', }]}>
               <TextField
                 fullWidth
-                placeholder="Search and hit enter..."
+                placeholder={t("Search...")}
                 variant="outlined"
                 size="small"
                 onFocus={() => setFocused(true)}
@@ -218,7 +218,7 @@ export default function Navbar() {
 
             {/* Right Icons */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, ml: 4 }}>
-              {!token ? <Tooltip title="Login">
+              {!token ? <Tooltip title={t("Login")}>
                 <IconButton sx={Styles.iconButton} onClick={() => navigate('/auth/login')} >
                   <PersonOutlineIcon sx={{ fontSize: '18px' }} />
                 </IconButton>
@@ -228,7 +228,7 @@ export default function Navbar() {
                 <>
 
 
-                  <Tooltip title="Cart">
+                  <Tooltip title={t("Cart")}>
                     <Badge
                       badgeContent={4}
                       sx={Styles.cartBadge}
@@ -239,7 +239,7 @@ export default function Navbar() {
                       </IconButton>
                     </Badge>
                   </Tooltip>
-                  <Tooltip title="Logout">
+                  <Tooltip title={t("Logout")}>
                     <IconButton sx={Styles.iconButton} onClick={handelLogout} >
                       <MeetingRoomOutlinedIcon sx={{ fontSize: '18px' }} />
                     </IconButton>
@@ -280,8 +280,8 @@ export default function Navbar() {
                 <WidgetsIcon sx={{ fontSize: 20, color: "primary.main" }} />
 
                 <Typography component={"span"} sx={{ color: "muted.main", fontWeight: 600, fontSize: "14px", textTransform: "none" }}>
-                  Categories
-
+                  
+                  {t("Categories")}
                 </Typography>
               </Box>
 
@@ -316,15 +316,15 @@ export default function Navbar() {
                   sx={Styles.navigationButton}
                   underline="none"
                 >
-                  Home
+                 {t("Home")} 
                 </Link>
                 <Link
                   component={RouterLink}
                   to="/shop"
                   sx={Styles.navigationButton}
                   underline="none"
-                >
-                  Shop
+                > {t("Shop")} 
+                  
                 </Link>
                 {token ?
                   <>
@@ -334,14 +334,14 @@ export default function Navbar() {
 
                       sx={Styles.navigationButton}
                       underline="none"
-                    >
-                      Cart
+                    > {t("Cart")} 
+                      
                     </Link>
                     <Button
                       onClick={handelLogout}
                       sx={Styles.navigationButton}
-                    >
-                      Logout
+                    >{t("Logout")} 
+                      
                     </Button>
                   </>
                   :
@@ -351,7 +351,7 @@ export default function Navbar() {
                       to="/auth/login"
                       underline="none"
                       sx={Styles.navigationButton}
-                    >Login
+                    >{t("Login")} 
                     </Link>
                   </>
 

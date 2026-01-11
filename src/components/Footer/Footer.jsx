@@ -9,9 +9,12 @@ import { Styles } from './Styles';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import appStore from "../../assets/Images/Main/appStore.webp"
 import googlePlay from "../../assets/Images/Main/googlePlay.webp"
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
   let navigate = useNavigate()
+  const { t,i18n } = useTranslation();
+
   return (
     <Box sx={{ bgcolor: '#0F3460', color: '#fff', py: 8, mt: 10 }}>
       <Container maxWidth="lg">
@@ -43,39 +46,39 @@ const Footer = () => {
 
           {/*About Us */}
           <Grid size={{ xs: 6, md: 2 }}>
-            <Typography sx={{ mb: 3, fontSize: "20px", fontWeight: 600 }}>About Us</Typography>
+            <Typography sx={{ mb: 3, fontSize: "20px", fontWeight: 600 }}>{t("About Us")}</Typography>
             <Stack spacing={1}>
-              <Link sx={Styles.links} href="#">Careers</Link>
-              <Link sx={Styles.links} href="#">Our Stores</Link>
-              <Link sx={Styles.links} href="#">Our Cares</Link>
-              <Link sx={Styles.links} href="#">Terms & Conditions</Link>
-              <Link sx={Styles.links} href="#">Privacy Policy</Link>
+              <Link sx={Styles.links} href="#">{t("Careers")}</Link>
+              <Link sx={Styles.links} href="#">{t("Our Stores")}</Link>
+              <Link sx={Styles.links} href="#">{t("Our Cares")}</Link>
+              <Link sx={Styles.links} href="#">{t("Terms & Conditions")}</Link>
+              <Link sx={Styles.links} href="#">{t("Privacy Policy")}</Link>
             </Stack>
           </Grid>
 
           {/* Customer Care */}
           <Grid size={{ xs: 6, md: 3 }}>
-            <Typography sx={{ mb: 3, fontSize: "20px", fontWeight: 600 }}>Customer Care</Typography>
+            <Typography sx={{ mb: 3, fontSize: "20px", fontWeight: 600 }}>{t("Customer Care")}</Typography>
             <Stack spacing={1}>
-              <Link sx={Styles.links} href="#">Help Center</Link>
-              <Link sx={Styles.links} href="#">How to Buy</Link>
-              <Link sx={Styles.links} href="#">Track Your Order</Link>
-              <Link sx={Styles.links} href="#">Corporate & Bulk Purchasing</Link>
-              <Link sx={Styles.links} href="#">Returns & Refunds</Link>
+              <Link sx={Styles.links} href="#">{t("Help Center")}</Link>
+              <Link sx={Styles.links} href="#">{t("How to Buy")}</Link>
+              <Link sx={Styles.links} href="#">{t("Track Your Order")}</Link>
+              <Link sx={Styles.links} href="#">{t("Corporate & Bulk Purchasing")}</Link>
+              <Link sx={Styles.links} href="#">{t("Returns & Refunds")}</Link>
             </Stack>
           </Grid>
 
           {/*: Contact Us */}
           <Grid size={{ xs: 12, md: 3 }} >
-            <Typography sx={{ mb: 3, fontSize: "20px", fontWeight: 600 }}>Contact Us</Typography>
+            <Typography sx={{ mb: 3, fontSize: "20px", fontWeight: 600 }}>{t("Contact Us")}</Typography>
             <Typography sx={{ color: '#AEB4BE', fontSize: '14px', mb: 2 }}>
               70 Washington Square South, New York, NY 10012, United States
             </Typography>
             <Typography sx={{ color: '#AEB4BE', fontSize: '14px', mb: 2 }}>
-              Email: tasneem31997@gmail.com
+            {t("Email")}: tasneem31997@gmail.com
             </Typography>
             <Typography sx={{ color: '#AEB4BE', fontSize: '14px', mb: 4 }}>
-              Phone: +97 0597 156 116
+            {t("Phone")}: +97 0597 156 116
             </Typography>
             <Stack direction="row" spacing={1}>
               <IconButton sx={Styles.socialIcon} size="small"><FacebookIcon fontSize="8px" /></IconButton>
