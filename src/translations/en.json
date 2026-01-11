@@ -76,7 +76,6 @@
 "Write a review here...":"Write a review here...",
 "comment":"comment",
 "Submit":"Submit",
-
 "Search...":"Search...",
 "Cart":"Cart",
 "Logout":"Logout",
@@ -96,7 +95,17 @@
 "Email":"Email",
 "Phone":"Phone",
 "About Us":"About Us",
-"Customer Care":"Customer Care"
+"Customer Care":"Customer Care",
+
+
+"Worldwide Delivery":"Worldwide Delivery",
+"24/7 Support":"24/7 Support",
+"Shop With Confidence":"Shop With Confidence",
+"Safe Payment":"Safe Payment",
+"Flash Deals":"Flash Deals",
+"View all":"View all",
+"Top Categories":"Top Categories",
+"New Arrivals":"New Arrivals"
 
 
 }

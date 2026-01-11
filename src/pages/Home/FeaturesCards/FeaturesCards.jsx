@@ -6,6 +6,7 @@ import PaymentOutlinedIcon from '@mui/icons-material/PaymentOutlined';
 import VerifiedUserOutlinedIcon from '@mui/icons-material/VerifiedUserOutlined';
 import HeadsetMicOutlinedIcon from '@mui/icons-material/HeadsetMicOutlined';
 import Styles from './Styles';
+import { useTranslation } from 'react-i18next';
 
 const features = [
     { icon: <LocalShippingOutlinedIcon fontSize="large" />, title: 'Worldwide Delivery' },
@@ -15,6 +16,8 @@ const features = [
 ];
 
 const FeaturesCards = () => {
+    const { t } = useTranslation();
+
     return (
         <Container maxWidth="lg" sx={{ py: 8 }}>
             <Grid container spacing={3}>
@@ -27,7 +30,7 @@ const FeaturesCards = () => {
                             <Typography
                                 sx={Styles.title}
                             >
-                                {item.title}
+                                {t(item.title)}
                             </Typography>
                         </Card>
                     </Grid>

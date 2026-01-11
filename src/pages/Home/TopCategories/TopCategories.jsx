@@ -18,6 +18,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { useNavigate } from 'react-router-dom';
 import Styles from './Styles';
+import { useTranslation } from 'react-i18next';
 
 const TopCategories = () => {
     const categories = [
@@ -30,16 +31,17 @@ const TopCategories = () => {
     const prevRef = useRef(null);
     const nextRef = useRef(null);
     const navigate = useNavigate()
+    const { t } = useTranslation();
 
     return (
         <Container maxWidth="lg" sx={{ py: 6 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <WidgetsIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
-                    <Typography fontWeight="bold" fontSize={"25px"} color="secondary.main">Top Categories</Typography>
+                    <Typography fontWeight="bold" fontSize={"25px"} color="secondary.main">{t("Top Categories")}</Typography>
                 </Stack>
                 <Typography onClick={() => navigate("/shop")} sx={Styles.viewAll}>
-                    View all <ChevronRightIcon fontSize="small" />
+                {t("View all")} <ChevronRightIcon fontSize="small" />
                 </Typography>
             </Stack>
 

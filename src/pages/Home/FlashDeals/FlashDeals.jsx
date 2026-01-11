@@ -19,6 +19,7 @@ import 'swiper/css/navigation';
 import ProductGridCard from '../../../components/ProductGridCard/ProductGridCard';
 import { useNavigate } from 'react-router-dom';
 import Styles from './Styles';
+import { useTranslation } from 'react-i18next';
 
 const FlashDeals = () => {
     const products = [
@@ -31,16 +32,17 @@ const FlashDeals = () => {
     ];
 
     const navigate = useNavigate()
+    const { t } = useTranslation();
 
     return (
         <Container maxWidth="lg" sx={{ py: 6 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <BoltIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
-                    <Typography fontWeight="bold" fontSize={"25px"} color="secondary.main">Flash Deals</Typography>
+                    <Typography fontWeight="bold" fontSize={"25px"} color="secondary.main">{t("Flash Deals")}</Typography>
                 </Stack>
                 <Typography onClick={() => navigate("/shop")} sx={Styles.viewAll}>
-                    View all <ChevronRightIcon fontSize="small" />
+                {t("View all")}  <ChevronRightIcon fontSize="small" />
                 </Typography>
             </Stack>
 
