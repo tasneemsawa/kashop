@@ -41,5 +41,13 @@
   "By signing up, you agree to   ": "بتسجيلك، أنت توافق على ",
   "Terms & Condition": "الشروط والأحكام",
   "Create Account": "إنشاء الحساب",
-  "Already have account?": "لديك حساب بالفعل؟"
+  "Already have account?": "لديك حساب بالفعل؟",
+  "Enter the code and set a new password": "أدخل الرمز وقم بتعيين كلمة مرور جديدة",
+  "Create New Password": "إنشاء كلمة مرور جديدة",
+  "code": "الرمز",
+  "Reset": "إعادة تعيين",
+  "New Password": "كلمة المرور الجديدة",
+  "Reset Your Password": "إعادة تعيين كلمة المرور",
+  " We’ll send a verification code to your email to reset your password.": "سنرسل لك رمز تحقق إلى بريدك الإلكتروني لإعادة تعيين كلمة المرور الخاصة بك.",
+  "Continue": "متابعة"
 }

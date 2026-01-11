@@ -10,6 +10,7 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export default function PasswordInput({ errors, control, name = "password" ,label="Password" }) {
     const [showPassword, setShowPassword] = React.useState(false);
@@ -20,6 +21,7 @@ export default function PasswordInput({ errors, control, name = "password" ,labe
     const handleMouseUpPassword = (event) => {
         event.preventDefault();
     };
+    const { t } = useTranslation();
 
     return (
 
@@ -54,7 +56,7 @@ export default function PasswordInput({ errors, control, name = "password" ,labe
                     />
                     {errors[name] && (
                         <FormHelperText>
-                            {errors[name].message}
+                            {errors[name]?t(errors[name].message):""}
                         </FormHelperText>
                     )}
 

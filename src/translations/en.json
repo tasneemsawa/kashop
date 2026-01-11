@@ -33,7 +33,6 @@
 "Rating must be an integer":"Rating must be an integer",
 "Minimum rating is 1":"Minimum rating is 1",
 "Maximum rating is 5":"Maximum rating is 5",
-
 "Create Your Account":"Create Your Account",
 "Please fill all forms to continued":"Please fill all forms to continued",
 "user name":"user name",
@@ -42,7 +41,18 @@
 "By signing up, you agree to   ":"By signing up, you agree to   ",
 "Terms & Condition":"Terms & Condition",
 "Create Account":"Create Account",
-"Already have account?":"Already have account?"
+"Already have account?":"Already have account?",
+
+"Enter the code and set a new password":"Enter the code and set a new password",
+"Create New Password":"Create New Password",
+"code":"code",
+"Reset":"Reset",
+"New Password":"New Password",
+
+"Reset Your Password":"Reset Your Password",
+" We’ll send a verification code to your email to reset your password.":" We’ll send a verification code to your email to reset your password.",
+"Continue":"Continue"
+
 
 
 }

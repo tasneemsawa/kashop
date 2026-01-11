@@ -11,8 +11,11 @@ import { useState } from 'react';
 import { Styles } from './Styles';
 import { useNavigate } from 'react-router-dom';
 import useForgotPassword from '../../Hooks/useForgotPassword';
+import { useTranslation } from 'react-i18next';
 
 export default function ForgotPassword() {
+    const { t } = useTranslation();
+
     const navigate = useNavigate()
     const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
         resolver: yupResolver(ForgotPasswordSchema),
@@ -31,11 +34,11 @@ export default function ForgotPassword() {
             <Paper elevation={0} sx={Styles.subContainer} >
                 <Box className="register-form" sx={{ padding: "3rem 3.75rem 0px" }}>
                     <Typography variant="h5" component={"h1"} sx={Styles.title}  >
-                        Reset Your Password
+                       {t("Reset Your Password")} 
 
                     </Typography>
                     <Typography textAlign="center" component={"h3"} sx={Styles.subTitle}>
-                        We’ll send a verification code to your email to reset your password.
+                    {t(" We’ll send a verification code to your email to reset your password.")} 
                     </Typography>
                     {serverErrors ?
                         <Typography sx={{ color: 'red' }}>
@@ -47,11 +50,11 @@ export default function ForgotPassword() {
                         flexDirection: 'column', gap: 3, mt: 5, alignItems: 'center'
                     }}>
 
-                        <TextField label="user email" {...register('email')} fullWidth variant="outlined"
-                            error={errors.email} helperText={errors.email?.message}
+                        <TextField label={t("user email")} {...register('email')} fullWidth variant="outlined"
+                            error={errors.email} helperText={errors.email?t(errors.email.message):""}
                         />
                         <Button variant="contained" type="submit" sx={Styles.button} disabled={isSubmitting} fullWidth>{
-                            isSubmitting ? <CircularProgress /> : "Continue"
+                            isSubmitting ? <CircularProgress /> : `${t("Continue")}`
                         }</Button>
 
                     </Box>

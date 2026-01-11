@@ -12,8 +12,13 @@ import { Styles } from './Styles';
 import PasswordInput from "../../components/PasswordInput/PasswordInput"
 import { useNavigate } from 'react-router-dom';
 import useResetPassword from '../../Hooks/useResetPassword';
+import { isRtl } from '../../Translat';
+import { useTranslation } from 'react-i18next';
 
 export default function ResetPassword() {
+  const { t } = useTranslation();
+  const isRtlV = isRtl()
+
   const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(ResetPasswordSchema),
     mode: 'onBlur',
@@ -34,10 +39,10 @@ export default function ResetPassword() {
       <Paper elevation={0} sx={Styles.subContainer} >
         <Box className="register-form" sx={{ padding: "3rem 3.75rem 0px" }}>
           <Typography variant="h5" component={"h1"} sx={Styles.title}  >
-            Create New Password
+            {t("Create New Password")}
           </Typography>
           <Typography textAlign="center" component={"h3"} sx={Styles.subTitle}>
-            Enter the code and set a new password
+          {t("Enter the code and set a new password")}
           </Typography>
           {serverErrors ?
             <Typography sx={{ color: 'red' }}>
@@ -48,17 +53,17 @@ export default function ResetPassword() {
             display: 'flex',
             flexDirection: 'column', gap: 3, mt: 5, alignItems: 'center'
           }}>
-            <TextField label="code" {...register('code')} fullWidth variant="outlined"
-              error={errors.code} helperText={errors.code?.message}
+            <TextField label= {t("code")} {...register('code')} fullWidth variant="outlined"
+              error={errors.code} helperText={errors.code?t(errors.code.message):""}
             />
-            <TextField label="user email" {...register('email')} fullWidth variant="outlined"
-              error={errors.email} helperText={errors.email?.message}
+            <TextField label={t("user email")} {...register('email')} fullWidth variant="outlined"
+              error={errors.email} helperText={errors.email?t(errors.email.message):""}
             />
 
-            <PasswordInput errors={errors} control={control} name="newPassword" label="New Password" />
+            <PasswordInput errors={errors} control={control} name="newPassword" label={t("New Password")} />
 
             <Button variant="contained" type="submit" sx={Styles.button} disabled={isSubmitting} fullWidth>{
-              isSubmitting ? <CircularProgress /> : "Reset"
+              isSubmitting ? <CircularProgress /> : `${t("Reset")}`
             }</Button>
 
           </Box>
