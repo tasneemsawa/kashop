@@ -16,6 +16,7 @@ import ProductGridCard from '../../components/ProductGridCard/ProductGridCard';
 import WriteReviewForm from '../../components/WriteReviewForm/WriteReviewForm';
 import { useProductsDetails } from '../../Hooks/useProductsDetails';
 import useAddToCart from '../../Hooks/useAddToCart'
+import { useTranslation } from 'react-i18next';
 
 const reviews = [
     {
@@ -41,6 +42,7 @@ const relatedProducts = [
 ];
 export default function ProductDetails() {
     const { id } = useParams(); //product id 
+    const { t } = useTranslation();
 
     let {  serverErrors, cartMutation } =useAddToCart()
     let {isPending,mutate:addToCart}=cartMutation
@@ -66,7 +68,6 @@ export default function ProductDetails() {
 
     if (isError) return <Typography>error</Typography>
 
-    console.log("wefwe")
     console.log(data)
 
     let details = data.response
@@ -95,7 +96,7 @@ export default function ProductDetails() {
                                 </Typography>
                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography component={"span"} sx={Styles.prodctuBrandTitle}>
-                                        Brand:
+                                    {t("Brand")}:
                                     </Typography>
                                     <Typography component={"span"} sx={Styles.prodctuBrand}>
                                         Ziaomi
@@ -103,7 +104,7 @@ export default function ProductDetails() {
                                 </Box>
                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography component={"span"} sx={Styles.rate}>
-                                        Rated:
+                                       {t("Rated")} :
                                     </Typography>
                                     <Rating
                                         name="product-rating"
@@ -119,7 +120,7 @@ export default function ProductDetails() {
                                     ${details.price}
                                 </Typography>
                                 <Typography component={"span"} sx={[Styles.productQuantity, { color: details.quantity > 0 ? 'secondary.main' : 'primary.main' }]}>
-                                    {details.quantity > 0 ? "Stock Available" : "Out Of Stock"}
+                                    {details.quantity > 0 ?`${t("Stock Available")}`:`${t("Rated")}`}
                                 </Typography>
 
                                 <Stack spacing={2} direction="row"  >
@@ -146,7 +147,7 @@ export default function ProductDetails() {
                                     sx={Styles.addButton}
                                     onClick={() => addToCart({ ProductId: id, quantity })}
                                     disabled={isPending}
-                                >{isPending? <CircularProgress /> :"Add To Cart"}  </Button>
+                                >{isPending? <CircularProgress /> :`${t("Add To Cart")}`}  </Button>
                             </Stack>
                         </Box>
 
@@ -160,15 +161,15 @@ export default function ProductDetails() {
                     <TabContext value={tabValue}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <TabList onChange={handleChange} aria-label="lab API tabs example">
-                                <Tab label="Description" value="1" sx={Styles.tabTitle} />
-                                <Tab label="Review" value="2" sx={Styles.tabTitle} />
+                                <Tab label= {t("Description")} value="1" sx={Styles.tabTitle} />
+                                <Tab label= {t("Review")} value="2" sx={Styles.tabTitle} />
                             </TabList>
                         </Box>
                         <TabPanel value="1">
                             <Typography
                                 variant="h6"
                                 sx={Styles.specificationTitle}>
-                                Specification:
+                               {t("Specification")} :
                             </Typography>
                             <Box sx={{ color: 'muted', fontSize: '14px' }}>
                                 <Typography >{details.description}</Typography>
@@ -181,7 +182,7 @@ export default function ProductDetails() {
 
 
                             <Typography variant="h6" sx={Styles.specificationTitle}>
-                                Customer Reviews
+                            {t("Customer Reviews")}  
                             </Typography>
                             <List sx={{ width: '100%' }}>
                                 {reviews.map((review, index) => (
@@ -223,7 +224,7 @@ export default function ProductDetails() {
 
                 <Box sx={{ width: '100%', typography: 'body1', pb: 15 }}>
                     <Typography component={"h2"} sx={{ fontSize: "20px", marginBottom: "30px", fontWeight: 700 }}>
-                        Related Products
+                    {t("Related Products")}    
                     </Typography>
                     <Grid container spacing={3}>
 

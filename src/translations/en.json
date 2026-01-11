@@ -50,7 +50,6 @@
 "Reset Your Password":"Reset Your Password",
 " We’ll send a verification code to your email to reset your password.":" We’ll send a verification code to your email to reset your password.",
 "Continue":"Continue",
-
 "Searching for":"Searching for",
 "results found":"results found",
 "Sort by":"Sort by",
@@ -61,7 +60,23 @@
 "Search by Name":"Search by Name",
 "Search product...":"Search product...",
 "Categories":"Categories",
-"Price Range":"Price Range"
+"Price Range":"Price Range",
+"Rated":"Rated",
+"Stock Available":"Stock Available",
+"Add To Cart":"Add To Cart",
+"Specification":"Specification",
+"Customer Reviews":"Customer Reviews",
+"Related Products":"Related Products",
+
+"Brand":"Brand",
+"Description":"Description",
+"Review":"Review",
+"Write a Review for this product":"Write a Review for this product",
+"Your Rating":"Your Rating",
+"Your Review":"Your Review",
+"Write a review here...":"Write a review here...",
+"comment":"comment",
+"Submit":"Submit"
 
 
 

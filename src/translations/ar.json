@@ -60,5 +60,20 @@
   "Search by Name": "البحث بالاسم",
   "Search product...": "ابحث عن منتج...",
   "Categories": "الفئات",
-  "Price Range": "نطاق السعر"
+  "Price Range": "نطاق السعر",
+  "Rated": "التقييم",
+  "Stock Available": "الكمية المتوفرة",
+  "Add To Cart": "إضافة إلى السلة",
+  "Specification": "المواصفات",
+  "Customer Reviews": "آراء العملاء",
+  "Related Products": "منتجات ذات صلة",
+  "Brand": "العلامة التجارية",
+  "Description": "الوصف",
+  "Review": "تقييم",
+  "Write a Review for this product": "اكتب تقييماً لهذا المنتج",
+  "Your Rating": "تقييمك",
+  "Your Review": "رأيك",
+  "Write a review here...": "اكتب رأيك هنا...",
+  "comment": "تعليق",
+  "Submit": "إرسال"
 }

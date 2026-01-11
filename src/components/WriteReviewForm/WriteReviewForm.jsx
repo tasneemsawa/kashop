@@ -10,9 +10,11 @@ import {
 import { SubmitReviewSchema } from "../../Vailidation/SubmitReviewSchema"
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Styles } from './Styles';
+import { useTranslation } from 'react-i18next';
 
 export default function WriteReviewForm() {
 
+    const { t } = useTranslation();
 
     const { register, handleSubmit, control, reset, formState: { errors, isSubmitting } } = useForm({
         resolver: yupResolver(SubmitReviewSchema),
@@ -42,12 +44,12 @@ export default function WriteReviewForm() {
             sx={{ maxWidth: '800px', py: 5 }}
         >
             <Typography variant="h5" sx={{ fontWeight: '700', color: 'secondary', mb: 3 }}>
-                Write a Review for this product
+            {t("Write a Review for this product")} 
             </Typography>
 
             <Box sx={{ mb: 3, display: "flex", flexDirection: "column" }}>
                 <Typography sx={{ fontWeight: '600', color: '#4B566B', mb: 1 }}>
-                    Your Rating <Typography component={"span"} sx={{ color: 'primary.main' }}>*</Typography>
+                {t("Your Rating")}   <Typography component={"span"} sx={{ color: 'primary.main' }}>*</Typography>
                 </Typography>
                 <Controller
                     name="rating"
@@ -63,25 +65,25 @@ export default function WriteReviewForm() {
                     )}
                 />
                 {errors.rating && (
-                    <Typography variant="caption" color="error" sx={{ mt: 0.5 }}> {errors.rating?.message} </Typography>
+                    <Typography variant="caption" color="error" sx={{ mt: 0.5 }}> {errors.rating?t(errors.rating?.message):""} </Typography>
                 )}
 
             </Box>
 
             <Box sx={{ mb: 3 }}>
                 <Typography variant="subtitle1" sx={{ fontWeight: '600', color: '#4B566B', mb: 1 }}>
-                    Your Review <Typography component={"span"} sx={{ color: 'primary.main' }}>*</Typography>
+                {t("Your Review")}  <Typography component={"span"} sx={{ color: 'primary.main' }}>*</Typography>
                 </Typography>
 
-                <TextField label="comment" {...register('comment')} fullWidth variant="outlined" multiline
-                    placeholder="Write a review here..."
+                <TextField label={t("comment")}  {...register('comment')} fullWidth variant="outlined" multiline
+                    placeholder= {t("Write a review here...")} 
                     error={errors.comment} helperText={errors.comment?.message}
                     rows={6} />
 
             </Box>
 
             <Button type="submit" sx={Styles.submitButton}>
-                Submit
+            {t("Submit")} 
             </Button>
         </Box>
     );
