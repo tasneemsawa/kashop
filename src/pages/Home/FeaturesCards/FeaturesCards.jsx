@@ -19,7 +19,7 @@ const FeaturesCards = () => {
     const { t } = useTranslation();
 
     return (
-        <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Box  sx={{ py: 8 }}>
             <Grid container spacing={3}>
                 {features.map((item, index) => (
                     <Grid size={{ xs: 12, sm: 6, md: 3 }} key={index}>
@@ -36,7 +36,7 @@ const FeaturesCards = () => {
                     </Grid>
                 ))}
             </Grid>
-        </Container>
+        </Box>
     );
 };
 

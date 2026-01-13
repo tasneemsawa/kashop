@@ -19,7 +19,7 @@ const Offers = () => {
         { id: 2, image: offer2 },
     ];
     return (
-        <Container maxWidth="lg" sx={{ py: 6 }}>
+        <Box sx={{ py: 6 }}>
 
             <Box sx={{ position: 'relative', px: { xs: 0, md: 2 } }}>
                 <Stack direction={"row"} spacing={3} sx={Style.mainContainer}>
@@ -38,7 +38,7 @@ const Offers = () => {
                     ))}
                 </Stack>
             </Box>
-        </Container>
+        </Box>
     );
 };
 

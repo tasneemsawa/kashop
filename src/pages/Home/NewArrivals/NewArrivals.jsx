@@ -34,7 +34,7 @@ const NewArrivals = () => {
     const { t } = useTranslation();
 
     return (
-        <Container maxWidth="lg" sx={{ py: 6 }}>
+        <Box  sx={{ py: 6 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <GradeIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
@@ -69,7 +69,7 @@ const NewArrivals = () => {
                     ))}
                 </Stack>
             </Box>
-        </Container>
+        </Box>
     );
 };
 

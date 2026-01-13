@@ -34,7 +34,7 @@ const TopCategories = () => {
     const { t } = useTranslation();
 
     return (
-        <Container maxWidth="lg" sx={{ py: 6 }}>
+        <Box sx={{ py: 6 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <WidgetsIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
@@ -81,7 +81,7 @@ const TopCategories = () => {
                 <IconButton ref={prevRef} className="prev-btn-cat nav-button-cat" sx={[Styles.swiperButton, { left: -20 }]}><ArrowBackIosNewOutlinedIcon /></IconButton>
                 <IconButton ref={nextRef} className="next-btn-cat nav-button-cat" sx={[Styles.swiperButton, { right: -20 }]}><ArrowForwardIosOutlinedIcon /></IconButton>
             </Box>
-        </Container>
+        </Box>
     );
 };
 

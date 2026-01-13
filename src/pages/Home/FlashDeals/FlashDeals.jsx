@@ -35,7 +35,7 @@ const FlashDeals = () => {
     const { t } = useTranslation();
 
     return (
-        <Container maxWidth="lg" sx={{ py: 6 }}>
+        <Box  sx={{ py: 6 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <BoltIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
@@ -68,7 +68,7 @@ const FlashDeals = () => {
                 <IconButton className="prev-btn nav-button" sx={[Styles.swiperButton,{left: -20}]}><ArrowBackIosNewOutlinedIcon /></IconButton>
                 <IconButton className="next-btn nav-button" sx={[Styles.swiperButton,{right: -20}]}><ArrowForwardIosOutlinedIcon /></IconButton>
             </Box>
-        </Container>
+        </Box>
     );
 };
 
