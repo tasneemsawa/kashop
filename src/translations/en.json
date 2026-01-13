@@ -96,8 +96,6 @@
 "Phone":"Phone",
 "About Us":"About Us",
 "Customer Care":"Customer Care",
-
-
 "Worldwide Delivery":"Worldwide Delivery",
 "24/7 Support":"24/7 Support",
 "Shop With Confidence":"Shop With Confidence",
@@ -105,7 +103,8 @@
 "Flash Deals":"Flash Deals",
 "View all":"View all",
 "Top Categories":"Top Categories",
-"New Arrivals":"New Arrivals"
-
+"New Arrivals":"New Arrivals",
+"Something went wrong!": "Something went wrong!",
+"We couldn't fetch the data right now. Please check your internet connection.": "We couldn't fetch the data right now. Please check your internet connection."
 
 }

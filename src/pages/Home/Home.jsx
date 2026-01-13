@@ -14,6 +14,7 @@ export default function Home() {
     <HeroSlider />
     <Container maxWidth="lg" sx={{ py: 8 }}>
       <FlashDeals />
+      <ErrorState />
       <TopCategories />
       <NewArrivals />
       <Offers />

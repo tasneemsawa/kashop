@@ -103,5 +103,8 @@
   "Flash Deals": "عروض حصرية",
   "View all": "عرض الكل",
   "Top Categories": "أهم الفئات",
-  "New Arrivals": "وصل حديثاً"
+  "New Arrivals": "وصل حديثاً",
+  "Something went wrong!":"عذراً، حدث خطأ ما!",
+  "We couldn't fetch the data right now. Please check your internet connection.":"لم نتمكن من جلب البيانات حالياً. يرجى التحقق من الاتصال بالإنترنت والمحاولة مرة أخرى."
+  
 }
