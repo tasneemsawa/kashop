@@ -335,6 +335,16 @@ const {mode, toggleTheme } = useThemeStore()
                 </Link>
                 {token ?
                   <>
+                      <Link
+                      component={RouterLink}
+                      to="/profile"
+
+                      sx={Styles.navigationButton}
+                      underline="none"
+                    > {t("Profile")} 
+                      
+                    </Link>
+
                     <Link
                       component={RouterLink}
                       to="/cart"
