@@ -14,10 +14,13 @@ import useCart from '../../Hooks/useCart';
 import useRemoveFromCart from '../../Hooks/useRemoveFromCart';
 import useUpdateCartItem from '../../Hooks/useUpdateCartItem';
 import { useTranslation } from 'react-i18next';
+import { useProducts } from '../../Hooks/useProducts';
 
 export default function Cart() {
   const navigate = useNavigate()
   const { t } = useTranslation()
+  let { isLoading :isLoadingProduct, isError :isErrorProduct, data : products } = useProducts()
+  // console.log(products.response.data)
 
   let { data, isLoading, isError } = useCart()
   let { removeCartMutation } = useRemoveFromCart()
@@ -28,22 +31,7 @@ export default function Cart() {
 
 
   console.log(data)
-  const [products, setProducts] = useState([
-    { id: 1, qty: 10, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
-    { id: 2, qty: 2, name: "Dead Sea Bath Salts", price: 217, rating: 3, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/15/07/b5/1507b519f1976dd3090ae886fe67f0f7.jpg" },
-    { id: 3, qty: 4, name: "Xiaomi", price: 171, rating: 5, category: "Watches", image: "https://i.pinimg.com/736x/86/6d/cf/866dcff7520d465f3dcd6635c82380ea.jpg" },
-    { id: 4, qty: 1, name: "Kossil Watch Brown", price: 117, rating: 4, category: "Watches", image: "https://i.pinimg.com/736x/a8/e4/76/a8e4762d2a85f820df68722b1376a02c.jpg" },
-  ]);
-  const updateQty = (id, type) => {
-    setProducts(products.map(item =>
-      item.id === id
-        ? { ...item, qty: type === 'add' ? item.qty + 1 : Math.max(1, item.qty - 1) }
-        : item
-    ));
-  };
-  const deleteItem = (id) => {
-    setProducts(products.filter(item => item.id !== id));
-  };
+
 
   const handleCount = (id, type, currentCount) => {
     let newCount = type === 'add' ? currentCount + 1 : currentCount - 1
@@ -51,10 +39,9 @@ export default function Cart() {
 
     updateItem({ id, count: newCount })
   }
-  const totalAmount = products.reduce((acc, item) => acc + (item.price * item.qty), 0);
-  if (isLoading) return <CircularProgress></CircularProgress>
+  if (isLoading||isLoadingProduct) return <CircularProgress></CircularProgress>
 
-  if (isError) return <Typography>error</Typography>
+  if (isError ||isErrorProduct) return <Typography>error</Typography>
 
   return (
 
@@ -64,7 +51,7 @@ export default function Cart() {
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CustomStepper indexStep={0} />
         </Box>
-        <TableContainer>
+        {/* <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
@@ -72,7 +59,6 @@ export default function Cart() {
                 <TableCell> Price</TableCell>
                 <TableCell> Quantity</TableCell>
                 <TableCell> Total</TableCell>
-
                 <TableCell> Action</TableCell>
               </TableRow>
             </TableHead>
@@ -98,22 +84,22 @@ export default function Cart() {
               </TableRow>)}
               <TableRow>
                 <TableCell align="right" colSpan={5}>  cart total : ${data.cartTotal}</TableCell>
-
-
-
               </TableRow>
             </TableBody>
           </Table>
-        </TableContainer>
-        {/* <Stack spacing={2} sx={{ my: 7, mx: 10 }}>
-          {products.map((item) => (
+        </TableContainer> */}
+        <Stack spacing={2} sx={{ my: 7, mx: 10 }}>
+          {data.items.map((item) => (
             <Card
-              key={item.id}
+              key={item.productId}
               variant="outlined"
               sx={Styles.card}
             >
+
+
               <IconButton
-                onClick={() => deleteItem(item.id)}
+                disabled={isPending}
+                onClick={() => removeItem(item.productId)}
                 size="small"
                 sx={Styles.iconButton}
               >
@@ -125,36 +111,37 @@ export default function Cart() {
                   component="img"
                   height="100%"
                   sx={Styles.cardMedia}
-                  image={item.image}
-                  title={item.name}
-                  alt={item.name}
+                  image={products.response.data.find(p => p.id === item.productId).image}
+                  title={item.productName}
+                  alt={item.productName}
                 />
                 <Box sx={{ flexGrow: 1, alignSelf: "flex-start", py: 3 }}>
                   <Typography fontWeight="500" color="secondary" sx={{ fontSize: "18px", mb: 5 }}>
-                    {item.name}
+                    {item.productName}
                   </Typography>
                   <Typography color="muted">
-                    ${item.price.toFixed(2)} x {item.qty} =
+                    ${item.price.toFixed(2)} x {item.count} =
                     <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: 'bold', marginLeft: '8px' }}>
-                      ${(item.price * item.qty).toFixed(2)}
+                      ${(item.totalPrice).toFixed(2)}
                     </Typography>
                   </Typography>
                 </Box>
-
                 <Stack direction="row" alignItems="center" spacing={1.5}>
                   <IconButton
-                    onClick={() => updateQty(item.id, 'remove')}
+                    onClick={() => handleCount(item.productId, "remove", item.count)}
+                    disabled={updatePending}
                     size="small"
                     sx={Styles.actionButton}
                   >
                     <RemoveIcon fontSize="small" />
                   </IconButton>
 
-                  <Typography fontWeight="bold" color={"secondary"}>{item.qty}</Typography>
+                  <Typography fontWeight="bold" color={"secondary"}>{item.count}</Typography>
 
                   <IconButton
-                    onClick={() => updateQty(item.id, 'add')}
+                    onClick={() => handleCount(item.productId, "add", item.count)}
                     size="small"
+                    disabled={updatePending}
                     sx={Styles.actionButton}
                   >
                     <AddIcon fontSize="small" />
@@ -163,11 +150,11 @@ export default function Cart() {
               </Stack>
             </Card>
           ))}
-        </Stack> */}
+        </Stack>
 
 
         {/* footer */}
-        {products.length > 0 && (
+        {data.items.length > 0 && (
           <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end", gap: 30 }}>
             <Box sx={{ display: "flex", gap: "10px" }}>
               <Button variant="contained"
@@ -180,10 +167,8 @@ export default function Cart() {
               >{t("Continue Shopping")}</Button>
 
             </Box>
-
-
             <Typography sx={{ fontWeight: "700", fontSize: "18px" }}>
-              Total: <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: "700", fontSize: "18px" }}>${totalAmount.toFixed(2)}</Typography>
+              Total: <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: "700", fontSize: "18px" }}>${data.cartTotal.toFixed(2)}</Typography>
             </Typography>
           </Box>
         )}

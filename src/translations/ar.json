@@ -107,6 +107,11 @@
   "Something went wrong!":"عذراً، حدث خطأ ما!",
   "We couldn't fetch the data right now. Please check your internet connection.":"لم نتمكن من جلب البيانات حالياً. يرجى التحقق من الاتصال بالإنترنت والمحاولة مرة أخرى.",
   "Continue Shopping":"متابعة التسوق",
-  "Checkout":"الدفع"
+  "Checkout":"الدفع",
+  "Payment Method":"طرق الدفع",
+  "Cash":"كاش",
+  "Visa":"فيزا",
+  "Pay Now":"اشتري الان"
+
 
 }

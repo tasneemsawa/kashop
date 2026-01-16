@@ -107,5 +107,9 @@
 "Something went wrong!": "Something went wrong!",
 "We couldn't fetch the data right now. Please check your internet connection.": "We couldn't fetch the data right now. Please check your internet connection.",
 "Continue Shopping":"Continue Shopping",
-"Checkout":"Checkout"
+"Checkout":"Checkout",
+"Payment Method":"Payment Method",
+"Cash":"Cash",
+"Visa":"Visa",
+"Pay Now":"Pay Now"
 }
