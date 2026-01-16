@@ -26,6 +26,8 @@ import { useState } from 'react';
 import { useAuthStore } from '../../Store/useAuthStore';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from '@tanstack/react-query';
+import { useCategories } from '../../Hooks/useCategories'
+
 import Translate from '../../Translat';
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -44,7 +46,12 @@ export default function Navbar() {
     queryClient.invalidateQueries();
   }
 
-
+ //Category
+ const { isError, isLoading, data } = useCategories()
+//  if (isLoading)
+//      return <CircularProgress></CircularProgress>
+//  if (isError)
+//      return <Typography> error</Typography>
 
 
   const { counter, userName, increase, descrease } = useCounterStore();
@@ -78,16 +85,10 @@ export default function Navbar() {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
 

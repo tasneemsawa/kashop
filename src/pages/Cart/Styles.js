@@ -25,10 +25,11 @@ export const Styles = {
         border: '1px solid #E94560',
         color: 'white',
         fontSize: "15px",
-        width: 200,
+        width: 180,
         py: 1,
         transition: '0.3s',
         fontWeight: 800,
+        textTransform: 'none',
         '&:hover': {
             backgroundColor: 'white',
             color: 'primary.main',

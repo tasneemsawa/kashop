@@ -13,16 +13,18 @@ import { Styles } from './Styles';
 import useCart from '../../Hooks/useCart';
 import useRemoveFromCart from '../../Hooks/useRemoveFromCart';
 import useUpdateCartItem from '../../Hooks/useUpdateCartItem';
+import { useTranslation } from 'react-i18next';
 
 export default function Cart() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   let { data, isLoading, isError } = useCart()
-let {removeCartMutation } = useRemoveFromCart()
-let {mutate:removeItem , isPending } = removeCartMutation
+  let { removeCartMutation } = useRemoveFromCart()
+  let { mutate: removeItem, isPending } = removeCartMutation
 
-let {updateCartMutation } = useUpdateCartItem()
-let {mutate:updateItem , isPending:updatePending } = updateCartMutation
+  let { updateCartMutation } = useUpdateCartItem()
+  let { mutate: updateItem, isPending: updatePending } = updateCartMutation
 
 
   console.log(data)
@@ -43,11 +45,11 @@ let {mutate:updateItem , isPending:updatePending } = updateCartMutation
     setProducts(products.filter(item => item.id !== id));
   };
 
-  const handleCount=(id, type ,currentCount)=>{
-    let newCount=type === 'add' ? currentCount+1 :currentCount-1
+  const handleCount = (id, type, currentCount) => {
+    let newCount = type === 'add' ? currentCount + 1 : currentCount - 1
     console.log(newCount)
 
-    updateItem({id,count:newCount})
+    updateItem({ id, count: newCount })
   }
   const totalAmount = products.reduce((acc, item) => acc + (item.price * item.qty), 0);
   if (isLoading) return <CircularProgress></CircularProgress>
@@ -55,134 +57,138 @@ let {mutate:updateItem , isPending:updatePending } = updateCartMutation
   if (isError) return <Typography>error</Typography>
 
   return (
-    <TableContainer>
-      <Table>
-        <TableHead>
-        <TableRow>
-          <TableCell> Name</TableCell>
-          <TableCell> Price</TableCell>
-          <TableCell> Quantity</TableCell>
-          <TableCell> Total</TableCell>
 
-          <TableCell> Action</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.items.map(item => <TableRow key={item.productId}>
-            <TableCell> {item.productName}</TableCell>
-            <TableCell>  {item.price}</TableCell>
-            <TableCell>
-              <Button  onClick={()=>handleCount(item.productId,"remove" ,item.count)} variant='contained' disabled={updatePending}>-</Button>
-               {item.count}
-               <Button onClick={()=>handleCount(item.productId,"add",item.count)} variant='contained' disabled={updatePending} >+</Button>
-               
+    <Box elevation={0} sx={{ minHeight: '100vh', py: 7 }}>
+      <Container maxWidth="lg">
+        {/* payment cycle */}
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <CustomStepper indexStep={0} />
+        </Box>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell> Name</TableCell>
+                <TableCell> Price</TableCell>
+                <TableCell> Quantity</TableCell>
+                <TableCell> Total</TableCell>
+
+                <TableCell> Action</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data.items.map(item => <TableRow key={item.productId}>
+                <TableCell> {item.productName}</TableCell>
+                <TableCell>  {item.price}</TableCell>
+                <TableCell>
+                  <Button onClick={() => handleCount(item.productId, "remove", item.count)} variant='contained' disabled={updatePending}>-</Button>
+                  {item.count}
+                  <Button onClick={() => handleCount(item.productId, "add", item.count)} variant='contained' disabled={updatePending} >+</Button>
+
                 </TableCell>
-            <TableCell>  {item.totalPrice}</TableCell>
+                <TableCell>  {item.totalPrice}</TableCell>
 
-            <TableCell> <Button 
-            disabled={isPending}
+                <TableCell> <Button
+                  disabled={isPending}
 
-            onClick={()=>removeItem(item.productId)} 
-            color='error' variant='contained'>
-              "remove"
-               </Button></TableCell>
-
-
-
-          </TableRow>)}
-<TableRow>
-<TableCell align="right" colSpan={5}>  cart total : ${data.cartTotal}</TableCell>
-          
+                  onClick={() => removeItem(item.productId)}
+                  color='error' variant='contained'>
+                  "remove"
+                </Button></TableCell>
+              </TableRow>)}
+              <TableRow>
+                <TableCell align="right" colSpan={5}>  cart total : ${data.cartTotal}</TableCell>
 
 
-</TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
-    // <Box elevation={0} sx={{ minHeight: '100vh', py: 7 }}>
-    //   <Container maxWidth="lg">
-    //     {/* payment cycle */}
-    //     <Box sx={{ display: "flex", justifyContent: "center" }}>
-    //       <CustomStepper indexStep={0} />
-    //     </Box>
 
-    //     <Stack spacing={2} sx={{ my: 7, mx: 10 }}>
-    //       {products.map((item) => (
-    //         <Card
-    //           key={item.id}
-    //           variant="outlined"
-    //           sx={Styles.card}
-    //         >
-    //           <IconButton
-    //             onClick={() => deleteItem(item.id)}
-    //             size="small"
-    //             sx={Styles.iconButton}
-    //           >
-    //             <CloseIcon fontSize="small" />
-    //           </IconButton>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+        {/* <Stack spacing={2} sx={{ my: 7, mx: 10 }}>
+          {products.map((item) => (
+            <Card
+              key={item.id}
+              variant="outlined"
+              sx={Styles.card}
+            >
+              <IconButton
+                onClick={() => deleteItem(item.id)}
+                size="small"
+                sx={Styles.iconButton}
+              >
+                <CloseIcon fontSize="small" />
+              </IconButton>
 
-    //           <Stack direction="row" spacing={3} alignItems="center">
-    //             <CardMedia
-    //               component="img"
-    //               height="100%"
-    //               sx={Styles.cardMedia}
-    //               image={item.image}
-    //               title={item.name}
-    //               alt={item.name}
-    //             />
-    //             <Box sx={{ flexGrow: 1, alignSelf: "flex-start", py: 3 }}>
-    //               <Typography fontWeight="500" color="secondary" sx={{ fontSize: "18px", mb: 5 }}>
-    //                 {item.name}
-    //               </Typography>
-    //               <Typography color="muted">
-    //                 ${item.price.toFixed(2)} x {item.qty} =
-    //                 <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: 'bold', marginLeft: '8px' }}>
-    //                   ${(item.price * item.qty).toFixed(2)}
-    //                 </Typography>
-    //               </Typography>
-    //             </Box>
+              <Stack direction="row" spacing={3} alignItems="center">
+                <CardMedia
+                  component="img"
+                  height="100%"
+                  sx={Styles.cardMedia}
+                  image={item.image}
+                  title={item.name}
+                  alt={item.name}
+                />
+                <Box sx={{ flexGrow: 1, alignSelf: "flex-start", py: 3 }}>
+                  <Typography fontWeight="500" color="secondary" sx={{ fontSize: "18px", mb: 5 }}>
+                    {item.name}
+                  </Typography>
+                  <Typography color="muted">
+                    ${item.price.toFixed(2)} x {item.qty} =
+                    <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: 'bold', marginLeft: '8px' }}>
+                      ${(item.price * item.qty).toFixed(2)}
+                    </Typography>
+                  </Typography>
+                </Box>
 
-    //             <Stack direction="row" alignItems="center" spacing={1.5}>
-    //               <IconButton
-    //                 onClick={() => updateQty(item.id, 'remove')}
-    //                 size="small"
-    //                 sx={Styles.actionButton}
-    //               >
-    //                 <RemoveIcon fontSize="small" />
-    //               </IconButton>
+                <Stack direction="row" alignItems="center" spacing={1.5}>
+                  <IconButton
+                    onClick={() => updateQty(item.id, 'remove')}
+                    size="small"
+                    sx={Styles.actionButton}
+                  >
+                    <RemoveIcon fontSize="small" />
+                  </IconButton>
 
-    //               <Typography fontWeight="bold" color={"secondary"}>{item.qty}</Typography>
+                  <Typography fontWeight="bold" color={"secondary"}>{item.qty}</Typography>
 
-    //               <IconButton
-    //                 onClick={() => updateQty(item.id, 'add')}
-    //                 size="small"
-    //                 sx={Styles.actionButton}
-    //               >
-    //                 <AddIcon fontSize="small" />
-    //               </IconButton>
-    //             </Stack>
-    //           </Stack>
-    //         </Card>
-    //       ))}
-    //     </Stack>
+                  <IconButton
+                    onClick={() => updateQty(item.id, 'add')}
+                    size="small"
+                    sx={Styles.actionButton}
+                  >
+                    <AddIcon fontSize="small" />
+                  </IconButton>
+                </Stack>
+              </Stack>
+            </Card>
+          ))}
+        </Stack> */}
 
 
-    //     {/* footer */}
-    //     {products.length > 0 && (
-    //       <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end", gap: 50 }}>
-    //         <Button variant="contained"
-    //           onClick={() => navigate("/checkout")}
+        {/* footer */}
+        {products.length > 0 && (
+          <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end", gap: 30 }}>
+            <Box sx={{ display: "flex", gap: "10px" }}>
+              <Button variant="contained"
+                onClick={() => navigate("/checkout")}
+                sx={Styles.addButton}
+              >{t("Checkout")}</Button>
+              <Button variant="contained"
+                onClick={() => navigate("/shop")}
+                sx={Styles.addButton}
+              >{t("Continue Shopping")}</Button>
 
-    //           sx={Styles.addButton}
-    //         >Checkout</Button>
+            </Box>
 
-    //         <Typography sx={{ fontWeight: "700", fontSize: "18px" }}>
-    //           Total: <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: "700", fontSize: "18px" }}>${totalAmount.toFixed(2)}</Typography>
-    //         </Typography>
-    //       </Box>
-    //     )}
 
-    //   </Container>
-    // </Box>
+            <Typography sx={{ fontWeight: "700", fontSize: "18px" }}>
+              Total: <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: "700", fontSize: "18px" }}>${totalAmount.toFixed(2)}</Typography>
+            </Typography>
+          </Box>
+        )}
+
+      </Container>
+    </Box>
   )
 }

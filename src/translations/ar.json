@@ -105,6 +105,8 @@
   "Top Categories": "أهم الفئات",
   "New Arrivals": "وصل حديثاً",
   "Something went wrong!":"عذراً، حدث خطأ ما!",
-  "We couldn't fetch the data right now. Please check your internet connection.":"لم نتمكن من جلب البيانات حالياً. يرجى التحقق من الاتصال بالإنترنت والمحاولة مرة أخرى."
-  
+  "We couldn't fetch the data right now. Please check your internet connection.":"لم نتمكن من جلب البيانات حالياً. يرجى التحقق من الاتصال بالإنترنت والمحاولة مرة أخرى.",
+  "Continue Shopping":"متابعة التسوق",
+  "Checkout":"الدفع"
+
 }
