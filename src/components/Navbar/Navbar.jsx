@@ -29,6 +29,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useCategories } from '../../Hooks/useCategories'
 
 import Translate from '../../Translat';
+import useThemeStore from '../../Store/useThemeStore';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
@@ -53,6 +54,7 @@ export default function Navbar() {
 //  if (isError)
 //      return <Typography> error</Typography>
 
+const {mode, toggleTheme } = useThemeStore()
 
   const { counter, userName, increase, descrease } = useCounterStore();
 
@@ -121,8 +123,12 @@ export default function Navbar() {
               color="inherit"
               onClick={() => changeLanguage()}>{i18n.language=="ar"?"ع":"En"}
             </Button>
+            <Button
+              color="inherit"
+              onClick={() => toggleTheme()}>{i18n.mode=="dark"?"dark":"light"}
+            </Button>
 
-
+            
           </Box>
 
         </Toolbar>
