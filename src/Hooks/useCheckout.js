@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AxiosAuthInstance from '../Api/AxiosAuthInstance';
+import AxiosAuthInstance from '../API/AxiosAuthInstance';
 
 export default function useCheckout() {
 
