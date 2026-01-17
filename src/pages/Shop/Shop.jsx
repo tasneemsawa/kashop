@@ -21,14 +21,28 @@ const initialProducts = [
 const Shop = () => {
   const { t } = useTranslation();
 
-  let { isError, isLoading, data } = useProducts()
-  console.log(data)
 
-
-  const [searchProduct, setSearchProduct] = useState('');
-  const [sortBy, setSortBy] = useState('');
-  const [priceRange, setPriceRange] = useState([0, 500]);
   const [view, setView] = useState("grid");
+  const [searchProduct, setSearchProduct] = useState('');
+  const [page, setPage] = useState(1);
+  const [categoryId, setCategoryId] = useState(null);
+  const [priceRange, setPriceRange] = useState([0, 2000]);
+
+
+
+  const [sortBy, setSortBy] = useState('');
+
+
+  let { isError, isLoading, data } = useProducts({
+    search:searchProduct ||null,
+   page,categoryId,
+   minPrice: priceRange[0] ,maxPrice:priceRange[1],
+   ascending:sortBy !== 'alphaZ',
+   sortBy: null,
+  })
+  console.log("test")
+
+  console.log(data)
 
   // let filteredProducts = useMemo(() => {
   //   let result = data.filter(p =>
@@ -67,7 +81,9 @@ const Shop = () => {
             <Typography color="muted.main" sx={{ fontSize: "14px", fontWeight: 500,marginLeft:"1px" }}>{t("Sort by")} :</Typography>
             <Select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
+              onChange={(e) =>{ 
+                setPage(1)
+                setSortBy(e.target.value)}}
               size="small"
               sx={{ minWidth: 150, bgcolor: 'white' }}
             >
@@ -93,7 +109,9 @@ const Shop = () => {
                 fullWidth
                 placeholder={t("Search product...")}
                 value={searchProduct}
-                onChange={(e) => setSearchProduct(e.target.value)}
+                onChange={(e) =>{ 
+                  setPage(1)
+                  setSearchProduct(e.target.value)}}
                 InputProps={{
                   startAdornment: <Search sx={{ color: 'muted', mr: 1 }} />
                 }}
@@ -112,10 +130,12 @@ const Shop = () => {
               <Box sx={{ px: 1 }}>
                 <Slider
                   value={priceRange}
-                  onChange={(e, newValue) => setPriceRange(newValue)}
+                  onChange={(e, newValue) =>{
+                    setPage(1)
+                     setPriceRange(newValue)}}
                   valueLabelDisplay="auto"
                   min={0}
-                  max={500}
+                  max={2000}
                   sx={{ color: '#E94560' }}
                 />
                 <Box display="flex" justifyContent="space-between">

@@ -64,6 +64,9 @@ export default function ProductDetails() {
 
     };
     const { isLoading, isError, data } = useProductsDetails(id);
+    console.log("wefwefwef")
+    console.log(data)
+
     if (isLoading) return <CircularProgress></CircularProgress>
 
     if (isError) return <Typography>error</Typography>

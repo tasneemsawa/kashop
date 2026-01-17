@@ -4,5 +4,6 @@ import i18n from "../i18n";
 
 
 export default function useCart(){
-  return useFetch(['carts',i18n.language], '/Carts',AxiosAuthInstance);
+  return useFetch({queryKey:['carts',i18n.language],url: '/Carts',instance:AxiosAuthInstance});
+
 }
