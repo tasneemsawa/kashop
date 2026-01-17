@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import CustomPagination from '../../components/Pagination/Pagination';
 import ProductGridCard from '../../components/ProductGridCard/ProductGridCard';
-import useGetProductsByCategory from '../../Hooks/useGetProductsByCategory.JS'
+import useGetProductsByCategory from '../../Hooks/useGetProductsByCategory.js'
 
 export default function CategoryProducts() {
     const { id, name } = useParams(); //product id 
