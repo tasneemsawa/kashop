@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosAuthInstance from '../Api/axiosAuthInstance';
+import AxiosAuthInstance from '../Api/AxiosAuthInstance';
 
 export default function useCheckout() {
 
@@ -11,7 +11,7 @@ export default function useCheckout() {
 
   const checkout= useMutation({
     mutationFn: async ({ paymentMethod }) => {
-      return await axiosAuthInstance.post('/Checkouts', { paymentMethod })
+      return await AxiosAuthInstance.post('/Checkouts', { paymentMethod })
     },
     onSuccess :(response)=>{
         queryClient.invalidateQueries({ queryKey: ['carts'] })
