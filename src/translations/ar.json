@@ -112,7 +112,10 @@
   "Cash":"كاش",
   "Visa":"فيزا",
   "Pay Now":"اشتري الان",
-  "Profile":"الحساب الشخصي"
+  "Profile":"الحساب الشخصي",
+  "Access Restricted":"الدخول مقيد",
+  "Please login to access this page and see your data.":"يرجى تسجيل الدخول للوصول إلى هذه الصفحة والاطلاع على بياناتك.",
+  "Go to Login":"تسجيل الدخول"
 
 
 }

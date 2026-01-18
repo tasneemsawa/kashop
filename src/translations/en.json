@@ -112,5 +112,10 @@
 "Cash":"Cash",
 "Visa":"Visa",
 "Pay Now":"Pay Now",
-"Profile":"Profile"
+"Profile":"Profile",
+"Access Restricted":"Access Restricted",
+"Please login to access this page and see your data.":"Please login to access this page and see your data.",
+"Go to Login":"Go to Login"
+
+
 }
