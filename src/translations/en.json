@@ -115,7 +115,17 @@
 "Profile":"Profile",
 "Access Restricted":"Access Restricted",
 "Please login to access this page and see your data.":"Please login to access this page and see your data.",
-"Go to Login":"Go to Login"
+"Go to Login":"Go to Login",
+"Clear Cart":"Clear Cart",
+"Are you sure?": "Are you sure?",
+  "All items in your cart will be permanently removed!": "All items in your cart will be permanently removed!",
+  "Yes, clear cart": "Yes, clear cart",
+  "Cancel": "Cancel",
+  "Cleared!":"Cleared!",
+  "Your cart is now empty.":"Your cart is now empty.",
+  "OK":"OK",
+  "Total":"Total"
+
 
 
 }

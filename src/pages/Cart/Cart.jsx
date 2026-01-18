@@ -15,16 +15,25 @@ import useRemoveFromCart from '../../Hooks/useRemoveFromCart';
 import useUpdateCartItem from '../../Hooks/useUpdateCartItem';
 import { useTranslation } from 'react-i18next';
 import { useProducts } from '../../Hooks/useProducts';
+import ErrorState from '../../components/Errors/Errors';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Swal from "sweetalert2";
+import useClearCart from '../../hooks/useClearCart';
+
+
 
 export default function Cart() {
   const navigate = useNavigate()
-  const { t } = useTranslation()
+  const { t,i18n } = useTranslation()
+
+
   let { isLoading :isLoadingProduct, isError :isErrorProduct, data : products } = useProducts()
   // console.log(products.response.data)
 
   let { data, isLoading, isError } = useCart()
   let { removeCartMutation } = useRemoveFromCart()
   let { mutate: removeItem, isPending } = removeCartMutation
+  const {mutate: clearCart, isPending: clearingPending} = useClearCart();
 
   let { updateCartMutation } = useUpdateCartItem()
   let { mutate: updateItem, isPending: updatePending } = updateCartMutation
@@ -36,12 +45,40 @@ export default function Cart() {
   const handleCount = (id, type, currentCount) => {
     let newCount = type === 'add' ? currentCount + 1 : currentCount - 1
     console.log(newCount)
-
+    if (newCount <= 0) {   
+      removeItem(id);
+    }
     updateItem({ id, count: newCount })
+  }
+  const handleClearCart=()=>{
+    Swal.fire({
+      title: t("Are you sure?"),
+      text: t("All items in your cart will be permanently removed"),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#E94560', 
+      cancelButtonColor: '#6c757d',
+      confirmButtonText:t("Yes, clear cart"),
+      cancelButtonText:t("Cancel"),
+      reverseButtons: true, 
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearCart();
+  
+        Swal.fire({
+          title: t("Cleared!"),
+          text: t("Your cart is now empty."),
+          icon: 'success',
+          confirmButtonColor: '#E94560',
+          confirmButtonText:t("OK"),
+        });
+      }
+    });
   }
   if (isLoading||isLoadingProduct) return <CircularProgress></CircularProgress>
 
-  if (isError ||isErrorProduct) return <Typography>error</Typography>
+  if (isError ||isErrorProduct) return <Box sx={{my:7 ,mx:8}}> <ErrorState/></Box> 
 
   return (
 
@@ -101,12 +138,12 @@ export default function Cart() {
                 disabled={isPending}
                 onClick={() => removeItem(item.productId)}
                 size="small"
-                sx={Styles.iconButton}
+                sx={i18n.language === 'en' ?Styles.iconButton:Styles.iconButton2}
               >
                 <CloseIcon fontSize="small" />
               </IconButton>
 
-              <Stack direction="row" spacing={3} alignItems="center">
+              <Stack  direction="row" spacing={3} alignItems="center">
                 <CardMedia
                   component="img"
                   height="100%"
@@ -119,14 +156,19 @@ export default function Cart() {
                   <Typography fontWeight="500" color="secondary" sx={{ fontSize: "18px", mb: 5 }}>
                     {item.productName}
                   </Typography>
+                  <Box sx={{display:"flex" ,gap:"10px"}}> 
                   <Typography color="muted">
-                    ${item.price.toFixed(2)} x {item.count} =
-                    <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: 'bold', marginLeft: '8px' }}>
+                    ${item.price.toFixed(2)} x 
+                  </Typography>
+                  <Typography color="muted">
+                   {item.count} =
+                  </Typography>
+                  <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: 'bold', marginLeft: '8px' }}>
                       ${(item.totalPrice).toFixed(2)}
                     </Typography>
-                  </Typography>
+                  </Box>
                 </Box>
-                <Stack direction="row" alignItems="center" spacing={1.5}>
+                <Box sx={{display:"flex", gap:"10px"}} alignItems="center" >
                   <IconButton
                     onClick={() => handleCount(item.productId, "remove", item.count)}
                     disabled={updatePending}
@@ -146,7 +188,7 @@ export default function Cart() {
                   >
                     <AddIcon fontSize="small" />
                   </IconButton>
-                </Stack>
+                </Box>
               </Stack>
             </Card>
           ))}
@@ -165,10 +207,19 @@ export default function Cart() {
                 onClick={() => navigate("/shop")}
                 sx={Styles.addButton}
               >{t("Continue Shopping")}</Button>
-
+              <Button
+               disabled={!data.items || data.items.length === 0 || clearingPending}
+                variant="outlined"
+                color="error"
+                startIcon={<DeleteIcon />}
+                sx={Styles.deleteAllButton}
+                onClick={()=>handleClearCart()} 
+              >
+                {t("Clear Cart")}
+              </Button>
             </Box>
             <Typography sx={{ fontWeight: "700", fontSize: "18px" }}>
-              Total: <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: "700", fontSize: "18px" }}>${data.cartTotal.toFixed(2)}</Typography>
+              {t("Total")}: <Typography component={"span"} sx={{ color: 'primary.main', fontWeight: "700", fontSize: "18px" }}>${data.cartTotal.toFixed(2)}</Typography>
             </Typography>
           </Box>
         )}

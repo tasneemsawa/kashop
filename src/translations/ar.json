@@ -115,7 +115,16 @@
   "Profile":"الحساب الشخصي",
   "Access Restricted":"الدخول مقيد",
   "Please login to access this page and see your data.":"يرجى تسجيل الدخول للوصول إلى هذه الصفحة والاطلاع على بياناتك.",
-  "Go to Login":"تسجيل الدخول"
+  "Go to Login":"تسجيل الدخول",
+  "Clear Cart":"مسح سلة",
+  "Yes, clear cart":"نعم، امسح السلة",
+  "Cancel":"إلغاء",
+  "All items in your cart will be permanently removed":"سيتم إفراغ جميع محتويات السلة تماماً",
+  "Are you sure?":"هل أنت متأكد؟",
+  "Cleared!":"تم المسح",
+  "Your cart is now empty.":"سلتك الآن فارغة",
+  "OK":"تم",
+  "Total":"المجموع"
 
-
+  
 }

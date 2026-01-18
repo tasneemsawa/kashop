@@ -5,11 +5,13 @@ import {
 } from '@mui/material';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-export default function CustomStepper({ indexStep }) {
-
+export default function CustomStepper({ indexStep  }) {
+  const {t} = useTranslation()
   const navigate = useNavigate()
-  const steps = ['Cart', 'Checkout', 'Payment', 'Review']
+  const steps = ['Cart', 'Checkout']
+  // const steps = ['Cart', 'Checkout', 'Payment', 'Review']
 
   const handleStep = (step, label) => () => {
     navigate(`/${label.toLowerCase()}`)
@@ -18,7 +20,7 @@ export default function CustomStepper({ indexStep }) {
 
   return (
     <>
-      <Box sx={{ width: '60%' }}>
+      <Box sx={{ width: '30%' }}>
         <Stepper nonLinear activeStep={indexStep}
           connector={
             <StepConnector
@@ -40,7 +42,8 @@ export default function CustomStepper({ indexStep }) {
         >
           {steps.map((label, index) => (
             <Step key={label} completed={indexStep >= index}  >
-              <Button onClick={handleStep(index, label)} disabled={index == 3}
+              <Button 
+                onClick={handleStep(index, label)}                 
                 sx={{
                   borderRadius: "300px",
                   color: index <= indexStep ? "white" : "primary.main",
@@ -48,11 +51,11 @@ export default function CustomStepper({ indexStep }) {
                   backgroundColor: index > indexStep ? "#ffe1e6" : "primary.main",
                   textTransform: "none",
                   fontSize: "14px",
-                  fontWeight: 600
+                  fontWeight: 600,
                 }}
 
               >
-                {index + 1}.{" " + label}
+                {index + 1}.{" " +t(label) }
               </Button>
             </Step>
           ))}
