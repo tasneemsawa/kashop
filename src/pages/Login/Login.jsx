@@ -41,10 +41,10 @@ export default function Login() {
       <Paper elevation={0} sx={Styles.subContainer} >
         <Box className="register-form" sx={{ padding: "3rem 3.75rem 0px" }}>
           <Typography variant="h5" component={"h1"} sx={Styles.title}  >
-            {Translate("Welcome To Ecommerce")}
+            {t ("Welcome To Ecommerce")}
           </Typography>
           <Typography textAlign="center" component={"h3"} sx={Styles.subTitle}>
-            {Translate("Log in with email & password")}
+            {t ("Log in with email & password")}
           </Typography>
           {serverErrors.length > 0 ?
             serverErrors.map((err, index) =>
@@ -57,7 +57,7 @@ export default function Login() {
             flexDirection: 'column', gap: 3, mt: 5, alignItems: 'center'
           }}>
 
-            <TextField label={Translate("user email")} {...register('email')} fullWidth variant="outlined"
+            <TextField label={t ("user email")} {...register('email')} fullWidth variant="outlined"
               error={errors.email} helperText={errors.email?t(errors.email.message):""}
               dir={isRtlV ? "rtl" : "ltr"}
             />
@@ -65,21 +65,21 @@ export default function Login() {
             <PasswordInput errors={errors} control={control} />
 
             <Button variant="contained" type="submit" sx={Styles.loginButton} disabled={isSubmitting} fullWidth>{
-              isSubmitting ? <CircularProgress /> : `${Translate("Login")}`
+              isSubmitting ? <CircularProgress /> : `${t ("Login")}`
             }</Button>
             <Divider sx={Styles.divider}>
-              {Translate("Or")}
+              {t ("Or")}
             </Divider>
             <Button variant="contained" sx={Styles.facebookButton} disabled={isSubmitting} fullWidth
               dir={isRtlV ? "rtl" : "ltr"}
               startIcon={<FacebookIcon />}>
-              {Translate("Continue with Facebook")}
+              {t ("Continue with Facebook")}
 
             </Button>
             <Button variant="contained" sx={Styles.googleButton} disabled={isSubmitting} fullWidth
               dir={isRtlV ? "rtl" : "ltr"}
               startIcon={<GoogleIcon />}>
-              {Translate("Continue with Google")}
+              {t ("Continue with Google")}
             </Button>
 
           </Box>
@@ -90,27 +90,27 @@ export default function Login() {
 
           sx={{ textAlign: "center", width: "100%", marginTop: "25px", paddingTop: "19px", color: "#7D879C", fontWeight: "600" }}
         >
-          {Translate("Don’t have account? ")}
+          {t ("Don’t have account? ")}
 
           <RouterLink
             to={"/auth/register"}
             style={{
               color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
             }}
-          > {Translate("Sign Up")}</RouterLink>
+          > {t ("Sign Up")}</RouterLink>
         </Typography>
 
         <Typography
           variant="body2"
 
           sx={{ textAlign: "center", backgroundColor: "#F3F5F9", width: "100%", marginTop: "25px", padding: "19px 0px", color: "#7D879C", fontWeight: "600" }}
-        >{Translate("Forgot your password? ")}
+        >{t ("Forgot your password? ")}
           <RouterLink
             to={"/auth/forgotPassword"}
             style={{
               color: "#2B3445", textDecorationColor: "#2B3445", textDecoration: "underline", textUnderlineOffset: "4px", fontWeight: "600"
             }}
-          >{Translate("Reset It")} </RouterLink>
+          >{t ("Reset It")} </RouterLink>
         </Typography>
 
       </Paper>
