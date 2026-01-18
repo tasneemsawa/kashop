@@ -18,7 +18,7 @@ import { useProducts } from '../../Hooks/useProducts';
 import ErrorState from '../../components/Errors/Errors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from "sweetalert2";
-import useClearCart from '../../hooks/useClearCart';
+import useClearCart from '../../Hooks/useClearCart';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import EmptyCart from './EmptyCart/EmptyCart';
 
