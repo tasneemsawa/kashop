@@ -124,7 +124,10 @@
   "Cleared!":"تم المسح",
   "Your cart is now empty.":"سلتك الآن فارغة",
   "OK":"تم",
-  "Total":"المجموع"
+  "Total":"المجموع",
+  "Your cart is empty": "سلتك فارغة حالياً",
+  "Looks like you haven't added anything to your cart yet. Go ahead and explore our top categories.": "يبدو أنك لم تضف أي منتجات إلى سلتك بعد. انطلق الآن واستكشف منتجاتنا",
+  "Go Shopping": "ابدأ التسوق"
 
   
 }

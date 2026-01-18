@@ -7,7 +7,7 @@ import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-export default function CustomStepper({ indexStep  }) {
+export default function CustomStepper({ indexStep ,isEnableNexStep=true }) {
   const {t} = useTranslation()
   const navigate = useNavigate()
   const steps = ['Cart', 'Checkout']
@@ -43,7 +43,8 @@ export default function CustomStepper({ indexStep  }) {
           {steps.map((label, index) => (
             <Step key={label} completed={indexStep >= index}  >
               <Button 
-                onClick={handleStep(index, label)}                 
+                onClick={handleStep(index, label)} 
+                disabled={!isEnableNexStep && index==1}                
                 sx={{
                   borderRadius: "300px",
                   color: index <= indexStep ? "white" : "primary.main",

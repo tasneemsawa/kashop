@@ -19,7 +19,8 @@ import ErrorState from '../../components/Errors/Errors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from "sweetalert2";
 import useClearCart from '../../hooks/useClearCart';
-
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import EmptyCart from './EmptyCart/EmptyCart';
 
 
 export default function Cart() {
@@ -86,7 +87,7 @@ export default function Cart() {
       <Container maxWidth="lg">
         {/* payment cycle */}
         <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <CustomStepper indexStep={0} />
+          <CustomStepper indexStep={0} isEnableNexStep={data?.items?.length}/>
         </Box>
         {/* <TableContainer>
           <Table>
@@ -193,7 +194,9 @@ export default function Cart() {
             </Card>
           ))}
         </Stack>
-
+        {data?.items?.length == 0 ?
+          <EmptyCart />
+          : null}
 
         {/* footer */}
         {data.items.length > 0 && (
