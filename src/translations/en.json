@@ -127,7 +127,13 @@
   "Total":"Total",
   "Your cart is empty":"Your cart is empty",
   "Looks like you haven't added anything to your cart yet. Go ahead and explore our Products.":"Looks like you haven't added anything to your cart yet. Go ahead and explore our Products.",
- "Go Shopping":"Go Shopping"
+ "Go Shopping":"Go Shopping",
+ "Confirm Checkout": "Confirm Checkout",
+  "By clicking 'Confirm', your order will be placed and processed immediately.": "By clicking 'Confirm', your order will be placed and processed immediately.",
+  "Yes, Proceed": "Yes, Proceed",
+  "Review Order": "Review Order",
+  "Success!": "Success!",
+  "Order has been processed successfully.": "Order has been processed successfully."
 
 
 

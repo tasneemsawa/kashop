@@ -127,7 +127,12 @@
   "Total":"المجموع",
   "Your cart is empty": "سلتك فارغة حالياً",
   "Looks like you haven't added anything to your cart yet. Go ahead and explore our top categories.": "يبدو أنك لم تضف أي منتجات إلى سلتك بعد. انطلق الآن واستكشف منتجاتنا",
-  "Go Shopping": "ابدأ التسوق"
-
+  "Go Shopping": "ابدأ التسوق",
+  "Confirm Checkout": "تأكيد إتمام الطلب",
+  "By clicking 'Confirm', your order will be placed and processed immediately.": "بمجرد الضغط على 'تأكيد'، سيتم اعتماد طلبك ومعالجته فوراً.",
+  "Yes, Proceed": "نعم، إتمام العملية",
+  "Review Order": "مراجعة الطلب",
+  "Success!": "تم بنجاح!",
+  "Order has been processed successfully.": "تمت معالجة طلبك بنجاح."
   
 }
