@@ -139,7 +139,9 @@
 "No products found": "No products found",
   "We couldn't find any matches. Try changing your filters or searching for something else.": "We couldn't find any matches. Try changing your filters or searching for something else.",
   "Clear All Filters": "Clear All Filters",
-  "Failed to load categories":"Failed to load categories"
-
+  "Failed to load categories":"Failed to load categories",
+  "Products":"Products",
+  "no_products_title": "Sorry, no products available currently",
+  "no_products_desc": "This category does not contain any products at the moment. You can browse other sections."
 
 }
