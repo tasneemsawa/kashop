@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import {
   Box, Grid, Typography, TextField, MenuItem, Select,
-  Slider, IconButton, Stack, Divider, Paper, Container, CircularProgress
+  Slider, IconButton, Stack, Divider, Paper, Container, CircularProgress, Skeleton, Button
 } from '@mui/material';
 import { Search, Add, GridView, List } from '@mui/icons-material';
 import ProductGridCard from '../../components/ProductGridCard/ProductGridCard';
@@ -12,6 +12,7 @@ import { useProducts } from '../../Hooks/useProducts';
 import { useTranslation } from 'react-i18next';
 import { useCategories } from '../../Hooks/useCategories';
 import EmptyShop from '../../components/EmptyShop/EmptyShop';
+import ErrorState from '../../components/Errors/Errors';
 
 const initialProducts = [
   { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
@@ -78,9 +79,9 @@ const Shop = () => {
 
 
 
-  if(isLoading ||isLoadingCategories) return <CircularProgress></CircularProgress>
+  if(isLoading ) return <CircularProgress></CircularProgress>
 
-  if(isError) return <Typography>error</Typography>
+  // if(isError) return <Typography>error</Typography>
 
   return (
     <Box elevation={0} sx={{ minHeight: '100vh', py: 7 }}>
@@ -93,7 +94,7 @@ const Shop = () => {
               {t("Searching for")} “ {searchProduct || 'all'} ”
             </Typography>
             <Typography variant="body1" sx={Styles.searchNumber}>
-              {data.response.data.length}{t("results found")} 
+              {data?data.response?.data.length:0}{t("results found")} 
             </Typography>
           </Box>
 
@@ -143,13 +144,30 @@ const Shop = () => {
 
               <Typography 
               gutterBottom sx={Styles.categoriesTitle}>{t("Categories")}</Typography>
-              {categories.response.map(cat => (
-                <Typography
-                onClick={()=>{
-                  setPage(1)
-                  setCategoryId(cat.id)}}
-                key={cat.id} sx={Styles.categoriesName}>{cat.name}</Typography>
-              ))}
+
+
+
+
+
+              {isLoadingCategories ? (
+                <Skeleton variant="text" count={5} />
+              ) : isErrorCategories ? (
+                <Box sx={{ py: 2 }}>
+                  <Typography variant="caption" color="error">
+                    {t("Failed to load categories")}
+                  </Typography>
+                </Box>
+              ) : (
+      categories.response.map(cat => (
+        <Typography
+        onClick={()=>{
+          setPage(1)
+          setCategoryId(cat.id)}}
+        key={cat.id} sx={Styles.categoriesName}>{cat.name}</Typography>
+      ))
+
+    )}
+
 
               <Divider sx={{ my: 3 }} />
 
@@ -178,7 +196,9 @@ const Shop = () => {
           {/* Product Grid */}
           <Grid size={{ xs: 12, sm: 8, md: 9, lg: 9 }}>
             <Grid container spacing={2} sx={{ flexWrap: "wrap" }}>
-              {data?.response?.data.length==0?
+              {isError?
+              <Box sx={{my:7 ,display:"flex" ,flexGrow:1}}> <ErrorState/></Box> 
+              :data?.response?.data.length==0?
               
               <EmptyShop onReset={()=>{
                 setSearchProduct("")
@@ -202,7 +222,7 @@ const Shop = () => {
 
             {/* Pagination */}
             <CustomPagination
-            totalCount={data?.response?.totalCount || 0
+            totalCount={data?data.response?.totalCount || 0:0
               }
              limit={limit}
               page={page}

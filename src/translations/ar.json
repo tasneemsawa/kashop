@@ -138,6 +138,6 @@
   "Lowest Rated":"الاقل تقييماً",
   "No products found": "لم نجد أي نتائج مطابقة",
   "We couldn't find any matches. Try changing your filters or searching for something else.": "لم نجد أي نتائج تطابق بحثك. جرب تغيير الفلاتر أو البحث عن شيء آخر.",
-  "Clear All Filters": "إعادة ضبط الفلاتر"
-
+  "Clear All Filters": "إعادة ضبط الفلاتر",
+  "Failed to load categories":"فشل في تحميل الكاتجوري"
 }

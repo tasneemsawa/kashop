@@ -138,7 +138,8 @@
 "Lowest Rated":"Lowest Rated",
 "No products found": "No products found",
   "We couldn't find any matches. Try changing your filters or searching for something else.": "We couldn't find any matches. Try changing your filters or searching for something else.",
-  "Clear All Filters": "Clear All Filters"
+  "Clear All Filters": "Clear All Filters",
+  "Failed to load categories":"Failed to load categories"
 
 
 }
