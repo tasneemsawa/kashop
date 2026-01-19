@@ -10,6 +10,8 @@ import CustomPagination from '../../components/Pagination/Pagination';
 import { Styles } from './Styles';
 import { useProducts } from '../../Hooks/useProducts';
 import { useTranslation } from 'react-i18next';
+import { useCategories } from '../../Hooks/useCategories';
+import EmptyShop from '../../components/EmptyShop/EmptyShop';
 
 const initialProducts = [
   { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
@@ -21,28 +23,44 @@ const initialProducts = [
 const Shop = () => {
   const { t } = useTranslation();
 
-
   const [view, setView] = useState("grid");
   const [searchProduct, setSearchProduct] = useState('');
   const [page, setPage] = useState(1);
   const [categoryId, setCategoryId] = useState(null);
   const [priceRange, setPriceRange] = useState([0, 2000]);
-
-
+  const limit = 9;
+  const getSortParams = (sortBy) => {
+    switch (sortBy) {
+      case 'alphaZ': 
+        return { sortBy: 'name', ascending: false };
+      case 'alpha': 
+        return { sortBy: 'name', ascending: true };
+      case 'price-low': 
+        return { sortBy: 'price', ascending: true };
+      case 'price-high': 
+        return { sortBy: 'price', ascending: false };
+      case 'topRated': 
+        return { sortBy: 'rate', ascending: false };
+        case 'lessRated': 
+        return { sortBy: 'rate', ascending: true };
+      default:
+        return { sortBy: 'name', ascending: true };
+    }
+  };
 
   const [sortBy, setSortBy] = useState('');
+  const { isError:isErrorCategories, isLoading:isLoadingCategories, data:categories } = useCategories()
 
-
+  const { sortBy: sortField, ascending: isAsc } = getSortParams(sortBy);
   let { isError, isLoading, data } = useProducts({
     search:searchProduct ||null,
    page,categoryId,
    minPrice: priceRange[0] ,maxPrice:priceRange[1],
-   ascending:sortBy !== 'alphaZ',
-   sortBy: null,
+   ascending:isAsc,
+   sortBy:sortField,
+   limit
   })
-  console.log("test")
 
-  console.log(data)
 
   // let filteredProducts = useMemo(() => {
   //   let result = data.filter(p =>
@@ -58,7 +76,9 @@ const Shop = () => {
   //   return result;
   // }, [searchProduct, sortBy, priceRange]);
 
-  if(isLoading) return <CircularProgress></CircularProgress>
+
+
+  if(isLoading ||isLoadingCategories) return <CircularProgress></CircularProgress>
 
   if(isError) return <Typography>error</Typography>
 
@@ -92,6 +112,8 @@ const Shop = () => {
               <MenuItem value="price-high">{t("Price: High to Low")}</MenuItem>
               <MenuItem value="alpha">{t("Alphabetical (A-Z)")}</MenuItem>
               <MenuItem value="alphaZ">{t("Alphabetical (Z-A)")}</MenuItem>
+              <MenuItem value="topRated">{t("Top Rated")}</MenuItem>
+              <MenuItem value="lessRated">{t("Lowest Rated")}</MenuItem>
 
             </Select>
             <IconButton size="small" onClick={() => setView("grid")}><GridView color={view == "grid" ? "primary" : "secondary"} /></IconButton>
@@ -119,9 +141,14 @@ const Shop = () => {
               />
               <Divider sx={{ my: 3 }} />
 
-              <Typography gutterBottom sx={Styles.categoriesTitle}>{t("Categories")}</Typography>
-              {['Bath Preparations', 'Eye Makeup', 'Fragrance'].map(cat => (
-                <Typography key={cat} sx={Styles.categoriesName}>{cat}</Typography>
+              <Typography 
+              gutterBottom sx={Styles.categoriesTitle}>{t("Categories")}</Typography>
+              {categories.response.map(cat => (
+                <Typography
+                onClick={()=>{
+                  setPage(1)
+                  setCategoryId(cat.id)}}
+                key={cat.id} sx={Styles.categoriesName}>{cat.name}</Typography>
               ))}
 
               <Divider sx={{ my: 3 }} />
@@ -151,7 +178,17 @@ const Shop = () => {
           {/* Product Grid */}
           <Grid size={{ xs: 12, sm: 8, md: 9, lg: 9 }}>
             <Grid container spacing={2} sx={{ flexWrap: "wrap" }}>
-              {data.response.data.map((product) => (
+              {data?.response?.data.length==0?
+              
+              <EmptyShop onReset={()=>{
+                setSearchProduct("")
+                setPage(1)
+                setCategoryId(null)
+                setPriceRange([0, 2000])
+                setSortBy("")
+              }}/>
+              
+              :data.response.data.map((product) => (
                 view == "grid" ?
                   <Grid size={{ xs: 12, sm: 6, md: 4, lg: 4 }} key={product.id}>
                     <ProductGridCard product={product} />
@@ -160,10 +197,23 @@ const Shop = () => {
                     <ProductListCard product={product} />
                   </Grid>
               ))}
+
             </Grid>
 
             {/* Pagination */}
-            <CustomPagination />
+            <CustomPagination
+            totalCount={data?.response?.totalCount || 0
+              }
+             limit={limit}
+              page={page}
+              onPageChange={(event, value) => {
+              setPage(value);
+              window.scrollTo({ top: 0, behavior: 'smooth' }); 
+            }}
+            
+            
+            
+            />
           </Grid>
         </Grid>
       </Container>

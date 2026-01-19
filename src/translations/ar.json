@@ -133,6 +133,11 @@
   "Yes, Proceed": "نعم، إتمام العملية",
   "Review Order": "مراجعة الطلب",
   "Success!": "تم بنجاح!",
-  "Order has been processed successfully.": "تمت معالجة طلبك بنجاح."
-  
+  "Order has been processed successfully.": "تمت معالجة طلبك بنجاح.",
+  "Top Rated":"الاعلى تقييماً",
+  "Lowest Rated":"الاقل تقييماً",
+  "No products found": "لم نجد أي نتائج مطابقة",
+  "We couldn't find any matches. Try changing your filters or searching for something else.": "لم نجد أي نتائج تطابق بحثك. جرب تغيير الفلاتر أو البحث عن شيء آخر.",
+  "Clear All Filters": "إعادة ضبط الفلاتر"
+
 }

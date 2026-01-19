@@ -5,7 +5,7 @@ import i18n from "../i18n";
 
 
 export default function useProfile() {
-    return useFetch({queryKey:['profile',i18n.language],url: `/Profile/${id}`,instance:AxiosAuthInstance});
+    return useFetch({queryKey:['Profile',i18n.language],url: '/Profile',instance:AxiosAuthInstance});
 
 }
 
