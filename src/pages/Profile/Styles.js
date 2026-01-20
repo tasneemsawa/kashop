@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
- const StylesF = () => {
+const StylesF = () => {
   const { i18n } = useTranslation();
   return {
     mainSideBar: {
@@ -29,6 +29,10 @@ import { useTranslation } from "react-i18next";
       marginBottom: "1rem",
       borderLeft: '4px solid transparent',
       borderRight: '4px solid transparent',
+      '& .MuiButton-startIcon': {
+        marginInlineEnd: '12px',
+        marginInlineStart: '0px',
+      },
 
       '&.active': {
         color: 'primary.main',

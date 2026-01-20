@@ -154,5 +154,8 @@
   "Pending": "قيد الانتظار",
   "No orders found": "لا توجد طلبات حالياً",
   "You haven't placed any orders yet. Start shopping and fill your bag!": "لم تقم بإجراء أي طلبات بعد. ابدأ التسوق الآن واملأ سلتك!",
-  "Go to Shop": "اذهب للمتجر"
+  "Go to Shop": "اذهب للمتجر",
+  "DASHBOARD": "لوحة التحكم",
+  "Orders": "طلباتي",
+  "Profile Info": "معلومات الحساب"
 }

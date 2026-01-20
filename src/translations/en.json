@@ -154,5 +154,8 @@
   "Pending": "Pending",
   "No orders found": "No orders found",
   "You haven't placed any orders yet. Start shopping and fill your bag!": "You haven't placed any orders yet. Start shopping and fill your bag!",
-  "Go to Shop": "Go to Shop"
+  "Go to Shop": "Go to Shop",
+  "DASHBOARD": "DASHBOARD",
+  "Orders": "Orders",
+  "Profile Info": "Profile Info"
 }
