@@ -27,7 +27,7 @@ export default function ProductListCard({product}) {
         <Typography variant="subtitle1" noWrap sx={Styles.productName} >{product.name}</Typography>
         <Rating
           name="product-rating"
-          value={product.rating || 0}
+          value={product.rate || 0}
           precision={0.5}
           readOnly
           size="small"

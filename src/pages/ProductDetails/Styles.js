@@ -2,11 +2,12 @@ export const Styles = {
 
     photoGrid: { display: "flex", justifyContent: "flex-end" },
     photo: {
-        width: "500px",
+        width: "400px",
         height: "500px",
         borderRadius: '12px',
-        objectFit: 'cover',
-        display: 'block'
+        objectFit: 'conatin',
+        display: 'block',
+
     },
     productName: { color: "secondary.main", fontSize: "30px", fontWeight: 700 },
     prodctuBrandTitle: { color: 'muted.main', fontSize: '14px', mr: 1, fontWeight: 500, },
