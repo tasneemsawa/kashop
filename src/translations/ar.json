@@ -167,5 +167,7 @@
   "Error!": "خطأ!",
   "Something went wrong": "حدث خطأ ما، يرجى المحاولة لاحقاً",
   "Item added successfully!": "تمت اضافة المنتج بنجاح!",
-  "Ok": "حسناً"
+  "Ok": "حسناً",
+  "searchPlaceholder":"ابحث واضغط Enter..."
+
 }

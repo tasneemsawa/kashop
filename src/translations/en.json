@@ -167,5 +167,6 @@
   "Error!": "Error!",
   "Something went wrong": "Something went wrong",
   "Item added successfully!": "Item added successfully!",
-  "Ok": "Ok"
+  "Ok": "Ok",
+  "searchPlaceholder": "Search and press Enter..."
 }

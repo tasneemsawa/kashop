@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Box, Grid, Typography, TextField, MenuItem, Select,
   Slider, IconButton, Stack, Divider, Paper, Container, CircularProgress, Skeleton, Button
@@ -13,19 +13,14 @@ import { useTranslation } from 'react-i18next';
 import { useCategories } from '../../Hooks/useCategories';
 import EmptyShop from '../../components/EmptyShop/EmptyShop';
 import ErrorState from '../../components/Errors/Errors';
-
-const initialProducts = [
-  { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
-  { id: 2, name: "Dead Sea Bath Salts", price: 217, rating: 3, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/15/07/b5/1507b519f1976dd3090ae886fe67f0f7.jpg" },
-  { id: 3, name: "Xiaomi", price: 171, rating: 5, category: "Watches", image: "https://i.pinimg.com/736x/86/6d/cf/866dcff7520d465f3dcd6635c82380ea.jpg" },
-  { id: 4, name: "Kossil Watch Brown", price: 117, rating: 4, category: "Watches", image: "https://i.pinimg.com/736x/a8/e4/76/a8e4762d2a85f820df68722b1376a02c.jpg" },
-];
+import { useSearchParams } from 'react-router-dom';
 
 const Shop = () => {
   const { t } = useTranslation();
-
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get('search'); 
   const [view, setView] = useState("grid");
-  const [searchProduct, setSearchProduct] = useState('');
+  const [searchProduct, setSearchProduct] = useState(searchQuery||'');
   const [page, setPage] = useState(1);
   const [categoryId, setCategoryId] = useState(null);
   const [priceRange, setPriceRange] = useState([0, 2000]);
@@ -48,7 +43,10 @@ const Shop = () => {
         return { sortBy: 'name', ascending: true };
     }
   };
-
+  useEffect(() => {
+    setSearchProduct(searchQuery);
+    
+  }, [searchQuery]);
   const [sortBy, setSortBy] = useState('');
   const { isError: isErrorCategories, isLoading: isLoadingCategories, data: categories } = useCategories()
 
