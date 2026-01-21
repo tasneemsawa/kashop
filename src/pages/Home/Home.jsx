@@ -8,6 +8,7 @@ import NewArrivals from './NewArrivals/NewArrivals'
 import Offers from './Offers/Offers'
 import TopCategories from './TopCategories/TopCategories'
 import { Container } from '@mui/material';
+import ProductsSection from './ProductsSection/ProductsSection'
 
 export default function Home() {
   return (<>
@@ -20,6 +21,7 @@ export default function Home() {
       <FeaturesCards />
 
       <Categories />
+      <ProductsSection/>
     </Container>
   </>
 

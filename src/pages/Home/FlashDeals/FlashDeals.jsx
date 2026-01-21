@@ -32,7 +32,7 @@ const FlashDeals = () => {
     ];
 
     const navigate = useNavigate()
-    const { t } = useTranslation();
+    const { t,i18n } = useTranslation();
 
     return (
         <Box  sx={{ py: 6 }}>
@@ -41,8 +41,8 @@ const FlashDeals = () => {
                     <BoltIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
                     <Typography fontWeight="bold" fontSize={"25px"} color="secondary.main">{t("Flash Deals")}</Typography>
                 </Stack>
-                <Typography onClick={() => navigate("/shop")} sx={Styles.viewAll}>
-                {t("View all")}  <ChevronRightIcon fontSize="small" />
+                <Typography onClick={() => navigate("/shop")} sx={[Styles.viewAll,]}>
+                {t("View all")}  <ChevronRightIcon fontSize="small" sx={{transform: i18n.language == "ar" ? 'rotate(180deg)' : 'rotate(0deg)'}} />
                 </Typography>
             </Stack>
 
