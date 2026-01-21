@@ -10,6 +10,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { useTranslation } from 'react-i18next';
 import StylesF from './Styles';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 export default function ProfileLayout() {
 
   let { data, isLoading, isError } = useProfile()
@@ -23,7 +24,7 @@ export default function ProfileLayout() {
   return (
     <Box elevation={0} sx={{ minHeight: '100vh', py: 7 }}>
       <Container maxWidth="lg">
-        <Grid container spacing={4}>
+        <Grid container spacing={1}>
 
           {/* sidebar */}
           <Grid item  size={{ xs: 12, md: 3 }} >
@@ -55,6 +56,19 @@ export default function ProfileLayout() {
                 >
                   {t("Profile Info")}
                 </Button>
+
+                <Button
+                  component={NavLink}
+                  to="/settings"
+                  end
+                  fullWidth
+                  startIcon={<SettingsOutlinedIcon />}
+                  sx={Styles.buttons}
+                >
+                  {t("Settings")}
+                </Button>
+
+                
               </List>
             </Box>
           </Grid>

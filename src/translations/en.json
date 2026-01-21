@@ -168,5 +168,21 @@
   "Something went wrong": "Something went wrong",
   "Item added successfully!": "Item added successfully!",
   "Ok": "Ok",
-  "searchPlaceholder": "Search and press Enter..."
+  "searchPlaceholder": "Search and press Enter...",
+  "profile_title": "My Profile",
+  "edit_profile": "Edit Profile",
+  "balance": "Balance",
+  "user_type": "SILVER USER",
+  "all_orders": "All Orders",
+  "awaiting_payments": "Awaiting Payments",
+  "awaiting_shipment": "Awaiting Shipment",
+  "awaiting_delivery": "Awaiting Delivery",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "fullName":"Full Name",
+  "email": "Email",
+  "phone": "Phone",
+  "birth_date": "Birth date",
+  "city":"City",
+  "Settings":"Settings"
 }

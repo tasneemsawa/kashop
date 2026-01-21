@@ -168,6 +168,25 @@
   "Something went wrong": "حدث خطأ ما، يرجى المحاولة لاحقاً",
   "Item added successfully!": "تمت اضافة المنتج بنجاح!",
   "Ok": "حسناً",
-  "searchPlaceholder":"ابحث واضغط Enter..."
+  "searchPlaceholder":"ابحث واضغط Enter...",
+  "profile_title": "ملفي الشخصي",
+  "edit_profile": "تعديل الملف",
+  "balance": "الرصيد",
+  "user_type": "مستخدم فضي",
+  "all_orders": "كل الطلبات",
+  "awaiting_payments": "في انتظار الدفع",
+  "awaiting_shipment": "في انتظار الشحن",
+  "awaiting_delivery": "في انتظار التوصيل",
+  "first_name": "الاسم الأول",
+  "last_name": "اسم العائلة",
+  "email": "البريد الإلكتروني",
+  "phone": "رقم الهاتف",
+  "birth_date": "تاريخ الميلاد",
+  "fullName":"الاسم كامل",
+  "city":"مدينة",
+  "Settings":"الاعدادات"
+
+
+
 
 }
