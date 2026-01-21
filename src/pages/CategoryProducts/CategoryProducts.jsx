@@ -33,7 +33,7 @@ export default function CategoryProducts() {
                         component="h2"
                         sx={Styles.titleView}>
                         <Box component="span" sx={{ color: 'primary.main' }}>
-                            {category.name}
+                            {category?.name?category.name:""}
                         </Box>
                         {t("Products")}
                     </Typography>

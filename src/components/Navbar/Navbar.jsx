@@ -41,6 +41,8 @@ export default function Navbar() {
   const { t,i18n } = useTranslation();
   const queryClient = useQueryClient();
 
+
+
   const changeLanguage = () => {
     let language=i18n.language
     i18n.changeLanguage(language=="en"?"ar":"en");
@@ -49,10 +51,8 @@ export default function Navbar() {
 
  //Category
  const { isError, isLoading, data } = useCategories()
-//  if (isLoading)
-//      return <CircularProgress></CircularProgress>
-//  if (isError)
-//      return <Typography> error</Typography>
+
+ console.log(data)
 
 const {mode, toggleTheme } = useThemeStore()
 
@@ -70,9 +70,7 @@ const {mode, toggleTheme } = useThemeStore()
   ///new 
   const [category, setCategory] = React.useState('All Categories');
   const [anchorEl, setAnchorEl] = useState(null);
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleCategoriesClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -207,6 +205,8 @@ const {mode, toggleTheme } = useThemeStore()
                   ),
                 }}
               />
+
+              
               <Select
                 value={category}
                 onChange={handleCategoryChange}
@@ -214,11 +214,20 @@ const {mode, toggleTheme } = useThemeStore()
                 size="small"
                 sx={Styles.categoriesDropDownSearch}
               >
-                <MenuItem value="All Categories">All Categories</MenuItem>
-                <MenuItem value="Electronics">Electronics</MenuItem>
-                <MenuItem value="Fashion">Fashion</MenuItem>
-                <MenuItem value="Home & Garden">Home & Garden</MenuItem>
-                <MenuItem value="Sports">Sports</MenuItem>
+
+                {isLoading && <MenuItem disabled>{t("Loading...")}</MenuItem>}
+                {isError && (
+                  <MenuItem disabled sx={{ color: 'error.main', fontSize: '12px' }}>
+                    {t("Failed to load categories")}
+                  </MenuItem>
+                )}
+                {!isLoading && !isError ? data.response.map((category) => (
+                  <MenuItem key={category.id} value={category.id} 
+                  onClick={()=>navigate(`CategoryProducts/${category.id}/${category.name}`)}
+                  >
+                    {category.name}
+                  </MenuItem>
+                )):null}
               </Select>
 
             </Box>
@@ -305,10 +314,23 @@ const {mode, toggleTheme } = useThemeStore()
                 }
               }}
             >
-              <MenuItemComponent onClick={handleCategoriesClose}>Electronics</MenuItemComponent>
-              <MenuItemComponent onClick={handleCategoriesClose}>Fashion</MenuItemComponent>
-              <MenuItemComponent onClick={handleCategoriesClose}>Home & Garden</MenuItemComponent>
-              <MenuItemComponent onClick={handleCategoriesClose}>Sports</MenuItemComponent>
+
+              {isLoading && <MenuItemComponent disabled>{t("Loading...")}</MenuItemComponent>}
+              {isError && (
+                <MenuItemComponent disabled sx={{ color: 'error.main', fontSize: '12px' }}>
+                  {t("Failed to load categories")}
+                </MenuItemComponent>
+              )}
+              {!isLoading && !isError ? data.response.map((category) => (
+                <MenuItemComponent key={category.id} value={category.id}
+                  onClick={() =>{ 
+                    handleCategoriesClose()
+                    navigate(`CategoryProducts/${category.id}/${category.name}`)}}
+                >
+                  {category.name}
+                </MenuItemComponent>
+              )) : null}
+
             </Menu>
 
             {/* Navigation Links */}
