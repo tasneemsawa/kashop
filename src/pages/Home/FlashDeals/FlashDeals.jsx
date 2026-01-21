@@ -60,7 +60,7 @@ const FlashDeals = () => {
                 >
                     {products.map((item) => (
                         <SwiperSlide key={item.id}>
-                            <ProductGridCard product={item} />
+                            <ProductGridCard product={item} disable={true} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

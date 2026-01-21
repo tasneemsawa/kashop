@@ -63,7 +63,7 @@ export default function ProductsSection() {
 
                                 : data?.response.data.map((product) => (
                                     <Grid size={{ xs: 6, sm: 4, md: 3, lg: 3 }} key={product.id}>
-                                        <ProductGridCard product={product} />
+                                        <ProductGridCard product={product}  />
                                     </Grid>
                                 ))}
 
