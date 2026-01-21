@@ -30,6 +30,7 @@ import { useCategories } from '../../Hooks/useCategories'
 
 import Translate from '../../Translat';
 import useThemeStore from '../../Store/useThemeStore';
+import useCart from '../../Hooks/useCart';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
@@ -51,6 +52,18 @@ export default function Navbar() {
 
  //Category
  const { isError, isLoading, data } = useCategories()
+  let cart = { isError:false, isLoading:false, data:null }
+  
+
+  if (token) {
+    let { isError: isErrorCart, isLoading: isLoadingCart, data: dataCart } = useCart()
+    cart.isError = isErrorCart
+    cart.isLoading = isLoadingCart
+    cart.data = dataCart
+  }
+
+ 
+
 
  console.log(data)
 
@@ -246,7 +259,7 @@ const {mode, toggleTheme } = useThemeStore()
 
                   <Tooltip title={t("Cart")}>
                     <Badge
-                      badgeContent={4}
+                      badgeContent={cart?.data?.items?cart.data.items.length:0}
                       sx={Styles.cartBadge}
                     >
                       <IconButton sx={Styles.iconButton} onClick={() => navigate('/cart')} >
