@@ -6,6 +6,7 @@ const useThemeStore = create((set)=>({
     toggleTheme: ()=>{set((state)=>{
             const newMode = state.mode === 'light'?'dark' : 'light'
             localStorage.setItem('theme', newMode);
+            set({ mode:newMode })
             return {mode:newMode}
         })
     }

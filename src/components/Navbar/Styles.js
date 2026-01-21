@@ -92,10 +92,28 @@ export const Styles = {
     textTransform: 'none',
     fontSize: '14px',
     fontWeight: 600,
+    display: 'inline-block',
+     width: "fit-content",
+     position: 'relative',
     px: 2,
     '&:hover': {
       backgroundColor: 'transparent',
       color: 'primary.main',
     },
+    '&.active': {
+      color: 'primary.main',
+      fontWeight: '700',
+        '&::after': {
+        content: '""',
+        position: 'absolute',
+        bottom: '-10px', 
+        left: 0,
+        width: '100%',
+        height: '2px',
+        backgroundColor: 'primary.main',
+        borderRadius: '2px',
+      }
+    },
+  
   }
 };

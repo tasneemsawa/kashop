@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   Button, Link, Box, Toolbar, IconButton, Typography,
   Menu, Container, Tooltip, MenuItem, AppBar, TextField, InputAdornment,
-  Select, Badge, MenuItem as MenuItemComponent,
+  Select, Badge, MenuItem as MenuItemComponent, Avatar, Zoom,
 
 
 
@@ -17,10 +17,15 @@ import {
   KeyboardArrowDown as KeyboardArrowDownIcon,
   Widgets as WidgetsIcon,
   MeetingRoomOutlined as MeetingRoomOutlinedIcon,
+  Language,
+  DarkMode,
+  LightMode,
+  Settings,
 } from '@mui/icons-material';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import { Link as RouterLink, NavLink, useNavigate } from 'react-router-dom';
 import { useCounterStore } from '../../Store/useCounterStore';
-
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import { Styles } from "./Styles"
 import { useState } from 'react';
 import { useAuthStore } from '../../Store/useAuthStore';
@@ -37,23 +42,23 @@ const pages = ['Products', 'Pricing', 'Blog'];
 
 
 export default function Navbar() {
-  const {token,logout,user} =useAuthStore()
+  const { token, logout, user } = useAuthStore()
   const navigate = useNavigate()
-  const { t,i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const queryClient = useQueryClient();
 
 
 
   const changeLanguage = () => {
-    let language=i18n.language
-    i18n.changeLanguage(language=="en"?"ar":"en");
+    let language = i18n.language
+    i18n.changeLanguage(language == "en" ? "ar" : "en");
     queryClient.invalidateQueries();
   }
 
- //Category
- const { isError, isLoading, data } = useCategories()
-  let cart = { isError:false, isLoading:false, data:null }
-  
+  //Category
+  const { isError, isLoading, data } = useCategories()
+  let cart = { isError: false, isLoading: false, data: null }
+
 
   if (token) {
     let { isError: isErrorCart, isLoading: isLoadingCart, data: dataCart } = useCart()
@@ -62,12 +67,12 @@ export default function Navbar() {
     cart.data = dataCart
   }
 
- 
 
 
- console.log(data)
 
-const {mode, toggleTheme } = useThemeStore()
+  console.log(data)
+
+  const { mode, toggleTheme } = useThemeStore()
 
   const { counter, userName, increase, descrease } = useCounterStore();
 
@@ -81,7 +86,7 @@ const {mode, toggleTheme } = useThemeStore()
   const [focused, setFocused] = useState(false);
 
   ///new 
-  const [category, setCategory] = React.useState('All Categories');
+  const [category, setCategory] = React.useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const handleCategoriesClick = (event) => {
@@ -102,49 +107,95 @@ const {mode, toggleTheme } = useThemeStore()
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+    setAnchorEl(null);
+
   };
 
 
 
 
   return (
+    <AppBar  position="static" //position="sticky"
+    sx={{
+      background: 'rgba(255, 255, 255, 0.8)', 
+      backdropFilter: 'blur(10px)',
+      color: 'text.primary',
+      boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
+    }}>
     <Box sx={{ flexGrow: 1 }}>
 
-      <AppBar position="static">
-        <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {Translate("Welcome")}
-          </Typography>
-        
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            KAshop - {counter} -{userName}
-          </Typography>
 
-          <Box sx={{ display: 'flex', gap: 2, alignItems: "center" }}>
+      <AppBar position="static" sx={{
+        background: '#0f3460', 
+        backdropFilter: 'blur(10px)',
+        color: 'text.primary',
+        boxShadow: '0',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.3)'
+      }}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
 
-            <Button
-              color="inherit"
-              onClick={() => increase(5)}>Increase
-            </Button>
-            <Button
-              color="inherit"
-              onClick={() => descrease(2)}>Descrease
-            </Button>
-            <Button
-              color="inherit"
-              onClick={() => changeLanguage()}>{i18n.language=="ar"?"ع":"En"}
-            </Button>
-            <Button
-              color="inherit"
-              onClick={() => toggleTheme()}>{i18n.mode=="dark"?"dark":"light"}
-            </Button>
-
-            
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+            <Avatar sx={{
+              bgcolor: 'primary.main',
+              width: 35, height: 35,
+              fontSize: '1rem',
+              transition: 'transform 0.3s ease',
+              '&:hover': { transform: 'scale(1.1) rotate(5deg)' }
+            }}>
+              {userName?.charAt(0).toUpperCase()}
+            </Avatar>
+            <Typography variant="subtitle1" sx={{ fontWeight: 600,color:"white", display: { xs: 'none', sm: 'block' } }}>
+              {t("Welcome")}, <span style={{ color: '#DB4444' }}>{userName}</span>
+            </Typography>
           </Box>
+
+          <Box sx={{ display: 'flex', gap: 1, alignItems: "center" }}>
+
+            <Tooltip title={t("Change Language")} TransitionComponent={Zoom}>
+              <IconButton
+                onClick={changeLanguage}
+                color="inherit"
+                sx={{
+                  transition: 'all 0.3s ease',
+                  '&:hover': { color: 'primary.main', transform: 'translateY(-2px)' }
+                }}
+              >
+                <Language sx={{ fontSize: '1.4rem' ,color:"white"}} />
+                <Typography variant="caption" sx={{ ml: 0.5, fontWeight: 'bold', fontSize: '0.75rem',color:"white" }}>
+                  {i18n.language == "ar"?"ع":"En"}
+                </Typography>
+              </IconButton>
+            </Tooltip>
+            <IconButton onClick={toggleTheme} color="inherit" sx={{ width: 45, height: 45 }}>
+              {mode == "dark" ? (
+                <Box sx={{
+                  display: 'flex',
+                  animation: 'rotateIn 0.5s ease' ,
+                  '&:hover': { color: 'primary.main', transform: 'translateY(-2px)' }
+                }}>
+                  <DarkModeOutlinedIcon sx={{ color: '#90caf9', fontSize: '1.6rem' }} />
+                </Box>
+
+              ) : (
+                <Box sx={{
+                  display: 'flex',
+                  animation: 'rotateIn 0.5s ease',
+                  '&:hover': { color: 'primary.main', transform: 'translateY(-2px)' }
+                }}>
+                  <LightModeOutlinedIcon sx={{ color: '#ffca28', fontSize: '1.6rem' }} />
+                </Box>
+
+              )}
+            </IconButton>
+
+
+          </Box>
+
+
 
         </Toolbar>
       </AppBar>
-
       <AppBar position="static" sx={Styles.navbar} elevation={0}>
         <Container maxWidth="lg">
           <Toolbar disableGutters sx={{ height: "70px", justifyContent: "space-between", gap: 2 }}>
@@ -179,11 +230,36 @@ const {mode, toggleTheme } = useThemeStore()
                   onClose={handleCloseNavMenu}
                   sx={{ display: { xs: 'block', md: 'none' } }}
                 >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                    </MenuItem>
-                  ))}
+                  <MenuItem onClick={() => navigate("/")}>
+                    <Typography sx={{ textAlign: 'center', width: "120px" }}>{t("Home")}</Typography>
+                  </MenuItem>
+                  <MenuItem onClick={() => navigate("/shop")}>
+                    <Typography sx={{ textAlign: 'center', width: "120px" }}>{t("Shop")}</Typography>
+                  </MenuItem>
+
+                  {token ?
+                    [
+                      <MenuItem key="Profile" onClick={() => navigate("/profile")}>
+                        <Typography sx={{ textAlign: 'center', width: "120px" }}>{t("Profile")}</Typography>
+                      </MenuItem>,
+
+                      <MenuItem key="Cart" onClick={() => navigate("/cart")}>
+                        <Typography sx={{ textAlign: 'center', width: "120px" }}>{t("Cart")}</Typography>
+                      </MenuItem>,
+
+                      <MenuItem key="Logout" onClick={handelLogout}>
+                        <Typography sx={{ textAlign: 'center', width: "120px" }}>{t("Logout")}</Typography>
+                      </MenuItem>
+                    ]
+                    :
+                    [
+                      <MenuItem key="Login" onClick={() => navigate("/auth/login")}>
+                        <Typography sx={{ textAlign: 'center', width: "120px" }}>{t("Login")}</Typography>
+                      </MenuItem>
+
+                    ]
+
+                  }
                 </Menu>
               </Box>
 
@@ -219,7 +295,7 @@ const {mode, toggleTheme } = useThemeStore()
                 }}
               />
 
-              
+
               <Select
                 value={category}
                 onChange={handleCategoryChange}
@@ -235,12 +311,12 @@ const {mode, toggleTheme } = useThemeStore()
                   </MenuItem>
                 )}
                 {!isLoading && !isError ? data.response.map((category) => (
-                  <MenuItem key={category.id} value={category.id} 
-                  onClick={()=>navigate(`CategoryProducts/${category.id}/${category.name}`)}
+                  <MenuItem key={category.id} value={category.id}
+                    onClick={() => navigate(`CategoryProducts/${category.id}/${category.name}`)}
                   >
                     {category.name}
                   </MenuItem>
-                )):null}
+                )) : null}
               </Select>
 
             </Box>
@@ -259,7 +335,7 @@ const {mode, toggleTheme } = useThemeStore()
 
                   <Tooltip title={t("Cart")}>
                     <Badge
-                      badgeContent={cart?.data?.items?cart.data.items.length:0}
+                      badgeContent={cart?.data?.items ? cart.data.items.length : 0}
                       sx={Styles.cartBadge}
                     >
                       <IconButton sx={Styles.iconButton} onClick={() => navigate('/cart')} >
@@ -268,6 +344,7 @@ const {mode, toggleTheme } = useThemeStore()
                       </IconButton>
                     </Badge>
                   </Tooltip>
+
                   <Tooltip title={t("Logout")}>
                     <IconButton sx={Styles.iconButton} onClick={handelLogout} >
                       <MeetingRoomOutlinedIcon sx={{ fontSize: '18px' }} />
@@ -309,7 +386,7 @@ const {mode, toggleTheme } = useThemeStore()
                 <WidgetsIcon sx={{ fontSize: 20, color: "primary.main" }} />
 
                 <Typography component={"span"} sx={{ color: "muted.main", fontWeight: 600, fontSize: "14px", textTransform: "none" }}>
-                  
+
                   {t("Categories")}
                 </Typography>
               </Box>
@@ -336,9 +413,10 @@ const {mode, toggleTheme } = useThemeStore()
               )}
               {!isLoading && !isError ? data.response.map((category) => (
                 <MenuItemComponent key={category.id} value={category.id}
-                  onClick={() =>{ 
+                  onClick={() => {
                     handleCategoriesClose()
-                    navigate(`CategoryProducts/${category.id}/${category.name}`)}}
+                    navigate(`CategoryProducts/${category.id}/${category.name}`)
+                  }}
                 >
                   {category.name}
                 </MenuItemComponent>
@@ -347,63 +425,66 @@ const {mode, toggleTheme } = useThemeStore()
             </Menu>
 
             {/* Navigation Links */}
-            <Box sx={{ display: 'flex', gap: 0 }}>
+            <Box sx={{ display: 'flex', gap: 0, }}>
 
 
               {/* Navigation Links */}
-              <Box sx={{ display: 'flex', gap: 2, alignItems: "center" }}>
+              <Box sx={{ display: { xs: "none", sm: "none", lg: 'flex', md: 'flex' }, gap: 2, alignItems: "center" }}>
                 <Link
-                  component={RouterLink}
+                  component={NavLink}
                   to="/"
+                  end
                   sx={Styles.navigationButton}
                   underline="none"
                 >
-                 {t("Home")} 
+                  {t("Home")}
                 </Link>
                 <Link
-                  component={RouterLink}
+                  component={NavLink}
                   to="/shop"
+                  end
                   sx={Styles.navigationButton}
                   underline="none"
-                > {t("Shop")} 
-                  
+                > {t("Shop")}
+
                 </Link>
                 {token ?
                   <>
-                      <Link
-                      component={RouterLink}
+                    <Link
+                      component={NavLink}
                       to="/profile"
-
+                      end
                       sx={Styles.navigationButton}
                       underline="none"
-                    > {t("Profile")} 
-                      
+                    > {t("Profile")}
+
                     </Link>
 
                     <Link
-                      component={RouterLink}
+                      component={NavLink}
                       to="/cart"
-
+                      end
                       sx={Styles.navigationButton}
                       underline="none"
-                    > {t("Cart")} 
-                      
+                    > {t("Cart")}
+
                     </Link>
                     <Button
                       onClick={handelLogout}
                       sx={Styles.navigationButton}
-                    >{t("Logout")} 
-                      
+                    >{t("Logout")}
+
                     </Button>
                   </>
                   :
                   <>
                     <Link
-                      component={RouterLink}
+                      component={NavLink}
                       to="/auth/login"
+                      end
                       underline="none"
                       sx={Styles.navigationButton}
-                    >{t("Login")} 
+                    >{t("Login")}
                     </Link>
                   </>
 
@@ -417,5 +498,6 @@ const {mode, toggleTheme } = useThemeStore()
         </Container>
       </AppBar>
     </Box>
+    </AppBar>
   );
 }
