@@ -59,7 +59,16 @@ const TopCategories = () => {
                     {categories.map((item) => (
                         <SwiperSlide key={item.id}>
 
-                            <Paper sx={{ boxShadow: "rgba(3, 0, 71, 0.09) 0px 1px 3px", padding: "16px", borderRadius: "8px" }}>
+                            <Paper sx={{
+                                boxShadow: "rgba(3, 0, 71, 0.09) 0px 1px 3px", padding: "16px", borderRadius: "8px",
+                                transition: 'all 0.3s ease',
+                                '&:hover': {
+                                    boxShadow: '0px 0px 10px rgba(0,0,0,0.15)',
+                                    transform: 'translateY(-2px)',
+                                    cursor: 'pointer'
+                                }
+
+                            }}>
                                 <Stack sx={{ position: "absolute", top: 25, left: 25 }} spacing={16} direction="row" >
                                     <Typography sx={Styles.catName}> {item.name}</Typography>
                                     <Typography sx={{ padding: "4px 10px", borderRadius: "300px", backgroundColor: "#e3e9ef", color: "secondary.main", zIndex: 2, fontSize: "10px", fontWeight: 600, textAlign: "center" }}>{item.ordersNumber} orders this week </Typography>
