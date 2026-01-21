@@ -159,5 +159,13 @@
   "Orders": "طلباتي",
   "Profile Info": "معلومات الحساب",
   "No reviews yet": "لا توجد تقييمات بعد",
-"Be the first to review this product and share your experience with others!": "كن أول من يقيم هذا المنتج وشارك تجربتك مع الآخرين!"
+  "Be the first to review this product and share your experience with others!": "كن أول من يقيم هذا المنتج وشارك تجربتك مع الآخرين!",
+  "Review comment is required": "محتوى التقييم مطلوب",
+  "Submitting...": "جاري الإرسال...",
+  "Success": "تم بنجاح",
+  "Review added successfully!": "تم إضافة تقييمك بنجاح!",
+  "Error!": "خطأ!",
+  "Something went wrong": "حدث خطأ ما، يرجى المحاولة لاحقاً",
+  "Item added successfully!": "تمت اضافة المنتج بنجاح!",
+  "Ok": "حسناً"
 }

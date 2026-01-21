@@ -17,23 +17,10 @@ import WriteReviewForm from '../../components/WriteReviewForm/WriteReviewForm';
 import { useProductsDetails } from '../../Hooks/useProductsDetails';
 import useAddToCart from '../../Hooks/useAddToCart'
 import { useTranslation } from 'react-i18next';
+import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
+import NoReviews from '../../components/NoReviews/NoReviews';
+import useReviews from '../../Hooks/useReviews';
 
-const reviews = [
-    {
-        id: 1,
-        name: 'Jannie Schumm',
-        rating: 4.7,
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida egestas ac account.',
-        avatar: 'https://mui.com/static/images/avatar/1.jpg'
-    },
-    {
-        id: 2,
-        name: 'Joe Kenan',
-        rating: 4.7,
-        comment: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida egestas ac account.',
-        avatar: 'https://mui.com/static/images/avatar/2.jpg'
-    }
-];
 const relatedProducts = [
     { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
     { id: 2, name: "Dead Sea Bath Salts", price: 217, rating: 3, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/15/07/b5/1507b519f1976dd3090ae886fe67f0f7.jpg" },
@@ -46,25 +33,27 @@ export default function ProductDetails() {
 
     let {  serverErrors, cartMutation } =useAddToCart()
     let {isPending,mutate:addToCart}=cartMutation
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const [tabValue, setTabValue] = useState("1");
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
 
     const handleIncrease = () => setQuantity(quantity + 1);
     const handleDecrease = () => {
-        if (quantity >= 1) setQuantity(quantity - 1);
+        if (quantity >= 2) setQuantity(quantity - 1);
     };
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
     };
+    let {  mutate: addReview, isPending: reviewPending } =useReviews()
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log({ rating, comment });
 
     };
     const { isLoading, isError, data } = useProductsDetails(id);
-    console.log("wefwefwef")
     console.log(data)
 
     if (isLoading) return <CircularProgress></CircularProgress>
@@ -97,14 +86,14 @@ export default function ProductDetails() {
                                 <Typography component={"h1"} sx={Styles.productName}>
                                     {details.name}
                                 </Typography>
-                                <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography component={"span"} sx={Styles.prodctuBrandTitle}>
                                     {t("Brand")}:
                                     </Typography>
                                     <Typography component={"span"} sx={Styles.prodctuBrand}>
                                         Ziaomi
                                     </Typography>
-                                </Box>
+                                </Box> */}
                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                     <Typography component={"span"} sx={Styles.rate}>
                                        {t("Rated")} :
@@ -126,7 +115,7 @@ export default function ProductDetails() {
                                     {details.quantity > 0 ?`${t("Stock Available")}`:`${t("Rated")}`}
                                 </Typography>
 
-                                <Stack spacing={2} direction="row"  >
+                                <Box sx={{display:"flex" , flexDirection:"row" ,gap:2}}   >
                                     <IconButton
                                         onClick={handleDecrease}
                                         sx={Styles.actionButoon}
@@ -144,7 +133,7 @@ export default function ProductDetails() {
                                     >
                                         <AddIcon />
                                     </IconButton>
-                                </Stack>
+                                </Box>
 
                                 <Button variant="contained"
                                     sx={Styles.addButton}
@@ -188,14 +177,14 @@ export default function ProductDetails() {
                             {t("Customer Reviews")}  
                             </Typography>
                             <List sx={{ width: '100%' }}>
-                                {reviews.map((review, index) => (
+                                {details&&details.reviews.length?details.reviews.map((review, index) => (
                                     <React.Fragment key={review.id}>
                                         <ListItem alignItems="flex-start" sx={{ px: 0, py: 2, flexDirection: 'column' }}>
                                             <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 1 }}>
-                                                <Avatar alt={review.name} src={review.avatar} sx={{ width: 48, height: 48 }} />
+                                                <PermIdentityOutlinedIcon   size={40} sx={{ width: 48, height: 48 }} />
                                                 <Box>
                                                     <Typography fontWeight="700">
-                                                        {review.name}
+                                                        {review.userName}
                                                     </Typography>
                                                     <Stack direction="row" spacing={1} alignItems="center">
                                                         <Rating value={review.rating} precision={0.1} size="small" readOnly sx={{ color: "customYellow.main" }} />
@@ -203,7 +192,7 @@ export default function ProductDetails() {
                                                             {review.rating}
                                                         </Typography>
                                                         <Typography variant="caption" color="text.secondary">
-                                                            {review.date}
+                                                            {new Date(review.createdAt).toLocaleDateString()}
                                                         </Typography>
                                                     </Stack>
                                                 </Box>
@@ -216,10 +205,10 @@ export default function ProductDetails() {
                                         </ListItem>
 
                                     </React.Fragment>
-                                ))}
+                                )):<NoReviews/>}
                             </List>
 
-                            <WriteReviewForm />
+                            <WriteReviewForm  productId={id}/>
 
                         </TabPanel>
                     </TabContext>
@@ -233,7 +222,7 @@ export default function ProductDetails() {
 
                         {relatedProducts.map(product =>
                             <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={product.id}>
-                                <ProductGridCard product={product} />
+                                <ProductGridCard product={product} disable={true} />
                             </Grid>
                         )}
 

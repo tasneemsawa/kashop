@@ -8,7 +8,7 @@ import { Styles } from './Styles';
 import { useNavigate } from 'react-router-dom';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-export default function ProductGridCard({ product }) {
+export default function ProductGridCard({product,disable=false}) {
 
 
   const navigate = useNavigate()
@@ -26,15 +26,17 @@ export default function ProductGridCard({ product }) {
 
       </Box>
       <CardMedia
+      disabled={disable}
         component="img"
         height="300px"
         sx={Styles.cardMedia}
         image={product.image}
         title={product.name}
         alt={product.name}
-        onClick={() => navigate(`/productDetails/${product.id}`)}
+        onClick={() => {disable?null: navigate(`/productDetails/${product.id}`)}}
       />
-      <CardContent sx={{ p: "16px" }} onClick={() => navigate(`/productDetails/${product.id}`)}>
+      <CardContent       
+        sx={{ p: "16px" }} onClick={() =>{disable?null: navigate(`/productDetails/${product.id}`)}}>
         <Typography variant="subtitle1" noWrap sx={Styles.productName} >{product.name}</Typography>
         <Rating
           name="product-rating"
