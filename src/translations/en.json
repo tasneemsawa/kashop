@@ -23,6 +23,7 @@
   "Code must contain numbers only": "Code must contain numbers only",
   "You must accept the terms and conditions": "You must accept the terms and conditions",
   "PhoneNumber Is Required": "PhoneNumber Is Required",
+  "city Is Required": "city Is Required",
   "UserName Is Required": "UserName Is Required",
   "username must be at least 4 characters": "username must be at least 4 characters",
   "Invalid UserName": "Invalid UserName",

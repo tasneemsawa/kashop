@@ -23,6 +23,7 @@
   "Code must contain numbers only": "يجب أن يحتوي الرمز على أرقام فقط",
   "You must accept the terms and conditions": "يجب الموافقة على الشروط والأحكام",
   "PhoneNumber Is Required": "رقم الهاتف مطلوب",
+  "city Is Required":"المدينة مطلوبة",
   "UserName Is Required": "اسم المستخدم مطلوب",
   "username must be at least 4 characters": "يجب أن يكون اسم المستخدم 4 أحرف على الأقل",
   "Invalid UserName": "اسم المستخدم غير صالح",

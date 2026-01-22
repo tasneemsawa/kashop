@@ -11,6 +11,7 @@ import useUpdateEmail from '../../../Hooks/useUpdateEmail';
 import useUpdatePassword from '../../../Hooks/useUpdatePassword';
 import ResetPassword from './ResetPassword/ResetPassword';
 import UpdateEmail from './UpdateEmail/UpdateEmail';
+import UpdateProfileInfo from './UpdateProfileInfo/UpdateProfileInfo';
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -84,8 +85,8 @@ const Settings = () => {
           </Typography>
         </Box>
       </Box>
-
-      <Paper elevation={0} sx={{ p: 3, borderRadius: "12px", mb: 4, width: "100%" }}>
+<UpdateProfileInfo/>
+      {/* <Paper elevation={0} sx={{ p: 3, borderRadius: "12px", mb: 4, width: "100%" }}>
         <Typography variant="h6" sx={{ mb: 3, fontWeight: 700 }}>
           {t("personal_info")}
         </Typography>
@@ -119,7 +120,7 @@ const Settings = () => {
             onClick={() => updateProfile(userInfo)}
           >{t("save_profile_info")}</Button>
         </Box>
-      </Paper>
+      </Paper> */}
 
       {/* PASSWORD AND EMAIL */}
       <Grid container spacing={4} >
