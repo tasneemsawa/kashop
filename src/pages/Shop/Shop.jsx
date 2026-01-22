@@ -14,6 +14,7 @@ import { useCategories } from '../../Hooks/useCategories';
 import EmptyShop from '../../components/EmptyShop/EmptyShop';
 import ErrorState from '../../components/Errors/Errors';
 import { useSearchParams } from 'react-router-dom';
+import Loading from '../../components/Loading/Loading';
 
 const Shop = () => {
   const { t } = useTranslation();
@@ -77,9 +78,8 @@ const Shop = () => {
 
 
 
-  if (isLoading) return <CircularProgress></CircularProgress>
+  if (isLoading) return <Loading open={isLoading}/>
 
-  // if(isError) return <Typography>error</Typography>
 
   return (
     <Box elevation={0} sx={{ minHeight: '100vh', py: 7 }}>

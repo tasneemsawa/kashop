@@ -19,7 +19,7 @@ export default function Regiester() {
   const { t } = useTranslation();
   const isRtlV = isRtl()
 
-  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
+  const { register, handleSubmit,reset, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(RegiesterSchema),
     mode: 'onBlur',
     defaultValues: {
@@ -32,7 +32,7 @@ export default function Regiester() {
   const registerForm = async (values) => {
 
     await registerMutation.mutateAsync(values)
-
+    reset()
 
   }
 

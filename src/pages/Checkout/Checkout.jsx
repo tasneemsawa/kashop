@@ -22,6 +22,7 @@ import useCheckout from '../../Hooks/useCheckout';
 import EmptyCart from '../Cart/EmptyCart/EmptyCart';
 import ErrorState from '../../components/Errors/Errors';
 import useClearCart from '../../Hooks/useClearCart';
+import Loading from '../../components/Loading/Loading';
 export default function Checkout() {
   const navigate = useNavigate()
   const { t } = useTranslation()
@@ -73,7 +74,7 @@ export default function Checkout() {
 
 
 
-  if (isLoading || isPendingCheckout || isLoadingProduct) return <CircularProgress></CircularProgress>
+  if (isLoading || isPendingCheckout || isLoadingProduct) return <Loading open={isLoading || isPendingCheckout || isLoadingProduct}/>
 
   if (isError || isErrorCheckout || isErrorProduct) return <Box sx={{my:7 ,mx:8}}> <ErrorState/></Box> 
 

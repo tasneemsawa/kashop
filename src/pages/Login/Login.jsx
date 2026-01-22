@@ -20,7 +20,7 @@ import { useTranslation } from 'react-i18next';
 export default function Login() {
   const { t } = useTranslation();
 
-  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
+  const { register, handleSubmit,reset, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(LoginSchema),
     mode: 'onBlur',
     defaultValues: {
@@ -34,6 +34,7 @@ export default function Login() {
     console.log(values)
 
     await loginMutation.mutateAsync(values)
+    reset()
   }
   const isRtlV = isRtl()
   return (

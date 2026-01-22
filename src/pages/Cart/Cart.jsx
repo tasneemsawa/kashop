@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   Box, Grid, Typography, Card, IconButton, Select,
-  Button, CircularProgress, Stack, CardMedia, Step, Container, TableContainer, Table, TableHead, TableCell, TableBody, TableRow
+  Button, CircularProgress, Stack, CardMedia, Step, Container, TableContainer, Table, TableHead, TableCell, TableBody, TableRow, Backdrop
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AddIcon from '@mui/icons-material/Add';
@@ -21,6 +21,7 @@ import Swal from "sweetalert2";
 import useClearCart from '../../Hooks/useClearCart';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import EmptyCart from './EmptyCart/EmptyCart';
+import Loading from '../../components/Loading/Loading';
 
 
 export default function Cart() {
@@ -77,7 +78,9 @@ export default function Cart() {
       }
     });
   }
-  if (isLoading||isLoadingProduct) return <CircularProgress></CircularProgress>
+  if (isLoading||isLoadingProduct)  
+
+  return <Loading open={isLoading||isLoadingProduct}/>
 
   if (isError ||isErrorProduct) return <Box sx={{my:7 ,mx:8}}> <ErrorState/></Box> 
 

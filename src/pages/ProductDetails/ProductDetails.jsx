@@ -20,6 +20,8 @@ import { useTranslation } from 'react-i18next';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import NoReviews from '../../components/NoReviews/NoReviews';
 import useReviews from '../../Hooks/useReviews';
+import Loading from '../../components/Loading/Loading';
+import ErrorState from '../../components/Errors/Errors';
 
 const relatedProducts = [
     { id: 1, name: "Waterproof Mascara", price: 187, rating: 4, category: "Eyeglasses", image: "https://i.pinimg.com/1200x/80/20/03/802003da540474e882c6211d28cf1d45.jpg" },
@@ -56,9 +58,9 @@ export default function ProductDetails() {
     const { isLoading, isError, data } = useProductsDetails(id);
     console.log(data)
 
-    if (isLoading) return <CircularProgress></CircularProgress>
+    if (isLoading) return <Loading open={isLoading}/>
 
-    if (isError) return <Typography>error</Typography>
+    if (isError) return <Box sx={{my:7 ,mx:8}}> <ErrorState/></Box> 
 
     console.log(data)
 

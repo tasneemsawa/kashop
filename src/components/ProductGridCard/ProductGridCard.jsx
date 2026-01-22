@@ -21,7 +21,7 @@ export default function ProductGridCard({product,disable=false}) {
         </Box>
         : null}
       <Box className="action-buttons" sx={Styles.actionButtons}>
-        <IconButton size="small" onClick={() => navigate("/")}><VisibilityOutlinedIcon fontSize="small" /></IconButton>
+        <IconButton size="small"         onClick={() => {disable?null: navigate(`/productDetails/${product.id}`)}}><VisibilityOutlinedIcon fontSize="small" /></IconButton>
         <IconButton size="small" onClick={() => navigate("/")}><FavoriteBorderOutlinedIcon fontSize="small" /></IconButton>
 
       </Box>

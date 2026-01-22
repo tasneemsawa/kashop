@@ -7,15 +7,16 @@ import {
     Widgets as WidgetsIcon,
 
 } from '@mui/icons-material';
+import Loading from "./../Loading/Loading"
 import { useTranslation } from 'react-i18next'
 import ErrorState from '../Errors/Errors'
 export default function Categories() {
     const navigate = useNavigate()
     const { isError, isLoading, data } = useCategories()
     const { t } = useTranslation();
-
     if (isLoading)
-        return <CircularProgress></CircularProgress>
+        return <Loading open={isLoading}/>
+
     if (isError)
         return <Box sx={{ my: 7, mx: 8 }}> <ErrorState /></Box>
 

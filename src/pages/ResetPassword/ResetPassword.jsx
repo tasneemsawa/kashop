@@ -19,7 +19,7 @@ export default function ResetPassword() {
   const { t } = useTranslation();
   const isRtlV = isRtl()
 
-  const { register, handleSubmit, control, formState: { errors, isSubmitting } } = useForm({
+  const { register, handleSubmit,reset, control, formState: { errors, isSubmitting } } = useForm({
     resolver: yupResolver(ResetPasswordSchema),
     mode: 'onBlur',
     defaultValues: {
@@ -32,6 +32,7 @@ export default function ResetPassword() {
 
   const resetForm = async (values) => {
     await resetPasswordMutation.mutateAsync(values)
+    reset()
   }
 
   return (

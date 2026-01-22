@@ -10,6 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useProducts } from '../../../Hooks/useProducts'
 import ProductGridCard from '../../../components/ProductGridCard/ProductGridCard'
 import InboxIcon from '@mui/icons-material/Inbox';
+import Loading from '../../../components/Loading/Loading'
 
 export default function ProductsSection() {
     const navigate = useNavigate()
@@ -18,7 +19,7 @@ export default function ProductsSection() {
         limit:12
       })
     if (isLoading)
-        return <CircularProgress></CircularProgress>
+        return <Loading open={isLoading}/>
     if (isError)
         return <Box sx={{ my: 7, mx: 8 }}> <ErrorState /></Box>
 

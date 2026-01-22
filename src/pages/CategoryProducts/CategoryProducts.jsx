@@ -11,6 +11,7 @@ import useGetProductsByCategory from '../../Hooks/useGetProductsByCategory.js'
 import { Styles } from './Styles';
 import InboxIcon from '@mui/icons-material/Inbox';
 import ErrorState from '../../components/Errors/Errors';
+import Loading from '../../components/Loading/Loading';
 export default function CategoryProducts() {
     const { id, name } = useParams(); //product id 
     const { t } = useTranslation();
@@ -21,7 +22,8 @@ export default function CategoryProducts() {
 
     let { isLoading, isError, data } = useGetProductsByCategory(id)
     console.log(data)
-    if (isLoading) return <CircularProgress></CircularProgress>
+    if (isLoading) return <Loading open={isLoading}/>
+
 
     console.log(data)
     return (

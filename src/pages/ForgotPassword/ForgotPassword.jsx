@@ -17,7 +17,7 @@ export default function ForgotPassword() {
     const { t } = useTranslation();
 
     const navigate = useNavigate()
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+    const { register, handleSubmit,reset, formState: { errors, isSubmitting } } = useForm({
         resolver: yupResolver(ForgotPasswordSchema),
         mode: 'onBlur',
 
@@ -26,7 +26,7 @@ export default function ForgotPassword() {
     let { serverErrors, forgotPasswordMutation } = useForgotPassword()
     const forgotPasswordForm = async (values) => {
         await forgotPasswordMutation.mutateAsync(values)
-
+        reset()
     }
 
     return (

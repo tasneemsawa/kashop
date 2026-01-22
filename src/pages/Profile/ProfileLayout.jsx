@@ -11,13 +11,14 @@ import LocalMallOutlinedIcon from '@mui/icons-material/LocalMallOutlined';
 import { useTranslation } from 'react-i18next';
 import StylesF from './Styles';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import Loading from '../../components/Loading/Loading';
 export default function ProfileLayout() {
 
   let { data, isLoading, isError } = useProfile()
   const { t, i18n } = useTranslation();
   const Styles = StylesF();
 
-  if (isLoading) return <CircularProgress></CircularProgress>
+  if (isLoading) return <Loading open={isLoading}/>
 
   if (isError) return <Typography>error</Typography>
   console.log(data)
