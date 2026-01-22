@@ -10,6 +10,7 @@ import useUpdateProfile from '../../../Hooks/useUpdateProfile';
 import useUpdateEmail from '../../../Hooks/useUpdateEmail';
 import useUpdatePassword from '../../../Hooks/useUpdatePassword';
 import ResetPassword from './ResetPassword/ResetPassword';
+import UpdateEmail from './UpdateEmail/UpdateEmail';
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -123,7 +124,8 @@ const Settings = () => {
       {/* PASSWORD AND EMAIL */}
       <Grid container spacing={4} >
         <Grid size={{ xs: 12, md: 6 }}>
-          <Paper elevation={0} sx={{ p: 3, borderRadius: "12px", height: '100%' }}>
+          <UpdateEmail/>
+          {/* <Paper elevation={0} sx={{ p: 3, borderRadius: "12px", height: '100%' }}>
             <Typography variant="h6" sx={{ mb: 2, fontWeight: 700 }}>{t("change_email")}</Typography>
             <TextField fullWidth label={t("new_email")} variant="outlined" sx={{ mb: "20px" }}
               value={newEmail}
@@ -132,7 +134,7 @@ const Settings = () => {
             <Button variant="contained" sx={Styles.actioNbutton}
               onClick={() => updateEmail({ NewEmail: newEmail })}
             >{t("update_email")}</Button>
-          </Paper>
+          </Paper> */}
         </Grid>
 
 
