@@ -16,6 +16,7 @@ import CategoryProducts from "./pages/CategoryProducts/CategoryProducts";
 import ProfileLayout from "./pages/Profile/ProfileLayout";
 import ProfileInfo from "./pages/Profile/ProfileInfo/ProfileInfo";
 import Orders from "./pages/Profile/Orders/Orders";
+import Settings from "./pages/Profile/Settings/Settings";
 
 
 
@@ -40,7 +41,13 @@ const router = createBrowserRouter([
       {
         path: 'orders',
         element: <Orders />
+      },
+      {
+        path: 'settings',
+        element: <Settings />
       }
+
+      
     ]
   
   },  

@@ -184,5 +184,17 @@
   "phone": "Phone",
   "birth_date": "Birth date",
   "city":"City",
-  "Settings":"Settings"
+  "Settings":"Settings",
+  "personal_info": "Personal Information",
+  "save_profile_info": "Save Changes",
+  "change_email": "Change Email Address",
+  "new_email": "New Email",
+  "update_email": "Update Email",
+  "change_password": "Change Password",
+  "current_password": "Current Password",
+  "new_password": "New Password",
+  "update_password": "Update Password",
+  "back": "Back",
+  "editProfile":"Edit Profile",
+  "ConfirmNewPassword":"Confirm New Password"
 }

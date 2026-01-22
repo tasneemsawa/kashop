@@ -184,9 +184,19 @@
   "birth_date": "تاريخ الميلاد",
   "fullName":"الاسم كامل",
   "city":"مدينة",
-  "Settings":"الاعدادات"
-
-
+  "Settings":"الاعدادات",
+  "personal_info": "المعلومات الشخصية",
+  "save_profile_info": "حفظ التغييرات",
+  "change_email": "تغيير البريد الإلكتروني",
+  "new_email": "البريد الإلكتروني الجديد",
+  "update_email": "تحديث الإيميل",
+  "change_password": "تغيير كلمة المرور",
+  "current_password": "كلمة المرور الحالية",
+  "new_password": "كلمة المرور الجديدة",
+  "update_password": "تحديث كلمة المرور",
+  "back": "رجوع",
+  "editProfile":"تعديل البروفايل",
+  "ConfirmNewPassword":"تاكيد كلمة السر الجديدة"
 
 
 }

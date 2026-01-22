@@ -8,7 +8,8 @@ const StylesF = () => {
       borderRadius: "8px",
       boxShadow: 'rgba(3, 0, 71, 0.09) 0px 1px 3px',
       color: "secondary.main",
-      py: "1rem"
+      pt: "1rem",
+      pb:"2px"
     },
     titleSideBar: {
       fontWeight: 500, color: '#7d7d9c',

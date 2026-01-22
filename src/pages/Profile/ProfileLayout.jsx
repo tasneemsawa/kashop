@@ -27,14 +27,14 @@ export default function ProfileLayout() {
         <Grid container spacing={1}>
 
           {/* sidebar */}
-          <Grid item  size={{ xs: 12, md: 3 }} >
+          <Grid   size={{ xs: 12, md: 3 }} >
             <Box sx={Styles.mainSideBar}>
               <Typography variant="caption" sx={Styles.titleSideBar}>
                 
                 {t("DASHBOARD")}
               </Typography>
 
-              <List sx={{ marginTop:"3px", }}>
+              <List sx={{ marginTop:"3px",mb:0 }}>
                 <Button
                   component={NavLink}
                   to="orders"
@@ -59,7 +59,7 @@ export default function ProfileLayout() {
 
                 <Button
                   component={NavLink}
-                  to="/settings"
+                  to="settings"
                   end
                   fullWidth
                   startIcon={<SettingsOutlinedIcon />}
@@ -75,7 +75,7 @@ export default function ProfileLayout() {
 
         
 
-          <Grid item size={{ xs: 12, md: 9 }}>
+          <Grid  size={{ xs: 12, md: 9 }}>
               <Outlet context={data} />
           </Grid>
 

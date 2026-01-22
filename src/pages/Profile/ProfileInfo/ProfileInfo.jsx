@@ -8,11 +8,12 @@ import {
 import PersonIcon from '@mui/icons-material/Person';
 import { Styles } from './Styles';
 import { useTranslation } from 'react-i18next';
-import { useOutletContext } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 
 const ProfileInfo = ({ userData }) => {
   const { t } = useTranslation()
   let data = useOutletContext();
+  const navigate=useNavigate()
   console.log(data)
 
   let totalOrder = data?.orders?.length || 0
@@ -30,7 +31,7 @@ const ProfileInfo = ({ userData }) => {
             {t("profile_title")}
           </Typography>
         </Box>
-        <Button variant="contained" sx={Styles.edit_profileButton} >
+        <Button variant="contained" sx={Styles.edit_profileButton} onClick={()=>navigate("/profile/settings")} >
           {t("edit_profile")}
         </Button>
       </Box>
