@@ -197,5 +197,10 @@
   "update_password": "Update Password",
   "back": "Back",
   "editProfile":"Edit Profile",
-  "ConfirmNewPassword":"Confirm New Password"
+  "ConfirmNewPassword":"Confirm New Password",
+  "email_change_success": "Email Change Done",
+  "email_change_error": "Email Change Failed",
+  "update_failed": "Update Failed",
+  "profile_updated": "Profile Updated!",
+  "password_changed": "Password Changed!"
 }

@@ -197,7 +197,11 @@
   "update_password": "تحديث كلمة المرور",
   "back": "رجوع",
   "editProfile":"تعديل البروفايل",
-  "ConfirmNewPassword":"تاكيد كلمة السر الجديدة"
-
+  "ConfirmNewPassword":"تاكيد كلمة السر الجديدة",
+  "email_change_success": "تم تغيير البريد الإلكتروني بنجاح",
+  "email_change_error": "فشل تغيير البريد الإلكتروني",
+  "update_failed": "فشلت عملية التحديث",
+  "profile_updated": "تم تحديث الملف الشخصي بنجاح!",
+  "password_changed": "تم تغيير كلمة المرور بنجاح!"
 
 }
