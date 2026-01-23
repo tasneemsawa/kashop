@@ -1,79 +1,76 @@
 import React from 'react';
-import { Box, Container, Typography, Button } from '@mui/material';
-import { Grid } from '@mui/material';
-
-//Swiper
+import { Box, Container, Typography, Button, Stack, useTheme } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-//image
-import watch from "../../../assets/Images/Main/apple-watch-0.webp"
-
-//style
-import Styles from "./Styles"
-import { useNavigate } from 'react-router-dom';
-
+import Styles from "./Styles";
+import watch from "../../../assets/Images/Main/apple-watch-0.webp";
 
 const Hero = () => {
-  const slides = [
-    {
-      title: "50% Off For Your First Shopping",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convalliss.",
-      image: watch
-    },
-    {
-      title: "50% Off For Your First Shopping",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis lobortis consequat eu, quam etiam at quis ut convalliss.",
-      image: watch,
-    }
-  ];
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const isRtl = i18n.language === "ar";
 
-  const navigate=useNavigate()
+  const slides = [
+    { title: "50% Off For Your First Shopping", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", image: watch },
+    { title: "New Apple Watch Collection 2026", description: "Experience the future of wearable technology.", image: watch }
+  ];
+  const theme = useTheme();
   return (
-    <Box sx={Styles.hero}>
+    <Box sx={{ ...Styles.hero, overflow: 'hidden', direction: 'ltr' ,backgroundColor: theme.palette.background.default,}}> 
       <Container maxWidth="lg">
         <Swiper
+          key={i18n.language}
+          dir={isRtl ? 'rtl' : 'ltr'}
           modules={[Pagination, Autoplay]}
-          spaceBetween={50}
           slidesPerView={1}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 9000 }}
           loop={true}
+          pagination={{ clickable: true }}
+          autoplay={{ delay: 5000 }}
+          style={{ width: '100%', height: '100%' }}
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={index}>
-              <Grid container alignItems="center" spacing={2} sx={{ minHeight: '400px' }}>
-                {/* text */}
-                <Grid size={{ xs: 12, md: 6 }}>
-                  <Box sx={{ paddingLeft: { md: 9 } }}>
-                    <Typography
-                      variant="h2"
-                      sx={Styles.title} >
-                      {slide.title}
-                    </Typography>
-                    <Typography
-                      sx={Styles.description}
-                    >
-                      {slide.description}
-                    </Typography>
-                    <Button sx={Styles.shopButton}
-                    onClick={()=>navigate("/shop")}
-                    >Shop Now</Button>
-                  </Box>
-                </Grid>
+              <Stack
+                direction={{ xs: 'column-reverse', md: isRtl ? 'row-reverse' : 'row' }}
+                alignItems="center"
+                justifyContent="space-between"
+                sx={{ 
+                  minHeight: '450px', 
+                  textAlign: isRtl ? 'right' : 'left',
+                  px: { md: 4 },
+                  direction: isRtl ? 'rtl' : 'ltr' 
+                }}
+              >
+                <Box sx={{ flex: 1, maxWidth: { md: '50%' } }}>
+                  <Typography variant="h2" sx={Styles.title}>
+                    {slide.title}
+                  </Typography>
+                  <Typography sx={Styles.description}>
+                    {slide.description}
+                  </Typography>
+                  <Button sx={Styles.shopButton} onClick={() => navigate("/shop")}>
+                    {t("Shop Now")}
+                  </Button>
+                </Box>
 
-                {/* image */}
-                <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex', justifyContent: "center" }}>
+                <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
                   <Box
                     component="img"
                     src={slide.image}
-                    alt="product"
-                    sx={Styles.image}
+                    sx={{
+                      ...Styles.image,
+                      width: { xs: '80%', md: '100%' },
+                      maxWidth: '400px',
+                      transform: isRtl ? 'scaleX(-1)' : 'none'
+                    }}
                   />
-                </Grid>
-              </Grid>
+                </Box>
+              </Stack>
             </SwiperSlide>
           ))}
         </Swiper>

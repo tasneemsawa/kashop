@@ -21,6 +21,11 @@ const MainTheme = (mode) => {
         main: '#f8f9fa',
 
       },
+      ke:{
+        main: mode === 'dark' ? '#ffffff !important' : '#0f3460',
+
+      },
+     
       background: {
         default: mode === 'dark' ? '#121212 !important' : '#f8f9fa',
         paper: mode === 'dark' ? '#1e1e1e !important' : '#ffffff',

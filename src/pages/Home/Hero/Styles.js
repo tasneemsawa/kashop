@@ -23,7 +23,7 @@ const Styles = {
     },
 
     description: {
-        color: '#0f3460', mb: 4, fontSize: "14px", fontWeight: 500
+        color: 'ke.main', mb: 4, fontSize: "14px", fontWeight: 500
     },
     image: {
         maxWidth: '100%',
