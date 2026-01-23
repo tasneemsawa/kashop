@@ -9,7 +9,7 @@ export default function Loading({ open }) {
         sx={{
             backdropFilter: 'blur(3px)',
             backgroundColor: 'rgba(0, 0, 0, 0.4)',
-            color: '#fff',
+            color: 'primary.main',
             zIndex: (theme) => theme.zIndex.drawer + 1,
             display: 'flex',
             flexDirection: 'column',
