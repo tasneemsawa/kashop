@@ -42,6 +42,7 @@ export const Styles = {
         py: 4,
         borderRadius: 2,
         textTransform: 'none',
-        fontSize:"18px"
+        fontSize:"18px",
+        color:"secondary.main"
 },
 }

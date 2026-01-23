@@ -96,8 +96,8 @@ export default function Checkout() {
                 sx={Styles.card}
               >
 
+<Stack  direction={{ xs: "column", sm: "column",md:"row",lg:"row" }} spacing={3} alignItems="center">
 
-                <Stack direction="row" spacing={3} alignItems="center">
                   <CardMedia
                     component="img"
                     height="100%"
@@ -106,7 +106,7 @@ export default function Checkout() {
                     title={item.productName}
                     alt={item.productName}
                   />
-                  <Box sx={{ flexGrow: 1, alignSelf: "flex-start", py: 3 }}>
+                <Box sx={{ flexGrow: 1, alignSelf:{ xs: "center", sm: "center",md:"flex-start",lg:"flex-start" } , py: 3 ,px:{ xs: "10px", sm: "2px",md:"0",lg:"0" }}}>
                     <Typography fontWeight="500" color="secondary" sx={{ fontSize: "18px", mb: 5 }}>
                       {item.productName}
                     </Typography>
@@ -140,7 +140,7 @@ export default function Checkout() {
                 fullWidth
                 startIcon={<MonetizationOnIcon />}
                 onClick={() => setMethod('cash')}
-                sx={Styles.paymentMethodButoon}
+                sx={[Styles.paymentMethodButoon,method === 'cash' ? {backgroundColor:"primary.main"}:{}]}
               > <Typography sx={{ m: "5px" }}> {t("Cash")}</Typography>
 
               </Button>
@@ -149,7 +149,7 @@ export default function Checkout() {
                 fullWidth
                 startIcon={<CreditCardIcon />}
                 onClick={() => setMethod('visa')}
-                sx={Styles.paymentMethodButoon}
+                sx={[Styles.paymentMethodButoon,method === 'visa' ? {backgroundColor:"primary.main"}:{}]}
               > <Typography sx={{ m: "5px" }}>  {t("Visa")}</Typography>
               </Button>
             </Box>
@@ -161,7 +161,7 @@ export default function Checkout() {
         {/* footer */}
         {data.items.length > 0 && (
           <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end", gap: 30 }}>
-            <Box sx={{ display: "flex", gap: "10px" }}>
+            <Box sx={{ display: "flex", gap: "10px",flexDirection:{ xs: "column", sm: "column",md:"row",lg:"row" } ,justifyContent:{ xs: "center", sm: "center",md:"row",lg:"row" } }}>
               <Button variant="contained"
                 onClick={() => handelCheckout()}
                 sx={Styles.addButton}

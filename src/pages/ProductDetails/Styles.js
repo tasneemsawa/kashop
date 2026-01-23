@@ -1,12 +1,13 @@
 export const Styles = {
 
-    photoGrid: { display: "flex", justifyContent: "flex-end" },
+    photoGrid: { display: "flex", justifyContent:{sm:"flex-start",md:"flex-end"}  },
     photo: {
         width: "400px",
         height: "500px",
         borderRadius: '12px',
         objectFit: 'conatin',
         display: 'block',
+        alignItems: "center" 
 
     },
     productName: { color: "secondary.main", fontSize: "30px", fontWeight: 700 },

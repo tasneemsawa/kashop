@@ -1,7 +1,7 @@
 
 
 import React, { useRef } from 'react';
-import { Box, Container, Typography, Card, CardMedia, Stack, CardContent } from '@mui/material';
+import { Box, Container, Typography, Card, CardMedia, Stack, CardContent, Grid } from '@mui/material';
 import GradeIcon from '@mui/icons-material/Grade';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 //images
@@ -31,49 +31,55 @@ const NewArrivals = () => {
 
     ];
     const navigate = useNavigate()
-    const { t,i18n } = useTranslation();
+    const { t, i18n } = useTranslation();
 
     return (
-        <Box  sx={{ py: 6 }}>
+        <Box sx={{ py: 6 }}>
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 4 }}>
                 <Stack direction="row" alignItems="center" spacing={1}>
                     <GradeIcon sx={{ color: 'primary.main', fontSize: '32px' }} />
                     <Typography fontWeight="bold" fontSize={"25px"} color="secondary.main"> {t("New Arrivals")}</Typography>
                 </Stack>
                 <Typography onClick={() => navigate("/shop")} sx={[Styles.viewAll,]}>
-                {t("View all")} <ChevronRightIcon fontSize="small" sx={{transform: i18n.language == "ar" ? 'rotate(180deg)' : 'rotate(0deg)'}} />
+                    {t("View all")} <ChevronRightIcon fontSize="small" sx={{ transform: i18n.language == "ar" ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                 </Typography>
             </Stack>
 
             <Box sx={{ position: 'relative', px: { xs: 0, md: 2 }, "&:hover .nav-button-cat": { visibility: 'visible', transform: 'translateY(0)', } }}>
                 <Stack direction={"row"} spacing={3} sx={Style.mainContainer}>
-                    {products.map((item) => (
+                        <Grid container spacing={2} sx={{ flexWrap: "wrap" }}>
 
-                        <Card elevation={0} sx={{ boxShadow: "0", backgroundColor: "transparent" ,
-                        transition: 'all 0.3s ease',
-                        '&:hover': {
-                            boxShadow: '0px 0px 10px rgba(0,0,0,0.15)',
-                            transform: 'translateY(-2px)',
-                            cursor: 'pointer'
-                        }
-                        }} key={item.id}>
-                            <CardMedia
-                                component="img"
-                                height="170px"
-                                sx={Styles.cardMedia}
-                                image={item.image}
-                                title={item.name}
-                                alt={item.name}
-                            />
-                            <CardContent sx={Styles.cardContent}>
-                                <Typography variant="subtitle1" noWrap sx={Styles.productName} >{item.name}</Typography>
+                            {products.map((item) => (
+                                <Grid size={{ xs: 6, sm: 4, md: 3, lg: 2 }} key={item.id}>
 
-                                <Typography color="primary" sx={Styles.price}>
-                                    ${item.price.toFixed(2)}
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                    ))}
+                                    <Card elevation={0} sx={{
+                                        boxShadow: "0", backgroundColor: "transparent",
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                            boxShadow: '0px 0px 10px rgba(0,0,0,0.15)',
+                                            transform: 'translateY(-2px)',
+                                            cursor: 'pointer'
+                                        }
+                                    }} key={item.id}>
+                                        <CardMedia
+                                            component="img"
+                                            height="170px"
+                                            sx={Styles.cardMedia}
+                                            image={item.image}
+                                            title={item.name}
+                                            alt={item.name}
+                                        />
+                                        <CardContent sx={Styles.cardContent}>
+                                            <Typography variant="subtitle1" noWrap sx={Styles.productName} >{item.name}</Typography>
+
+                                            <Typography color="primary" sx={Styles.price}>
+                                                ${item.price.toFixed(2)}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            ))}
+                        </Grid> 
                 </Stack>
             </Box>
         </Box>

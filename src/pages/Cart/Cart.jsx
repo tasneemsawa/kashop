@@ -147,7 +147,7 @@ export default function Cart() {
                 <CloseIcon fontSize="small" />
               </IconButton>
 
-              <Stack  direction="row" spacing={3} alignItems="center">
+              <Stack  direction={{ xs: "column", sm: "column",md:"row",lg:"row" }} spacing={3} alignItems="center">
                 <CardMedia
                   component="img"
                   height="100%"
@@ -156,7 +156,7 @@ export default function Cart() {
                   title={item.productName}
                   alt={item.productName}
                 />
-                <Box sx={{ flexGrow: 1, alignSelf: "flex-start", py: 3 }}>
+                <Box sx={{ flexGrow: 1, alignSelf:{ xs: "center", sm: "center",md:"flex-start",lg:"flex-start" } , py: 3 ,px:{ xs: "10px", sm: "2px",md:"0",lg:"0" }}}>
                   <Typography fontWeight="500" color="secondary" sx={{ fontSize: "18px", mb: 5 }}>
                     {item.productName}
                   </Typography>
@@ -172,7 +172,7 @@ export default function Cart() {
                     </Typography>
                   </Box>
                 </Box>
-                <Box sx={{display:"flex", gap:"10px"}} alignItems="center" >
+                <Box sx={{display:"flex", gap:"10px",pb:{ xs: "10px", sm: "10px",md:"0",lg:"0" }}} alignItems="center" >
                   <IconButton
                     onClick={() => handleCount(item.productId, "remove", item.count)}
                     disabled={updatePending}
@@ -204,7 +204,7 @@ export default function Cart() {
         {/* footer */}
         {data.items.length > 0 && (
           <Box sx={{ mt: 4, display: "flex", justifyContent: "flex-end", gap: 30 }}>
-            <Box sx={{ display: "flex", gap: "10px" }}>
+            <Box sx={{ display: "flex", gap: "10px",flexDirection:{ xs: "column", sm: "column",md:"row",lg:"row" } ,justifyContent:{ xs: "center", sm: "center",md:"row",lg:"row" } }}>
               <Button variant="contained"
                 onClick={() => navigate("/checkout")}
                 sx={Styles.addButton}
