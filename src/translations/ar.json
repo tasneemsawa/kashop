@@ -203,6 +203,8 @@
   "update_failed": "فشلت عملية التحديث",
   "profile_updated": "تم تحديث الملف الشخصي بنجاح!",
   "password_changed": "تم تغيير كلمة المرور بنجاح!",
-  "please_wait":"الرجاء الانتظار"
+  "please_wait":"الرجاء الانتظار",
+  "welcome_title": "أهلاً بكِ مجدداً",
+  "welcome_subtitle": "تسعدنا عودتكِ إلى بونتك ستور"
 
 }
