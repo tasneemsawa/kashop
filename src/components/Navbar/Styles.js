@@ -98,8 +98,21 @@ export const Styles = {
     px: 2,
     '&:hover': {
       backgroundColor: 'transparent',
+      transform: 'translateY(-4px) scale(1.05)',
       color: 'primary.main',
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        bottom: '-10px', 
+        left: 0,
+        width: '100%',
+        height: '2px',
+        backgroundColor: 'primary.main',
+        borderRadius: '2px',
+      }
+
     },
+
     '&.active': {
       color: 'primary.main',
       fontWeight: '700',
