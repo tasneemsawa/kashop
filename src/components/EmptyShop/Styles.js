@@ -42,6 +42,7 @@ export const Styles = {
         fontSize: '1rem',
         fontWeight: '600',
         borderWidth:"1px",
+          bgcolor: 'primary.main',
         '&:hover': {
             borderColor: 'primary.main',
             bgcolor: 'white',
