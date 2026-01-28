@@ -9,7 +9,6 @@ import {
 
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { motion } from "framer-motion";
 import {
   Search as SearchIcon,
   PersonOutline as PersonOutlineIcon,
@@ -48,7 +47,6 @@ export default function Navbar() {
   const queryClient = useQueryClient();
 
 
-  const MotionIconButton = motion(IconButton);
   const changeLanguage = () => {
     let language = i18n.language
     i18n.changeLanguage(language == "en" ? "ar" : "en");
