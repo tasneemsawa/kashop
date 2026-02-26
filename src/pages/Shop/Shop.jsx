@@ -158,7 +158,7 @@ const Shop = () => {
                   </Typography>
                 </Box>
               ) : (
-                categories.response.map(cat => (
+                categories.response.data.map(cat => (
                   <Typography
                     onClick={() => {
                       setPage(1)

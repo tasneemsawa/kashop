@@ -8,12 +8,13 @@ const WelcomeModal = ({ title = "welcome_title", subtitle = "welcome_subtitle" }
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(false), 3000);
+    const timer = setTimeout(() => setIsVisible(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 const {t}=useTranslation()
   return (
-    <AnimatePresence>
+    // to allow the item disappear with anmation not suddenly
+    <AnimatePresence> 
       {isVisible && (
         <Box sx={Styles.main}>
           <Paper

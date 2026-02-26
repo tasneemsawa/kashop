@@ -319,7 +319,7 @@ export default function Navbar() {
                       {t("Failed to load categories")}
                     </MenuItem>
                   )}
-                  {!isLoading && !isError ? data.response.map((category) => (
+                  {!isLoading && !isError ? data.response.data.map((category) => (
                     <MenuItem key={category.id} value={category.id}
                       onClick={() => navigate(`CategoryProducts/${category.id}/${category.name}`)}
                     >
@@ -421,7 +421,7 @@ export default function Navbar() {
                     {t("Failed to load categories")}
                   </MenuItemComponent>
                 )}
-                {!isLoading && !isError ? data.response.map((category) => (
+                {!isLoading && !isError ? data.response.data.map((category) => (
                   <MenuItemComponent key={category.id} value={category.id}
                     onClick={() => {
                       handleCategoriesClose()

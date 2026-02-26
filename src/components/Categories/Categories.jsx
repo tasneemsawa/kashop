@@ -29,7 +29,7 @@ export default function Categories() {
                     </Stack>
                     {
                         <Grid container spacing={3}>
-                            {data.response.map(categorie =>
+                            {data.response.data.map(categorie =>
                                 <Grid key={categorie.id}
                                     onClick={() => navigate(`CategoryProducts/${categorie.id}/${categorie.name}`)}
                                     size={{ xs: 12, sm: 6, md: 5, lg: 3 }}>

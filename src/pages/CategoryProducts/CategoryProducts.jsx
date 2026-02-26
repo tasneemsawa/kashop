@@ -18,7 +18,7 @@ export default function CategoryProducts() {
     console.log(id)
     console.log(name)
     const { data: categories } = useCategories();
-    const category = categories?.response?.find((c) => c.id == id);
+    const category = categories?.response?.data?.find((c) => c.id == id);
 
     let { isLoading, isError, data } = useGetProductsByCategory(id)
     console.log(data)
