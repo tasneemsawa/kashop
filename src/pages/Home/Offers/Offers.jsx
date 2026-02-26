@@ -1,6 +1,5 @@
 
 
-import React, { useRef } from 'react';
 import { Box, Container, Card, CardMedia, Stack } from '@mui/material';
 //images
 import offer1 from "../../../assets/Images/offers/offer1.webp"

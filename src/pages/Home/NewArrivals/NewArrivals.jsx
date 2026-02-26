@@ -1,6 +1,5 @@
 
 
-import React, { useRef } from 'react';
 import { Box, Container, Typography, Card, CardMedia, Stack, CardContent, Grid } from '@mui/material';
 import GradeIcon from '@mui/icons-material/Grade';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';

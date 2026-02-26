@@ -1,6 +1,6 @@
 
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Container, Typography, Card, IconButton, Stack, Paper } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
@@ -28,8 +28,6 @@ const TopCategories = () => {
         { id: 4, name: "Watch", ordersNumber: "3k", image: watch },
 
     ];
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
     const navigate = useNavigate()
     const { t, i18n } = useTranslation();
     const isRtl = i18n.language === "ar";
