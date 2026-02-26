@@ -1,3 +1,6 @@
+import { BorderColor } from "@mui/icons-material";
+import { color } from "framer-motion";
+
 export const Styles = {
   mainView:{
     display: 'flex',
@@ -20,6 +23,8 @@ export const Styles = {
     px: "70px",
     py:"10px",
     textTransform: 'none',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color:"white",
+    bgcolor:"primary.main",
   }
 };
