@@ -21,7 +21,7 @@ const Offers = () => {
         <Box sx={{ py: 6 }}>
 
             <Box sx={{ position: 'relative', px: { xs: 0, md: 2 } }}>
-                <Stack direction={"row"} spacing={3} sx={Style.mainContainer}>
+                <Stack direction={{ xs: 'column', md: 'row' }} spacing={3} sx={Style.mainContainer}>
                     {offer.map((item) => (
 
                         <Card key={item.id} elevation={0} sx={{ boxShadow: "0", backgroundColor: "transparent" }}>

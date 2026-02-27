@@ -41,7 +41,7 @@ const MainTheme = (mode) => {
       MuiPaper: {
         styleOverrides: {
           root: {
-            backgroundColor: mode === 'dark' ? '#000000 !important' : '#ffffff',
+            backgroundColor: mode === 'dark' ? '	#141414 !important' : '#ffffff',
           },
         },
       },

@@ -3,7 +3,6 @@ export const Styles = {
     backgroundColor: "white",
     boxShadow: '0px 2px 1px rgba(3, 0, 51, 0.03)',
     paddingTop:"10px",
-    margin:"3px"
   },
   logo: {
     display: { xs: 'flex', md: 'flex' },

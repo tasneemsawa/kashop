@@ -1,5 +1,5 @@
 import { Style } from '@mui/icons-material';
-import { CircularProgress, Grid, Typography, Box, Container, CardMedia, Card } from '@mui/material';
+import { CircularProgress, Grid, Typography, Box, Container, CardMedia, Card, Paper } from '@mui/material';
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -51,17 +51,18 @@ export default function CategoryProducts() {
                                 ?
                                 (
                                     <Container>
-                                        <Box sx={Styles.alertView}>
+                                        
+                                        <Paper sx={Styles.alertView}>
                                             <InboxIcon sx={{ fontSize: 80, color: '#ccc', mb: 2 }} />
-                                            <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 }}>
+                                            <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1 ,color:"primary.main"}}>
                                                 {t("no_products_title")}
                                             </Typography>
 
-                                            <Typography variant="body1" sx={{ color: 'text.secondary', mb: 3 }}>
+                                            <Typography variant="body1" sx={{ color: 'gray', mb: 3 }}>
                                                 {t("no_products_desc")}
                                             </Typography>
 
-                                        </Box>
+                                        </Paper>
                                     </Container>
                                 )
 
